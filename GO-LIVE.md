@@ -4,14 +4,10 @@ Work top to bottom. Nothing here touches the live site until Step 5.
 
 ---
 
-## ⚠️ Read this first: the photos
+## ✅ Photos: done
 
-Every photo on the new site is still being loaded **from Squarespace's servers**.
-The pages point at URLs like `images.squarespace-cdn.com/...`.
-
-**If you cancel Squarespace before fixing this, every image on the site breaks.**
-
-Fixing it is Step 4. Do not skip it, and do not cancel Squarespace until Step 8.
+Every image on the site now lives in this repo under `assets/img/`. Nothing on
+the site depends on Squarespace anymore. (Step 4 below is complete.)
 
 ---
 
@@ -55,7 +51,7 @@ untouched.** Open the Netlify URL and click through every page.
 Netlify → Site settings → Members. Invite anyone who needs to publish.
 GitHub → repo → Settings → Collaborators for anyone who needs to edit code.
 
-## Step 4 — Move the photos off Squarespace
+## Step 4 — Move the photos off Squarespace ✅ DONE (Sep 2, 2026)
 
 While Squarespace is still running:
 

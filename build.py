@@ -13,7 +13,6 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # --- Every outbound link, in one place ------------------------------------
 CC = "https://gatecity-buckhead.churchcenter.com"
-IMGBASE = "https://images.squarespace-cdn.com/content/v1/6646144cd2db59376f6958ff/"
 
 LINKS = {
     "GIVE":            CC + "/giving",
@@ -46,26 +45,26 @@ LINKS = {
     "OG_IMAGE":        "https://www.gatecitybuckhead.com/assets/img/hero.jpg",  # link-preview image; must be absolute
 }
 
-# --- Images. Swap these for /assets/img/... once files are committed. ------
+# --- Images. All local now (nothing depends on Squarespace). -------------
 IMAGES = {
-    "LOGO":   IMGBASE + "6eafc964-cc88-4715-804d-906eddde6219/gcb-green%2Bwhite-horiztonal.png?format=750w",
+    "LOGO":   "/assets/img/logo.png",
     "HERO":   "/assets/img/hero.jpg",          # Easter 2026, 417A6646 (Eden)
     "HERO_M": "/assets/img/hero-1400.jpg",     # same, mobile size
-    "AIS":    IMGBASE + "419f67fe-c699-4129-9aae-fb55ee325529/Atlanta-International-School-Buckhead-Atlanta-AIS.jpg?format=1500w",
+    "AIS":    "/assets/img/ais.jpg",
     "PEOPLE": "/assets/img/people.jpg",        # Easter 2026, 417A6449 (Eden)
     "PRAYER": "/assets/img/worship.jpg",       # Easter 2026, 417A6831 (Eden)
     "KIDS":   "/assets/img/kids.jpg",          # Easter 2026, 417A6307 (Eden) - parent + toddler
-    "FORUM":  IMGBASE + "d5fc60c2-6da7-4fb4-8ba2-d150a806f758/sunday-forum.jpg?format=1000w",
-    "TEAM":   IMGBASE + "556588b2-9b68-4cdc-939a-adc6e9c0ac53/GCB+TEAM+PHOTO.jpg?format=2500w",
-    "T_HAZEN":    IMGBASE + "61210430-491e-4dc9-ba1a-077374b4245a/hazen.jpg?format=800w",
-    "T_HANNAH":   IMGBASE + "7150436b-a70f-4696-9cf8-eaa652b3d453/hannah.jpg?format=800w",
-    "T_SON":      IMGBASE + "6de32b77-f496-4d0b-a853-1155f4dfe880/son.jpg?format=800w",
-    "T_ANDREW":   IMGBASE + "5027a4c8-544c-48e5-b922-371f04571981/IMG_9722_jpg+2.JPG?format=800w",
-    "T_HALIMA":   IMGBASE + "5240778c-23dd-4600-88d9-c49d303b4ba7/IMG_9707_jpg.JPG?format=800w",
-    "T_KARISSA":  IMGBASE + "9baacc57-2c84-4305-b649-4494db9157f1/karissa.jpg?format=800w",
-    "T_KENNAH":   IMGBASE + "45f88d30-98ba-4d88-87d4-25c0ed7707fb/IMG_9752_jpg+2.JPG?format=800w",
-    "T_SARAH":    IMGBASE + "12cd8dbe-b6cd-417d-8bf9-f79025a67d81/sarah-headshot.jpg?format=800w",
-    "T_ANGEL":    IMGBASE + "71e0bfb0-7cde-4fb9-9d2c-9a37a544515e/IMG_4042.JPG?format=800w",
+    "FORUM":  "/assets/img/sunday-forum.jpg",
+    "TEAM":   "/assets/img/team.jpg",
+    "T_HAZEN":    "/assets/img/team/hazen.jpg",
+    "T_HANNAH":   "/assets/img/team/hannah.jpg",
+    "T_SON":      "/assets/img/team/son.jpg",
+    "T_ANDREW":   "/assets/img/team/andrew.jpg",
+    "T_HALIMA":   "/assets/img/team/halima.jpg",
+    "T_KARISSA":  "/assets/img/team/karissa.jpg",
+    "T_KENNAH":   "/assets/img/team/kennah.jpg",
+    "T_SARAH":    "/assets/img/team/sarah.jpg",
+    "T_ANGEL":    "/assets/img/team/angel.jpg",
 }
 
 # page slug -> (output path, <title>, meta description, solid header?)
