@@ -7,7 +7,7 @@ Edit content in pages/ and partials/ -- never the generated .html at the root,
 those get overwritten. Every outbound URL lives in LINKS below, so a changed
 Zoom link or Church Center form is a one-line edit here.
 """
-import os, re, datetime, shutil
+import os, re, datetime, shutil, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -87,6 +87,11 @@ def fill(text, extra=None):
     vals.update(LINKS)
     vals.update(IMAGES)
     vals["YEAR"] = str(datetime.date.today().year)
+    # Cache-busting: short content hash of site.css / site.js so browsers
+    # pick up new styles immediately after a deploy.
+    for name in ("site.css", "site.js"):
+        with open(os.path.join(ROOT, "assets", name), "rb") as f:
+            vals[name.upper().replace(".", "_") + "_V"] = hashlib.md5(f.read()).hexdigest()[:8]
     if extra:
         vals.update(extra)
     for _ in range(3):  # allow one level of nesting
