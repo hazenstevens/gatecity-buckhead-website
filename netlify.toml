@@ -1,0 +1,59 @@
+# GateCity Buckhead — Netlify configuration
+# The site is plain static HTML. Nothing is built on Netlify; the committed
+# HTML at the repo root is exactly what gets served.
+
+[build]
+  publish = "."
+  command = ""
+
+[build.processing]
+  skip_processing = false
+
+# Serve /our-beliefs.html at /our-beliefs, etc.
+[[redirects]]
+  from = "/home/*"
+  to = "/location"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home"
+  to = "/location"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pledge"
+  to = "https://gatecity-buckhead.churchcenter.com/giving"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/give"
+  to = "https://gatecity-buckhead.churchcenter.com/giving"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/resources/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/resources/"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
