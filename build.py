@@ -55,7 +55,8 @@ LINKS = {
 #   "https://gatecityatl.us21.list-manage.com/subscribe/post?u=XXXX&id=YYYY"
 # While it's empty the forms fall back to Netlify Forms (submissions show up
 # in Netlify -> Forms, and can email-notify), so nothing is ever lost.
-MAILCHIMP_ACTION = ""
+MAILCHIMP_ACTION = "https://gatecitybuckhead.us3.list-manage.com/subscribe/post?u=b941189c6bb50530d38f746fd&id=cdb1521460&f_id=00e92be2f0"
+MAILCHIMP_TAGS = "10814202"   # Mailchimp tag id applied to website sign-ups ("Website")
 
 
 def newsletter_form(form_id):
@@ -66,7 +67,8 @@ def newsletter_form(form_id):
         honeypot = ""
         if u and i:
             honeypot = '<div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_%s_%s" tabindex="-1" value=""></div>' % (u.group(1), i.group(1))
-        vals = {"NL_ACTION": MAILCHIMP_ACTION, "NL_ATTRS": ' target="_blank"', "NL_HIDDEN": honeypot}
+        tags = ('<input type="hidden" name="tags" value="%s">' % MAILCHIMP_TAGS) if MAILCHIMP_TAGS else ""
+        vals = {"NL_ACTION": MAILCHIMP_ACTION, "NL_ATTRS": ' target="_blank"', "NL_HIDDEN": tags + honeypot}
     else:
         vals = {"NL_ACTION": "/thanks", "NL_ATTRS": ' name="newsletter" data-netlify="true" netlify-honeypot="website"',
                 "NL_HIDDEN": '<input type="hidden" name="form-name" value="newsletter"><p class="sr-only" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>'}
