@@ -62,9 +62,13 @@ LINKS = {
 # in Netlify -> Forms, and can email-notify), so nothing is ever lost.
 MAILCHIMP_ACTION = "https://gatecitybuckhead.us3.list-manage.com/subscribe/post?u=b941189c6bb50530d38f746fd&id=cdb1521460&f_id=00e92be2f0"
 MAILCHIMP_TAGS = "10814202,10812749"   # Mailchimp tag ids applied to website sign-ups: Website + GCB Weekly
+# Extra tags a specific form can add, by name: {{NL_FORM:some-id:brief}}
+MAILCHIMP_EXTRA_TAGS = {
+    "brief": "10812754",   # "Parent Newsletter" = the BuckCity Brief (Kids page form)
+}
 
 
-def newsletter_form(form_id):
+def newsletter_form(form_id, extra=None):
     tpl = read("partials/newsletter-form.html")
     if MAILCHIMP_ACTION:
         u = re.search(r"[?&]u=([^&]+)", MAILCHIMP_ACTION)
@@ -72,7 +76,10 @@ def newsletter_form(form_id):
         honeypot = ""
         if u and i:
             honeypot = '<div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_%s_%s" tabindex="-1" value=""></div>' % (u.group(1), i.group(1))
-        tags = ('<input type="hidden" name="tags" value="%s">' % MAILCHIMP_TAGS) if MAILCHIMP_TAGS else ""
+        tag_ids = MAILCHIMP_TAGS
+        if extra:
+            tag_ids = ",".join(t for t in [MAILCHIMP_TAGS, MAILCHIMP_EXTRA_TAGS[extra]] if t)
+        tags = ('<input type="hidden" name="tags" value="%s">' % tag_ids) if tag_ids else ""
         vals = {"NL_ACTION": MAILCHIMP_ACTION, "NL_ATTRS": ' target="_blank"', "NL_HIDDEN": tags + honeypot}
     else:
         vals = {"NL_ACTION": "/thanks", "NL_ATTRS": ' name="newsletter" data-netlify="true" netlify-honeypot="website"',
@@ -142,7 +149,7 @@ def fill(text, extra=None):
             vals[name.upper().replace(".", "_") + "_V"] = hashlib.md5(f.read()).hexdigest()[:8]
     if extra:
         vals.update(extra)
-    text = re.sub(r"\{\{NL_FORM:([a-z0-9-]+)\}\}", lambda m: newsletter_form(m.group(1)), text)
+    text = re.sub(r"\{\{NL_FORM:([a-z0-9-]+)(?::([a-z]+))?\}\}", lambda m: newsletter_form(m.group(1), m.group(2)), text)
     for _ in range(3):  # allow one level of nesting
         for k, v in vals.items():
             text = text.replace("{{%s}}" % k, v)
