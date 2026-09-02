@@ -20,7 +20,7 @@
 <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta name="theme-color" content="#183828">
-<link rel="stylesheet" href="/assets/site.css?v=25772bdc">
+<link rel="stylesheet" href="/assets/site.css?v=f7bafd91">
 </head>
 <body class="solid-header">
 <header id="hdr">
@@ -155,6 +155,22 @@
 
 <footer>
   <div class="wrap">
+    <div class="f-news" id="newsletter">
+      <div>
+        <div class="eyebrow on-dark">The GCB Weekly</div>
+        <h3>What's happening this week, in your inbox.</h3>
+        <p>One email a week: this Sunday, upcoming gatherings, and the latest from the blog.</p>
+      </div>
+      <div class="nl">
+<form class="nl-form" action="/thanks" method="post" name="newsletter" data-netlify="true" netlify-honeypot="website">
+  <input type="hidden" name="form-name" value="newsletter"><p class="sr-only" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+  <label class="sr-only" for="nl-footer">Email address</label>
+  <input id="nl-footer" type="email" name="EMAIL" placeholder="you@email.com" required autocomplete="email">
+  <button class="btn btn-primary" type="submit">Subscribe <span class="arrow">&rarr;</span></button>
+</form>
+<p class="nl-fine">No spam, ever. Unsubscribe with one click.</p>
+</div>
+    </div>
     <div class="f-top">
       <div class="f-logo">
         <img src="/assets/img/logo.png" alt="GateCity Buckhead" width="160" height="55">

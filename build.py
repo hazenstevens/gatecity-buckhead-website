@@ -50,6 +50,32 @@ LINKS = {
     "OG_IMAGE":        BASE + "/assets/img/hero.jpg",  # link-preview image; must be absolute
 }
 
+# --- Newsletter signup ------------------------------------------------------
+# Paste the Mailchimp embedded-form action URL here, e.g.
+#   "https://gatecityatl.us21.list-manage.com/subscribe/post?u=XXXX&id=YYYY"
+# While it's empty the forms fall back to Netlify Forms (submissions show up
+# in Netlify -> Forms, and can email-notify), so nothing is ever lost.
+MAILCHIMP_ACTION = ""
+
+
+def newsletter_form(form_id):
+    tpl = read("partials/newsletter-form.html")
+    if MAILCHIMP_ACTION:
+        u = re.search(r"[?&]u=([^&]+)", MAILCHIMP_ACTION)
+        i = re.search(r"[?&]id=([^&]+)", MAILCHIMP_ACTION)
+        honeypot = ""
+        if u and i:
+            honeypot = '<div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_%s_%s" tabindex="-1" value=""></div>' % (u.group(1), i.group(1))
+        vals = {"NL_ACTION": MAILCHIMP_ACTION, "NL_ATTRS": ' target="_blank"', "NL_HIDDEN": honeypot}
+    else:
+        vals = {"NL_ACTION": "/thanks", "NL_ATTRS": ' name="newsletter" data-netlify="true" netlify-honeypot="website"',
+                "NL_HIDDEN": '<input type="hidden" name="form-name" value="newsletter"><p class="sr-only" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>'}
+    vals["NL_ID"] = form_id
+    for k, v in vals.items():
+        tpl = tpl.replace("{{%s}}" % k, v)
+    return tpl
+
+
 # --- Images. All local now (nothing depends on Squarespace). -------------
 IMAGES = {
     "LOGO":   "/assets/img/logo.png",
@@ -82,6 +108,7 @@ PAGES = {
     "digital-community": ("digital-community.html",         "Digital Community | GateCity Buckhead",   "Virtual prayer, Sunday Forum, Formation Nights and the Discipleship Cohort — ways to belong between Sundays.", True),
     "resources":         ("resources/index.html",           "Resources | GateCity Buckhead",           "Podcast, books, YouVersion reading plans, music and more from GateCity Buckhead.", True),
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
+    "thanks":            ("thanks.html",                    "Thanks for Subscribing | GateCity Buckhead", "You're on the GCB Weekly list.", True),
     "404":               ("404.html",                       "Page Not Found | GateCity Buckhead",      "That page doesn't exist.", True),
 }
 
@@ -98,6 +125,7 @@ def fill(text, extra=None):
             vals[name.upper().replace(".", "_") + "_V"] = hashlib.md5(f.read()).hexdigest()[:8]
     if extra:
         vals.update(extra)
+    text = re.sub(r"\{\{NL_FORM:([a-z0-9-]+)\}\}", lambda m: newsletter_form(m.group(1)), text)
     for _ in range(3):  # allow one level of nesting
         for k, v in vals.items():
             text = text.replace("{{%s}}" % k, v)
@@ -231,7 +259,7 @@ def main():
     # sitemap
     urls = []
     for slug, (out, _t, _d, _s) in PAGES.items():
-        if slug == "404":
+        if slug in ("404", "thanks"):
             continue
         urls.append(BASE + "/" + out.replace("index.html", ""))
     today = datetime.date.today().isoformat()
