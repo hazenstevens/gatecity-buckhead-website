@@ -45,6 +45,7 @@ IMAGES = {
     "AIS":    IMGBASE + "419f67fe-c699-4129-9aae-fb55ee325529/Atlanta-International-School-Buckhead-Atlanta-AIS.jpg?format=1500w",
     "PEOPLE": "/assets/img/people.jpg",        # Easter 2026, 417A6449 (Eden)
     "PRAYER": "/assets/img/worship.jpg",       # Easter 2026, 417A6831 (Eden)
+    "KIDS":   "/assets/img/kids.jpg",          # Easter 2026, 417A6307 (Eden) - parent + toddler
     "FORUM":  IMGBASE + "d5fc60c2-6da7-4fb4-8ba2-d150a806f758/sunday-forum.jpg?format=1000w",
     "TEAM":   IMGBASE + "556588b2-9b68-4cdc-939a-adc6e9c0ac53/GCB+TEAM+PHOTO.jpg?format=2500w",
     "T_HAZEN":    IMGBASE + "61210430-491e-4dc9-ba1a-077374b4245a/hazen.jpg?format=800w",
