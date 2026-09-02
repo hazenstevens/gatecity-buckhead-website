@@ -34,18 +34,6 @@
   status = 301
   force = true
 
-[[redirects]]
-  from = "/blog"
-  to = "/resources/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/*"
-  to = "/resources/"
-  status = 301
-  force = true
-
 [[headers]]
   for = "/*"
   [headers.values]

@@ -1,0 +1,40 @@
+<article class="post">
+  <div class="post-head">
+    <div class="wrap narrow">
+      <a class="post-crumb" href="/blog/">&larr; Blog</a>
+      <h1>{{POST_TITLE}}</h1>
+      <div class="post-meta">
+        <span>By {{POST_AUTHOR}}</span>
+        <span class="sep">&middot;</span>
+        <time datetime="{{POST_ISO}}">{{POST_DATE}}</time>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap post-cover">
+    <img src="{{POST_COVER}}" alt="" width="1200" height="675">
+  </div>
+
+  <div class="wrap narrow post-body prose">
+{{POST_BODY}}
+  </div>
+
+  <div class="wrap narrow post-foot">
+    <div class="post-share">
+      <span>Share this post</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://gatecitybuckhead.com{{PATH}}" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?url=https://gatecitybuckhead.com{{PATH}}&amp;text={{POST_TITLE}}" target="_blank" rel="noopener">X</a>
+      <a href="mailto:?subject={{POST_TITLE}}&amp;body=https://gatecitybuckhead.com{{PATH}}">Email</a>
+    </div>
+    <nav class="post-nav">{{POST_NAV}}</nav>
+  </div>
+</article>
+
+<section class="deep tight">
+  <div class="wrap narrow" style="text-align:center">
+    <div class="eyebrow on-dark">Never miss a post</div>
+    <h2>Get the blog in your inbox.</h2>
+    <p class="lede" style="margin:20px auto 0">New teaching every week, plus what's happening at GateCity Buckhead.</p>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="{{BLOG_SUBSCRIBE}}">Subscribe <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
