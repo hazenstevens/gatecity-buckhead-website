@@ -55,7 +55,6 @@ IMAGES = {
     "T_HALIMA":   IMGBASE + "5240778c-23dd-4600-88d9-c49d303b4ba7/IMG_9707_jpg.JPG?format=800w",
     "T_KARISSA":  IMGBASE + "9baacc57-2c84-4305-b649-4494db9157f1/karissa.jpg?format=800w",
     "T_KENNAH":   IMGBASE + "45f88d30-98ba-4d88-87d4-25c0ed7707fb/IMG_9752_jpg+2.JPG?format=800w",
-    "T_GRETCHEN": IMGBASE + "38609c40-a6c9-4be1-8bbc-bab008f5ca63/gretchen.jpg?format=800w",
     "T_SARAH":    IMGBASE + "12cd8dbe-b6cd-417d-8bf9-f79025a67d81/sarah-headshot.jpg?format=800w",
     "T_ANGEL":    IMGBASE + "71e0bfb0-7cde-4fb9-9d2c-9a37a544515e/IMG_4042.JPG?format=800w",
 }
