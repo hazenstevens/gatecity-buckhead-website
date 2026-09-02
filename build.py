@@ -56,7 +56,7 @@ LINKS = {
 # While it's empty the forms fall back to Netlify Forms (submissions show up
 # in Netlify -> Forms, and can email-notify), so nothing is ever lost.
 MAILCHIMP_ACTION = "https://gatecitybuckhead.us3.list-manage.com/subscribe/post?u=b941189c6bb50530d38f746fd&id=cdb1521460&f_id=00e92be2f0"
-MAILCHIMP_TAGS = "10814202"   # Mailchimp tag id applied to website sign-ups ("Website")
+MAILCHIMP_TAGS = "10814202,10812749"   # Mailchimp tag ids applied to website sign-ups: Website + GCB Weekly
 
 
 def newsletter_form(form_id):
