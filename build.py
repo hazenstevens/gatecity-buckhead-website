@@ -17,6 +17,11 @@ CC = "https://gatecity-buckhead.churchcenter.com"
 
 LINKS = {
     "GIVE":            CC + "/giving",
+    "GIVE_GENERAL":    CC + "/giving/to/general-tithes-offering",
+    "GIVE_99":         CC + "/giving/to/99-for-the-1",
+    "GIVE_MISSIONS":   CC + "/giving/to/missions",
+    "GIVE_BENEV":      CC + "/giving/to/benevolence",
+    "GIVE_PRAYER":     CC + "/giving/to/building-fund",   # PCO fund slug (still "building-fund" until renamed in Planning Center)
     "FORM_VISIT":      CC + "/people/forms/888536",
     "FORM_SERVE":      CC + "/people/forms/856748",
     "FORM_CONNECT":    CC + "/people/forms/912170",
