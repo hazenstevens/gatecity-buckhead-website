@@ -23,12 +23,6 @@
   force = true
 
 [[redirects]]
-  from = "/pledge"
-  to = "https://gatecity-buckhead.churchcenter.com/giving"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/give"
   to = "https://gatecity-buckhead.churchcenter.com/giving"
   status = 301

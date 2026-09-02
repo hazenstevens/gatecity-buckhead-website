@@ -76,6 +76,12 @@ def newsletter_form(form_id):
     return tpl
 
 
+# --- 99 for the 1 progress -------------------------------------------------
+# Update this number when a new partner joins (individual or church), then
+# rebuild. It drives the progress bars on /pledge and /99-for-the-1.
+DONORS_99 = 0
+
+
 # --- Images. All local now (nothing depends on Squarespace). -------------
 IMAGES = {
     "LOGO":   "/assets/img/logo.png",
@@ -108,6 +114,8 @@ PAGES = {
     "digital-community": ("digital-community.html",         "Digital Community | GateCity Buckhead",   "Virtual prayer, Sunday Forum, Formation Nights and the Discipleship Cohort — ways to belong between Sundays.", True),
     "resources":         ("resources/index.html",           "Resources | GateCity Buckhead",           "Podcast, books, YouVersion reading plans, music and more from GateCity Buckhead.", True),
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
+    "pledge":            ("pledge.html",                    "Give | GateCity Buckhead",                "Give to GateCity Buckhead — one-time or recurring, and become one of the 99 partners helping us reach the one.", False),
+    "99-for-the-1":      ("99-for-the-1.html",              "99 for the 1 | GateCity Buckhead",        "Jesus left the 99 to go after the one. We're believing for 99 partners — 90 individuals and 9 churches — to sustain and expand GateCity Buckhead.", False),
     "thanks":            ("thanks.html",                    "Thanks for Subscribing | GateCity Buckhead", "You're on the GCB Weekly list.", True),
     "404":               ("404.html",                       "Page Not Found | GateCity Buckhead",      "That page doesn't exist.", True),
 }
@@ -118,6 +126,8 @@ def fill(text, extra=None):
     vals.update(LINKS)
     vals.update(IMAGES)
     vals["YEAR"] = str(datetime.date.today().year)
+    vals["DONORS_99"] = str(DONORS_99)
+    vals["DONORS_99_PCT"] = str(round(min(DONORS_99, 99) / 99 * 100, 1))
     # Cache-busting: short content hash of site.css / site.js so browsers
     # pick up new styles immediately after a deploy.
     for name in ("site.css", "site.js"):
