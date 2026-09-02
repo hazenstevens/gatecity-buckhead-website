@@ -34,6 +34,15 @@ LINKS = {
     "MAPS":            "https://maps.google.com/?q=2890+N+Fulton+Dr+NE,+Atlanta,+GA+30305",
     "PCL":             "https://presencecenteredlife.com/",
     "BIBLE_PLANS":     "https://www.bible.com/search/plans",
+    "AMZ_DETOX":       "https://www.amazon.com/dp/B0H8GDKBY4",
+    "AMZ_MANIFEST":    "https://www.amazon.com/dp/B0H4S8Z9S8",
+    "AMZ_STRONG":      "https://www.amazon.com/dp/B0GM97RPG1",
+    "AMZ_BLESSED":     "https://www.amazon.com/dp/B0G2FGMHMB",
+    "AMZ_CONVERSATIONS": "https://www.amazon.com/dp/B0F8J7F553",
+    "AMZ_TRANSFORMED": "https://www.amazon.com/dp/B0DZCRD4C2",
+    "AMZ_SEVEN_SEEDS": "https://www.amazon.com/dp/B0DX5244NC",
+    "AMZ_KOC":         "https://www.amazon.com/dp/0802424899",
+    "YV_KOC":          "https://my.bible.com/reading-plans/31471-know-own-change-journeying-towards-gods-heart-for",
     "OG_IMAGE":        "https://www.gatecitybuckhead.com/assets/img/hero.jpg",  # link-preview image; must be absolute
 }
 
