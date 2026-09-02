@@ -79,7 +79,7 @@ def newsletter_form(form_id):
 # --- 99 for the 1 progress -------------------------------------------------
 # Update this number when a new partner joins (individual or church), then
 # rebuild. It drives the progress bars on /pledge and /99-for-the-1.
-DONORS_99 = 0
+DONORS_99 = 1
 
 
 # --- Images. All local now (nothing depends on Squarespace). -------------

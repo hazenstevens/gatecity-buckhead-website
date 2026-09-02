@@ -327,22 +327,22 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .pagehead-img .wrap{position:relative;z-index:2}
 .pagehead-img .lede{max-width:56ch}
 .card-quiet{background:var(--paper-2)}
-:root{--n99:#1a4fd6;--n99-deep:#0e2f8f;--n99-light:#6f9bff}
-.n99-band{background:linear-gradient(135deg,var(--n99-deep) 0%,var(--n99) 55%,#2f74ff 100%);color:#fff}
+:root{--n99:#2F9264;--n99-deep:#183828;--n99-light:#6FD0A0}
+.n99-band{background:linear-gradient(135deg,var(--n99-deep) 0%,#1C6E47 55%,var(--n99) 100%);color:#fff}
 .n99-band .lede{color:rgba(255,255,255,.85)}
-.n99-band .eyebrow{color:#cfe0ff}
+.n99-band .eyebrow{color:var(--green-bright)}
 .n99-band .btn-ghost{border-color:rgba(255,255,255,.6)}
 .n99-wordmark{width:min(320px,70%);height:auto;margin-bottom:22px}
 .n99-progress-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:clamp(24px,3vw,40px);backdrop-filter:blur(6px)}
 .n99-count{font-size:clamp(48px,6vw,84px);font-weight:800;letter-spacing:-.04em;line-height:1}
 .n99-count span{color:#fff}
-.n99-label{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#cfe0ff;margin:8px 0 22px}
+.n99-label{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);margin:8px 0 22px}
 .n99-bar{position:relative;height:14px;border-radius:999px;background:rgba(255,255,255,.18);overflow:visible}
-.n99-fill{height:100%;border-radius:999px;background:#fff;min-width:6px;transition:width 1s ease}
+.n99-fill{height:100%;border-radius:999px;background:var(--green-bright);min-width:8px;transition:width 1s ease}
 .n99-small{font-size:14px;color:rgba(255,255,255,.75);margin-top:18px}
 .n99-hero{position:relative;overflow:hidden;color:#fff;padding:clamp(140px,18vh,210px) 0 clamp(64px,9vw,110px);background:var(--n99-deep)}
 .n99-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.n99-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,90,.35),rgba(10,30,90,.7));z-index:1}
+.n99-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,16,.25),rgba(8,24,16,.65));z-index:1}
 .n99-hero-inner{position:relative;z-index:2;max-width:760px}
 .n99-hero-logo{width:min(520px,80%);height:auto;margin-bottom:26px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
 .n99-tag{font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
@@ -356,7 +356,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .n99-stats img{width:100%;height:auto;max-width:520px;margin:0 auto;display:block}
 .n99-goal{display:flex;align-items:center;justify-content:flex-start;gap:clamp(20px,4vw,56px);margin:10px 0 30px;flex-wrap:wrap}
 .n99-goal-num{font-size:clamp(64px,9vw,128px);font-weight:800;letter-spacing:-.05em;line-height:1}
-.n99-goal-label{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#cfe0ff;margin-top:6px}
+.n99-goal-label{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);margin-top:6px}
 .n99-goal-plus{font-size:clamp(40px,5vw,72px);font-weight:300;color:rgba(255,255,255,.6)}
 .n99-goal-text{max-width:64ch}
 .n99-how .card-body{align-items:flex-start}
