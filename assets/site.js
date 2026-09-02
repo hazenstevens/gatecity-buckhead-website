@@ -50,3 +50,16 @@
     if (document.body.classList.contains('nav-open')) setMenu(false);
   });
 })();
+
+// 99 for the 1: refresh the partner count from Planning Center (via /api/n99).
+// The number baked into the page is the fallback if the API isn't configured.
+(function(){
+  var els=document.querySelectorAll('[data-n99-count]');
+  if(!els.length)return;
+  fetch('/api/n99').then(function(r){return r.ok?r.json():null}).then(function(j){
+    if(!j||typeof j.count!=='number')return;
+    var n=Math.max(0,Math.min(99,j.count));
+    els.forEach(function(e){e.textContent=n});
+    document.querySelectorAll('[data-n99-fill]').forEach(function(f){f.style.width=(n/99*100).toFixed(1)+'%'});
+  }).catch(function(){});
+})();
