@@ -33,7 +33,7 @@ LINKS = {
     "YT":              "https://www.youtube.com/@GateCityBuckhead",
     "MAPS":            "https://maps.google.com/?q=2890+N+Fulton+Dr+NE,+Atlanta,+GA+30305",
     "PCL":             "https://presencecenteredlife.com/",
-    "BIBLE_PLANS":     "https://www.bible.com/search/plans",
+    "BIBLE_PLANS":     "https://www.bible.com/organizations/9853fe56-6a51-48d4-b050-a3b562cdb22d",
     "AMZ_DETOX":       "https://www.amazon.com/dp/B0H8GDKBY4",
     "AMZ_MANIFEST":    "https://www.amazon.com/dp/B0H4S8Z9S8",
     "AMZ_STRONG":      "https://www.amazon.com/dp/B0GM97RPG1",
