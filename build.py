@@ -34,16 +34,17 @@ LINKS = {
     "MAPS":            "https://maps.google.com/?q=2890+N+Fulton+Dr+NE,+Atlanta,+GA+30305",
     "PCL":             "https://presencecenteredlife.com/",
     "BIBLE_PLANS":     "https://www.bible.com/search/plans",
+    "OG_IMAGE":        "https://www.gatecitybuckhead.com/assets/img/hero.jpg",  # link-preview image; must be absolute
 }
 
 # --- Images. Swap these for /assets/img/... once files are committed. ------
 IMAGES = {
     "LOGO":   IMGBASE + "6eafc964-cc88-4715-804d-906eddde6219/gcb-green%2Bwhite-horiztonal.png?format=750w",
-    "HERO":   IMGBASE + "6c819eea-2a72-4b94-884c-5df3e40159f4/Photo-106.jpg?format=2500w",
-    "HERO_M": IMGBASE + "6c819eea-2a72-4b94-884c-5df3e40159f4/Photo-106.jpg?format=1500w",
+    "HERO":   "/assets/img/hero.jpg",          # Easter 2026, 417A6646 (Eden)
+    "HERO_M": "/assets/img/hero-1400.jpg",     # same, mobile size
     "AIS":    IMGBASE + "419f67fe-c699-4129-9aae-fb55ee325529/Atlanta-International-School-Buckhead-Atlanta-AIS.jpg?format=1500w",
-    "PEOPLE": IMGBASE + "007a5e85-05a4-4929-9ce1-98167b75035f/417A2238+%281%29.jpg?format=1500w",
-    "PRAYER": IMGBASE + "40b6c68d-2226-4390-a132-9eb7248ecc35/Gate+City+Buckhead%E2%80%9408-17-2025%E2%80%94-79.jpg?format=2500w",
+    "PEOPLE": "/assets/img/people.jpg",        # Easter 2026, 417A6449 (Eden)
+    "PRAYER": "/assets/img/worship.jpg",       # Easter 2026, 417A6831 (Eden)
     "FORUM":  IMGBASE + "d5fc60c2-6da7-4fb4-8ba2-d150a806f758/sunday-forum.jpg?format=1000w",
     "TEAM":   IMGBASE + "556588b2-9b68-4cdc-939a-adc6e9c0ac53/GCB+TEAM+PHOTO.jpg?format=2500w",
     "T_HAZEN":    IMGBASE + "61210430-491e-4dc9-ba1a-077374b4245a/hazen.jpg?format=800w",
