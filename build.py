@@ -32,9 +32,9 @@ LINKS = {
     "FORM_KIDS_SN":    CC + "/people/forms/1076599",
     "FORM_COHORT":     CC + "/people/forms/1114259",
     "FORM_NEWSLETTER": CC + "/people/forms/920146",
-    "ZOOM_PRAYER":     "https://us02web.zoom.us/j/83273443236",
-    "ZOOM_FORUM":      "https://us02web.zoom.us/j/89552182099",
-    "ZOOM_FORMATION":  "https://us02web.zoom.us/j/83897703242",
+    "ZOOM_PRAYER":     "https://us02web.zoom.us/j/83273443236?pwd=nOpbkxVsb64EkVEeYX81XsgnFiZDPH.1",   # passcode 212 embedded
+    "ZOOM_FORUM":      "https://us02web.zoom.us/j/89552182099?pwd=NZStXMlLrbSG5Vkuh5JnjEC2QmKRXd.1",
+    "ZOOM_FORMATION":  "https://us02web.zoom.us/j/83897703242?pwd=nenTjKEiuIJuAlJEhZNLKg3zgoW5Gv.1",
     "YT":              "https://www.youtube.com/@GateCityBuckhead",
     "POD_SPOTIFY":     "https://open.spotify.com/show/1vmVEsCNhoT7lfYynqWhnm",
     "POD_APPLE":       "https://podcasts.apple.com/us/podcast/gatecity-buckhead/id1797576803",
