@@ -201,7 +201,7 @@ section.tight{padding:clamp(48px,6vw,80px) 0}
 /* footer */
 footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,88px) 0 34px;font-size:15px}
 .f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)}
-.f-logo img{height:40px;margin-bottom:20px}
+.f-logo img{height:40px;width:auto;margin-bottom:20px}
 .f-col h4{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:16px}
 .f-col a{display:block;padding:5px 0;transition:color .18s}
 .f-col a:hover{color:var(--green-bright)}
