@@ -130,6 +130,7 @@ PAGES = {
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
     "pledge":            ("pledge.html",                    "Give | GateCity Buckhead",                "Give to GateCity Buckhead — one-time or recurring, and become one of the 99 partners helping us reach the one.", False),
     "99-for-the-1":      ("99-for-the-1.html",              "99 for the 1 | GateCity Buckhead",        "Jesus left the 99 to go after the one. We're believing for 99 partners — 90 individuals and 9 churches — to sustain and expand GateCity Buckhead.", False),
+    "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
     "thanks":            ("thanks.html",                    "Thanks for Subscribing | GateCity Buckhead", "You're on the GCB Weekly list.", True),
     "404":               ("404.html",                       "Page Not Found | GateCity Buckhead",      "That page doesn't exist.", True),
 }
