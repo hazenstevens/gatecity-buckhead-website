@@ -77,6 +77,8 @@ h2{font-family:var(--title);font-weight:400;font-size:3rem;line-height:.95;lette
 .focus ol{margin:.2rem 0 .9rem;padding-left:1.2rem;font-size:.9rem;color:var(--lamp)}
 .focus .zoom{margin:0}
 .sunday{font-weight:600;margin:0 0 1rem}
+.bloglink{display:inline-block;margin-left:.5rem;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);white-space:nowrap}
+.bloglink:hover{color:var(--ember)}
 
 /* Days */
 .day{margin:1.5rem 0;background:var(--panel);border-radius:8px;border:1px solid var(--line)}
@@ -87,7 +89,7 @@ h2{font-family:var(--title);font-weight:400;font-size:3rem;line-height:.95;lette
 .d-title{font-family:var(--voice);font-weight:600;font-size:1.45rem;line-height:1.15}
 .today{display:inline-block;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--umber);background:var(--amber);border-radius:999px;padding:.1rem .5rem;margin-right:.4rem;vertical-align:middle}
 .d-meta{display:block;font-size:.76rem;color:var(--soft);margin-top:.2rem}
-.check{appearance:none;-webkit-appearance:none;font:inherit;cursor:pointer;padding:0;margin:0;line-height:1;flex:0 0 1.5rem;min-width:1.5rem;width:1.5rem;height:1.5rem;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:.8rem}
+.check{appearance:none;-webkit-appearance:none;font:inherit;cursor:pointer;padding:0;margin:0;line-height:1;flex:0 0 1.5rem;align-self:center;min-width:1.5rem;max-height:1.5rem;width:1.5rem;height:1.5rem;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:.8rem}
 .day.read .check{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--umber)}
 .d-body{padding:0 1.1rem 1.2rem}
 .d-body p{margin:0 0 .95rem}
@@ -304,7 +306,7 @@ S.weeks.forEach(w=>{
       el('ol',{}, pr.days.map(([dd,t,r])=>el('li',{},`${dd}: ${t} (${r})`))),
       el('a',{class:'zoom',href:S.zoom,target:'_self'},'Prayer schedule and Zoom link')
     ),
-    el('p',{class:'sunday'},w.sunday),
+    el('p',{class:'sunday'},w.sunday,' ',el('a',{class:'bloglink',href:'https://gatecitybuckhead.com/blog/'},'Read this week\'s blog \u2192')),
     w.intro.map(p=>el('p',{},p)),
     w.days.map(dayCard),
     el('p',{class:'review'},el('b',{},'Week review. '),w.review)
