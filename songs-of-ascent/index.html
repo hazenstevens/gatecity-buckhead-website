@@ -306,7 +306,7 @@ S.weeks.forEach(w=>{
       el('ol',{}, pr.days.map(([dd,t,r])=>el('li',{},`${dd}: ${t} (${r})`))),
       el('a',{class:'zoom',href:S.zoom,target:'_self'},'Prayer schedule and Zoom link')
     ),
-    el('p',{class:'sunday'},w.sunday,' ',el('a',{class:'bloglink',href:'https://gatecitybuckhead.com/blog/'},'Read this week\'s blog \u2192')),
+    el('p',{class:'sunday'},w.sunday,' ',el('a',{class:'bloglink',href:'https://gatecitybuckhead.com/blog/'},'Go deeper into '+(S.prayer[String(w.n)]||{}).psalm+' on the blog \u2192')),
     w.intro.map(p=>el('p',{},p)),
     w.days.map(dayCard),
     el('p',{class:'review'},el('b',{},'Week review. '),w.review)
