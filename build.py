@@ -25,7 +25,7 @@ LINKS = {
     "FORM_VISIT":      CC + "/people/forms/888536",
     "FORM_SERVE":      CC + "/people/forms/856748",
     "FORM_CONNECT":    CC + "/people/forms/912170",
-    "FORM_FORMATION":  CC + "/people/forms/1282880",
+    "FORM_FORMATION":  CC + "/people/forms/1331359",
     "FORM_MEMBER":     CC + "/people/forms/858540",
     "FORM_BAPTISM":    CC + "/people/forms/888611",
     "FORM_KIDS":       CC + "/people/forms/888536",
