@@ -63,3 +63,34 @@
     document.querySelectorAll('[data-n99-fill]').forEach(function(f){f.style.width=(n/99*100).toFixed(1)+'%'});
   }).catch(function(){});
 })();
+
+// Latest message: swap in the newest Sunday message from YouTube (via /api/latest-message).
+// The image and copy baked into the page are the fallback if the API is unavailable.
+(function(){
+  var sec=document.getElementById('latest-message');
+  if(!sec)return;
+  fetch('/api/latest-message').then(function(r){return r.ok?r.json():null}).then(function(j){
+    if(!j||!j.videoId)return;
+    var img=sec.querySelector('[data-lm-thumb]');
+    if(img){
+      var probe=new Image();
+      probe.onload=function(){ if(probe.naturalWidth>400){img.src=j.thumbnail;} else {img.src=j.thumbnailFallback;} };
+      probe.onerror=function(){img.src=j.thumbnailFallback};
+      probe.src=j.thumbnail;
+      img.alt=j.title;
+    }
+    sec.querySelectorAll('[data-lm-link]').forEach(function(a){a.href=j.url});
+    var t=sec.querySelector('[data-lm-title]'); if(t)t.textContent=j.messageTitle||j.title;
+    var e=sec.querySelector('[data-lm-eyebrow]');
+    if(e){
+      var d=j.published?new Date(j.published):null;
+      var when=d?d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}):'';
+      e.textContent='Latest Message'+(when?' \u00b7 '+when:'');
+    }
+    var l=sec.querySelector('[data-lm-lede]');
+    if(l){
+      var s=j.series?(j.series+(j.part?', Part '+j.part:'')):'';
+      l.textContent=(s?s+'. ':'')+'Missed Sunday? Every message goes up on YouTube. Start there, then join us in the room this week.';
+    }
+  }).catch(function(){});
+})();
