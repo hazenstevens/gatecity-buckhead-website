@@ -1,30 +1,35 @@
 // Finds the newest Sunday message on the GateCity Buckhead YouTube channel.
 // Served at /api/latest-message and cached on Netlify's CDN for an hour.
 //
-// Reads two public RSS feeds (no API key needed): the channel uploads feed and
-// the current series "Message Only" playlist feed. A message is any video whose
+// Reads the current series "Message Only" playlist RSS feed (no API key
+// needed), falling back to the channel uploads feed only if the playlist is empty. A message is any video whose
 // title follows the house convention "<Series> | Part N: <Title>" and is not a
 // Short, a worship cut, or a combined Worship & Message service.
 //
 // Optional env var MESSAGE_PLAYLIST overrides the series playlist (set it when
-// a new series starts; it only matters if the message has already fallen out of
-// the channel feed's last 15 uploads).
+// a new series starts). Update DEFAULT_PLAYLIST at each series launch.
 
 const CHANNEL = "UCPCYw3AOeXT5GInwE2RcRXA";
-const DEFAULT_PLAYLIST = "PLKiguYVKo9yE"; // Incense & Oil | Message Only
+const DEFAULT_PLAYLIST = "PLKSdukVm_qVM"; // Incense & Oil | Message Only
 
 export default async () => {
   const playlist = process.env.MESSAGE_PLAYLIST || DEFAULT_PLAYLIST;
-  const feeds = [
-    "https://www.youtube.com/feeds/videos.xml?channel_id=" + CHANNEL,
-    "https://www.youtube.com/feeds/videos.xml?playlist_id=" + playlist,
-  ];
+  // The Message Only playlist is the source of truth (it holds exactly one
+  // video per Sunday, the real message cut). The channel feed is only a
+  // fallback, because the channel also carries podcast-style re-uploads and
+  // full-service streams that can outrank the message by date.
+  const playlistUrl = "https://www.youtube.com/feeds/videos.xml?playlist_id=" + playlist;
+  const channelUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=" + CHANNEL;
   let entries = [];
-  for (const url of feeds) {
+  try {
+    const r = await fetch(playlistUrl, { headers: { "user-agent": "gatecitybuckhead.com latest-message" } });
+    if (r.ok) entries = parse(await r.text());
+  } catch (e) { /* fall through */ }
+  if (!entries.filter(isMessage).length) {
     try {
-      const r = await fetch(url, { headers: { "user-agent": "gatecitybuckhead.com latest-message" } });
-      if (r.ok) entries = entries.concat(parse(await r.text()));
-    } catch (e) { /* skip a feed that fails */ }
+      const r = await fetch(channelUrl, { headers: { "user-agent": "gatecitybuckhead.com latest-message" } });
+      if (r.ok) entries = parse(await r.text());
+    } catch (e) { /* skip */ }
   }
   const messages = entries.filter(isMessage).sort((a, b) => (a.published < b.published ? 1 : -1));
   if (!messages.length) return json({ error: "no message found" }, 404);
