@@ -256,7 +256,22 @@ def render_blog(head, header, footer):
         f.write(doc)
     outs.append(("blog/", posts[0]["date"] if posts else datetime.date.today().isoformat()))
     latest = "\n".join(post_card(p) for p in posts[:3])
-    return outs, latest
+    hero = ""
+    if posts:
+        p = posts[0]
+        desc = p.get("description", "")
+        if len(desc) > 220:
+            desc = desc[:220].rsplit(" ", 1)[0].rstrip(",.;:") + "..."
+        hero = (
+            '<section class="blog-hero">\n  <div class="wrap split wide-left">\n'
+            '    <a class="msg-thumb" href="/blog/%s"><img src="%s" alt="" loading="lazy"></a>\n'
+            '    <div>\n      <div class="eyebrow">From the Blog &middot; %s</div>\n'
+            '      <h2>%s</h2>\n      <p class="lede">%s</p>\n'
+            '      <div class="btn-row"><a class="btn btn-primary" href="/blog/%s">Read the Post <span class="arrow">&rarr;</span></a>'
+            '<a class="btn btn-outline" href="/blog/">All Posts</a></div>\n    </div>\n  </div>\n</section>'
+            % (p["slug"], p["cover"], nice_date(p["date"]), _html.escape(p["title"]), _html.escape(desc), p["slug"])
+        )
+    return outs, latest, hero
 
 
 def main():
@@ -265,9 +280,9 @@ def main():
     footer = read("partials/footer.html")
 
     built = []
-    blog_outs, blog_latest = render_blog(head, header, footer)
+    blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     for slug, (out, title, desc, solid) in PAGES.items():
-        body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest)
+        body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero)
         path = "/" + out.replace("index.html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path})
         body_class = "solid-header" if solid else ""
