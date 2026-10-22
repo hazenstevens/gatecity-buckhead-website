@@ -330,6 +330,7 @@ renderStairs();
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('inview'); }),{rootMargin:'0px 0px -20% 0px',threshold:.05});
   document.querySelectorAll('.week').forEach(w=>io.observe(w)); })();
 (function(){ if(todayDay){ const t=document.getElementById(todayDay.id); if(t) t.open=true; } })();
+(function(){ const h=decodeURIComponent(location.hash.slice(1)); if(!h) return; const t=document.getElementById(h); if(!t) return; if('open' in t) t.open=true; setTimeout(()=>t.scrollIntoView({behavior:'smooth',block:'start'}),250); })();
 
 
 function board(d){
