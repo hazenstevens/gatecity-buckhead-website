@@ -379,3 +379,26 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .mission-rows span a{text-decoration:underline;text-underline-offset:3px;font-weight:600;color:inherit}
 .deep .mission-rows b{color:#fff}
 @media (max-width:560px){.mission-rows li{flex-direction:column;gap:6px}}
+
+/* plan a visit form */
+.plan-sec{background:#fff}
+.visit-form{margin-top:36px;display:grid;gap:18px}
+.visit-form label{display:flex;flex-direction:column;gap:7px;font-size:14.5px;font-weight:700;color:var(--ink)}
+.visit-form .opt{font-weight:500;color:var(--ink-soft)}
+.visit-form input,.visit-form select,.visit-form textarea{font:inherit;font-size:16px;font-weight:500;padding:13px 15px;border:1.5px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
+.visit-form input:focus,.visit-form select:focus,.visit-form textarea:focus{outline:none;border-color:var(--green);background:#fff}
+.vf-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.vf-kids{border:1.5px dashed var(--line);border-radius:8px;padding:18px 20px;margin:0}
+.vf-kids legend{font-size:14.5px;font-weight:700;padding:0 6px}
+.vf-kids legend .opt{display:block;font-size:13.5px;margin-top:2px}
+.vf-kid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:end}
+.vf-kid .wide{grid-column:1/3}
+.vf-add,.vf-remove{font:inherit;font-size:14px;font-weight:700;color:var(--green-ink);background:none;border:0;cursor:pointer;padding:10px 0;text-align:left}
+.vf-remove{color:var(--ink-soft);text-align:right}
+.vf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.vf-err{color:#B3261E;font-weight:600;font-size:15px;min-height:1px}
+.vf-err a{color:inherit;text-decoration:underline}
+.vf-fine{font-size:13.5px;color:var(--ink-soft)}
+.vf-fine a{color:inherit;text-decoration:underline}
+#vf-submit[disabled]{opacity:.6;cursor:wait}
+@media (max-width:640px){.vf-row,.vf-kid{grid-template-columns:1fr}.vf-kid .wide{grid-column:auto}.vf-remove{text-align:left}}

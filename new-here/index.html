@@ -21,7 +21,7 @@
 <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta name="theme-color" content="#183828">
-<link rel="stylesheet" href="/assets/site.css?v=4a7c898a">
+<link rel="stylesheet" href="/assets/site.css?v=3ec19443">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Church",
 "name":"GateCity Buckhead","url":"https://gatecitybuckhead.com/","logo":"https://gatecitybuckhead.com/assets/img/logo.png",
 "description":"A presence-centered church in Buckhead, Atlanta. Sundays at 11am at Atlanta International School.",
@@ -131,7 +131,7 @@
     <h1>Plan your first visit.</h1>
     <p class="lede">Sundays at 11:00am at Atlanta International School. Let us know you're coming and we'll have someone watching for you.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/people/forms/888536">Sign Up for the Guest Experience <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-primary" href="#plan">Tell Us You&rsquo;re Coming <span class="arrow">&rarr;</span></a>
       <a class="btn btn-ghost" href="/location">Directions &amp; Parking</a>
     </div>
   </div>
@@ -150,11 +150,95 @@
         <li><b>At the door</b><span>You'll be greeted and handed a first-time guest bag.</span></li>
         <li><b>Your kids</b><span>BuckCity Kids runs the whole service, ages 1&ndash;12.</span></li>
       </ul>
-      <div class="btn-row"><a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/people/forms/888536">Tell Us You're Coming <span class="arrow">&rarr;</span></a></div>
+      <div class="btn-row"><a class="btn btn-primary" href="#plan">Tell Us You&rsquo;re Coming <span class="arrow">&rarr;</span></a></div>
     </div>
     <div class="split-photo"><img src="/assets/img/people.jpg" alt="First-time guests at GateCity Buckhead" loading="lazy"></div>
   </div>
 </section>
+
+<section id="plan" class="plan-sec">
+  <div class="wrap narrow">
+    <div class="eyebrow">Plan Your Visit</div>
+    <h2>Tell us you&rsquo;re coming.</h2>
+    <p class="lede">Takes about a minute. We&rsquo;ll save you a front-row parking spot, have your guest bag and a coffee ready, and someone will be watching for you at the door.</p>
+    <form id="visit-form" class="visit-form" novalidate>
+      <div class="vf-row">
+        <label>First name<input name="first" autocomplete="given-name" required maxlength="80"></label>
+        <label>Last name<input name="last" autocomplete="family-name" required maxlength="80"></label>
+      </div>
+      <div class="vf-row">
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        <label><span>Mobile phone <span class="opt">(optional)</span></span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+      </div>
+      <div class="vf-row">
+        <label>Which Sunday?<select name="date" id="vf-date" required></select></label>
+        <label>How many adults?<select name="adults"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6+</option></select></label>
+      </div>
+      <fieldset class="vf-kids">
+        <legend>Bringing kids? <span class="opt">BuckCity Kids runs the whole service, ages 1&ndash;12. Adding them now makes Sunday check-in quick.</span></legend>
+        <div id="vf-kid-list"></div>
+        <button type="button" class="vf-add" id="vf-add-kid">+ Add a child</button>
+      </fieldset>
+      <label><span>Anything we should know? <span class="opt">(optional)</span></span><textarea name="notes" rows="3" maxlength="2000" placeholder="Questions, prayer requests, accessibility needs..."></textarea></label>
+      <input type="text" name="website" class="vf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="vf-err" id="vf-err" role="alert"></p>
+      <div class="btn-row"><button class="btn btn-primary" type="submit" id="vf-submit">I&rsquo;m Coming <span class="arrow">&rarr;</span></button></div>
+      <p class="vf-fine">We&rsquo;ll only use this to welcome you and follow up after your visit. <a href="/privacy">Privacy policy</a>.</p>
+    </form>
+  </div>
+</section>
+<script>
+(function(){
+  var SB='https://egccpqcdpmvkkgdunpuc.supabase.co', KEY='sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda';
+  var f=document.getElementById('visit-form'); if(!f) return;
+  var sel=document.getElementById('vf-date'), err=document.getElementById('vf-err'), btn=document.getElementById('vf-submit');
+  // next 8 Sundays in Atlanta time; after 12:30pm on a Sunday, start with next week
+  var now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));
+  var d=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var add=(7-d.getDay())%7; if(add===0 && (now.getHours()>12 || (now.getHours()===12&&now.getMinutes()>=30))) add=7;
+  d.setDate(d.getDate()+add);
+  for(var i=0;i<8;i++){
+    var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    var o=document.createElement('option'); o.value=iso;
+    var md=d.toLocaleDateString('en-US',{month:'long',day:'numeric'});
+    o.textContent=(i===0&&add===0?'Today, ':i===0&&add<7?'This Sunday, ':'Sunday, ')+md;
+    sel.appendChild(o); d.setDate(d.getDate()+7);
+  }
+  var list=document.getElementById('vf-kid-list');
+  document.getElementById('vf-add-kid').addEventListener('click',function(){
+    if(list.children.length>=10) return;
+    var row=document.createElement('div'); row.className='vf-kid';
+    row.innerHTML='<label>Child&rsquo;s name<input data-k="name" maxlength="80"></label>'+
+      '<label>Birthday<input data-k="birthday" type="date"></label>'+
+      '<label><span>Grade <span class="opt">(if in school)</span></span><select data-k="grade"><option value=""></option><option>Pre-K</option><option>K</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>'+
+      '<label class="wide"><span>Allergies or medical notes <span class="opt">(optional)</span></span><input data-k="medical" maxlength="300"></label>'+
+      '<button type="button" class="vf-remove" aria-label="Remove child">Remove</button>';
+    row.querySelector('.vf-remove').onclick=function(){row.remove();};
+    list.appendChild(row); row.querySelector('input').focus();
+  });
+  function v(n){return (f.elements[n].value||'').trim();}
+  f.addEventListener('submit',async function(e){
+    e.preventDefault(); err.textContent='';
+    if(v('website')) return;
+    if(!v('first')||!v('last')) return err.textContent='Please add your first and last name.';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return err.textContent='Please add a valid email address.';
+    var kids=[].map.call(list.children,function(r){var k={};r.querySelectorAll('[data-k]').forEach(function(x){if(x.value.trim())k[x.dataset.k]=x.value.trim();});return k;}).filter(function(k){return k.name;});
+    btn.disabled=true; btn.firstChild.textContent='Saving... ';
+    try{
+      var r=await fetch(SB+'/rest/v1/rpc/plan_visit_submit',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},
+        body:JSON.stringify({p_first:v('first'),p_last:v('last'),p_email:v('email'),p_phone:v('phone'),p_date:v('date'),
+          p_adults:parseInt(v('adults'),10)||1,p_kids:kids,p_notes:v('notes'),p_source:(document.referrer||'').slice(0,150)+' | '+location.search.slice(0,140)})});
+      if(!r.ok){var t=await r.text();var m=(t.match(/"message":"([^"]+)"/)||[])[1];throw new Error(m||'save');}
+      var id=await r.json();
+      try{await Promise.race([fetch('/api/plan-visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})}),new Promise(function(res){setTimeout(res,8000);})]);}catch(_){}
+      location.href='/new-here/thanks?d='+encodeURIComponent(v('date'))+(kids.length?'&k=1':'');
+    }catch(ex){
+      btn.disabled=false; btn.firstChild.textContent='I\u2019m Coming ';
+      err.innerHTML=(ex.message&&ex.message!=='save'&&ex.message.length<120?ex.message+' ':'Something went wrong on our end. ')+'You can also <a href="https://gatecity-buckhead.churchcenter.com/people/forms/888536">tell us here</a>.';
+    }
+  });
+})();
+</script>
 
 <section class="deep tight">
   <div class="wrap">
