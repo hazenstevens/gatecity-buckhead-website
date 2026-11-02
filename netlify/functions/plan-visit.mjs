@@ -67,7 +67,7 @@ export default async (req) => {
 
   const personId = sub.data?.relationships?.person?.data?.id;
   const kids = Array.isArray(v.kids) ? v.kids : [];
-  const lines = [`Plan a Visit (website): coming Sunday ${v.visit_date}, ${v.adults} adult${v.adults == 1 ? "" : "s"}.`];
+  const lines = [`Plan a Visit (website): coming Sunday ${v.visit_date}, ${v.adults} adult${v.adults == 1 ? "" : "s"}${v.zip ? `, ZIP ${v.zip}` : ""}.`];
   if (kids.length) {
     lines.push("Kids:");
     for (const k of kids) {
@@ -77,7 +77,7 @@ export default async (req) => {
   }
   if (v.notes) lines.push("They shared: " + v.notes);
   let noteOk = true;
-  if (personId && (kids.length || v.notes || v.adults > 1)) {
+  if (personId && (kids.length || v.notes || v.adults > 1 || v.zip)) {
     const r = await fetch(`${PCO}/people/${personId}/notes`, {
       method: "POST", headers,
       body: JSON.stringify({ data: { type: "Note", attributes: { note: lines.join("\n"), note_category_id: NOTE_CATEGORY } } }),
