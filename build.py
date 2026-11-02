@@ -143,7 +143,7 @@ NOINDEX = ("404", "thanks", "visit-thanks")
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.
-VISION_VIDEO_YT = ""
+VISION_VIDEO_YT = "YmUsydgXMBE"  # 90 Second DNA Video (unlisted)
 
 def vision_video():
     if not VISION_VIDEO_YT:
