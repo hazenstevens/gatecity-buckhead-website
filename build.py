@@ -118,6 +118,29 @@ IMAGES = {
     "T_ANGEL":    "/assets/img/team/angel.jpg",
 }
 
+# Google tag. Paste the IDs from Google Analytics (G-...) and Google Ads (AW-...).
+# Leave blank and nothing is added to the pages.
+GA4_ID = ""
+ADS_ID = ""
+
+def gtag():
+    ids = [i for i in (GA4_ID, ADS_ID) if i]
+    if not ids:
+        return ""
+    cfg = "".join("gtag('config','%s');" % i for i in ids)
+    return ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
+            '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+            "gtag('js',new Date());%s</script>" % (ids[0], cfg))
+
+SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Church",
+"name":"GateCity Buckhead","url":"https://gatecitybuckhead.com/","logo":"https://gatecitybuckhead.com/assets/img/logo.png",
+"description":"A presence-centered church in Buckhead, Atlanta. Sundays at 11am at Atlanta International School.",
+"address":{"@type":"PostalAddress","streetAddress":"2890 N Fulton Dr NE","addressLocality":"Atlanta","addressRegion":"GA","postalCode":"30305","addressCountry":"US"},
+"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
+"parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
+
+NOINDEX = ("404", "thanks")
+
 # page slug -> (output path, <title>, meta description, solid header?)
 PAGES = {
     "index":             ("index.html",                    "GateCity Buckhead | Sundays at 11am in Buckhead, Atlanta", "A presence-centered church in Buckhead. We gather Sundays at 11am at Atlanta International School. Plan your first visit.", False),
@@ -141,6 +164,9 @@ def fill(text, extra=None):
     vals.update(LINKS)
     vals.update(IMAGES)
     vals["YEAR"] = str(datetime.date.today().year)
+    vals["GTAG"] = gtag()
+    vals["SCHEMA"] = SCHEMA
+    vals.setdefault("ROBOTS", "")
     vals["DONORS_99"] = str(DONORS_99)
     vals["DONORS_99_PCT"] = str(round(min(DONORS_99, 99) / 99 * 100, 1))
     # Cache-busting: short content hash of site.css / site.js so browsers
@@ -283,8 +309,9 @@ def main():
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     for slug, (out, title, desc, solid) in PAGES.items():
         body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero)
-        path = "/" + out.replace("index.html", "")
-        page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path})
+        path = "/" + out.replace("index.html", "").replace(".html", "")
+        page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
+                                "ROBOTS": '<meta name="robots" content="noindex">' if slug in NOINDEX else ""})
         body_class = "solid-header" if solid else ""
         doc = (
             "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n%s</head>\n<body class=\"%s\">\n%s\n%s\n%s\n</body>\n</html>\n"
@@ -301,7 +328,7 @@ def main():
     for slug, (out, _t, _d, _s) in PAGES.items():
         if slug in ("404", "thanks"):
             continue
-        urls.append(BASE + "/" + out.replace("index.html", ""))
+        urls.append(BASE + "/" + out.replace("index.html", "").replace(".html", ""))
     today = datetime.date.today().isoformat()
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

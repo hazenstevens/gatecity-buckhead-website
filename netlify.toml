@@ -31,6 +31,37 @@
   status = 301
   force = true
 
+# Old Squarespace blog IDs -> readable slugs (Oct 30, 2026)
+[[redirects]]
+  from = "/blog/n247l1ng59nnesgp3hiw7yf9yhk1q6"
+  to = "/blog/lent-meeting-jesus-in-the-wilderness"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/p6dr10914924t2dyjfxg3cplpsvs7l"
+  to = "/blog/left-behind-or-stepping-up-biblical-end-times"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/683xhgqhfg1hm1hqgf0v3zr89neet4"
+  to = "/blog/the-power-of-presence-strength-in-stillness"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/fv4tjkxiujcrgnqs576s570iyos5lb"
+  to = "/blog/what-is-the-church"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/qzv79kqow9zvlokjr1czzqnxwtkz6v"
+  to = "/blog/transformed-part-1-born-again-to-see-the-kingdom"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
