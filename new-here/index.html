@@ -148,7 +148,7 @@
         <li><b>Parking</b><span>Free. Front-row spots are saved for first-time guests.</span></li>
         <li><b>What to wear</b><span>Whatever you're comfortable in.</span></li>
         <li><b>At the door</b><span>You'll be greeted and handed a first-time guest bag.</span></li>
-        <li><b>Your kids</b><span>BuckCity Kids runs the whole service, ages 1&ndash;12.</span></li>
+        <li><b>Your kids</b><span>BuckCity Kids runs the whole service, age 3 through 5th grade. Check-in starts at 10:45am.</span></li>
       </ul>
       <div class="btn-row"><a class="btn btn-primary" href="#plan">Tell Us You&rsquo;re Coming <span class="arrow">&rarr;</span></a></div>
     </div>
@@ -179,7 +179,7 @@
         <div></div>
       </div>
       <fieldset class="vf-kids">
-        <legend>Bringing kids? <span class="opt">BuckCity Kids runs the whole service, ages 1&ndash;12. Adding them now makes Sunday check-in quick.</span></legend>
+        <legend>Bringing kids? <span class="opt">BuckCity Kids runs the whole service, age 3 through 5th grade. Adding them now makes Sunday check-in quick.</span></legend>
         <div id="vf-kid-list"></div>
         <button type="button" class="vf-add" id="vf-add-kid">+ Add a child</button>
       </fieldset>
@@ -214,7 +214,7 @@
     var row=document.createElement('div'); row.className='vf-kid';
     row.innerHTML='<label>Child&rsquo;s name<input data-k="name" maxlength="80"></label>'+
       '<label>Birthday<input data-k="birthday" type="date"></label>'+
-      '<label><span>Grade <span class="opt">(if in school)</span></span><select data-k="grade"><option value=""></option><option>Pre-K</option><option>K</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>'+
+      '<label><span>Grade <span class="opt">(if in school)</span></span><select data-k="grade"><option value=""></option><option>Pre-K</option><option>K</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>'+
       '<label class="wide"><span>Allergies or medical notes <span class="opt">(optional)</span></span><input data-k="medical" maxlength="300"></label>'+
       '<button type="button" class="vf-remove" aria-label="Remove child">Remove</button>';
     row.querySelector('.vf-remove').onclick=function(){row.remove();};
