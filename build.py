@@ -141,10 +141,23 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 
 NOINDEX = ("404", "thanks")
 
+# Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
+# (the part after watch?v=). Blank = the video section is hidden.
+VISION_VIDEO_YT = ""
+
+def vision_video():
+    if not VISION_VIDEO_YT:
+        return ""
+    return ('<section><div class="wrap"><div class="n99-video">'
+            '<iframe src="https://www.youtube-nocookie.com/embed/%s" title="GateCity Buckhead vision: 5-4-3-2-1" '
+            'style="width:100%%;height:100%%;border:0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>'
+            '</div></div></section>' % VISION_VIDEO_YT)
+
 # page slug -> (output path, <title>, meta description, solid header?)
 PAGES = {
     "index":             ("index.html",                    "GateCity Buckhead | Sundays at 11am in Buckhead, Atlanta", "A presence-centered church in Buckhead. We gather Sundays at 11am at Atlanta International School. Plan your first visit.", False),
     "new-here":          ("new-here/index.html",            "Plan a Visit | GateCity Buckhead",        "Everything you need for your first Sunday at GateCity Buckhead — what to expect, parking, kids, and how to get connected.", True),
+    "our-mission":       ("our-mission.html",               "Our Mission | GateCity Buckhead",         "GateCity Buckhead helps you follow Jesus for your whole life. Our vision map, 5-4-3-2-1: five behaviors, four spaces, three promises, two distinctives, one purpose.", True),
     "our-beliefs":       ("our-beliefs.html",               "Our Beliefs | GateCity Buckhead",         "What we believe: the fifteen statements of faith that shape GateCity Buckhead.", True),
     "our-team":          ("our-team.html",                  "Our Team | GateCity Buckhead",            "Meet the leadership team at GateCity Buckhead in Atlanta.", True),
     "buckcity-kids":     ("buckcity-kids.html",             "BuckCity Kids | GateCity Buckhead",       "Safe, joy-filled kids ministry for ages 1–12, every Sunday at 11am. Pre-register your child before your first visit.", True),
@@ -166,6 +179,7 @@ def fill(text, extra=None):
     vals["YEAR"] = str(datetime.date.today().year)
     vals["GTAG"] = gtag()
     vals["SCHEMA"] = SCHEMA
+    vals["VISION_VIDEO"] = vision_video()
     vals.setdefault("ROBOTS", "")
     vals["DONORS_99"] = str(DONORS_99)
     vals["DONORS_99_PCT"] = str(round(min(DONORS_99, 99) / 99 * 100, 1))

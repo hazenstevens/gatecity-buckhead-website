@@ -374,3 +374,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 
 .blog-hero .msg-thumb img{opacity:1}
 .blog-hero .msg-thumb:hover img{opacity:1}
+
+/* our mission */
+.mission-rows span a{text-decoration:underline;text-underline-offset:3px;font-weight:600;color:inherit}
+.deep .mission-rows b{color:#fff}
+@media (max-width:560px){.mission-rows li{flex-direction:column;gap:6px}}
