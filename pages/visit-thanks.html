@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="eyebrow on-dark">You&rsquo;re all set</div>
     <h1>We can&rsquo;t wait to meet you.</h1>
-    <p class="lede" id="vt-lede">We&rsquo;ll see you Sunday at 11:00am. Look for the GateCity Buckhead team at the door. Your guest bag and coffee are on us.</p>
+    <p class="lede" id="vt-lede">We&rsquo;ll see you Sunday at 11:00am. Look for the GateCity Buckhead team at the door, where we&rsquo;ll have a guest bag waiting for you.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="{{MAPS}}">Get Directions <span class="arrow">&rarr;</span></a>
       <a class="btn btn-ghost" href="/location">Parking Details</a>
@@ -17,7 +17,7 @@
     <ul class="rows">
       <li><b>Where</b><span>Atlanta International School, secondary school building, 2890 N Fulton Dr NE, Atlanta, GA 30305.</span></li>
       <li><b>Parking</b><span>Free, with front-row spots saved for first-time guests.</span></li>
-      <li><b>Arrive</b><span>Around 10:45am gives you time to grab coffee and get kids checked in.</span></li>
+      <li><b>Arrive</b><span>Around 10:45am gives you time to park, find your seat, and get kids checked in.</span></li>
       <li><b>Kids</b><span>BuckCity Kids runs the whole service, ages 1&ndash;12. Every volunteer is background-checked. <a href="/buckcity-kids" style="color:var(--green-ink);font-weight:700;text-decoration:underline">About BuckCity Kids</a>.</span></li>
       <li><b>Can&rsquo;t wait?</b><span>Watch a recent message on <a href="{{YT}}" style="color:var(--green-ink);font-weight:700;text-decoration:underline">YouTube</a>, or read <a href="/our-mission" style="color:var(--green-ink);font-weight:700;text-decoration:underline">what we&rsquo;re about</a>.</span></li>
     </ul>
@@ -27,5 +27,5 @@
 <script>
 (function(){var d=new URLSearchParams(location.search).get('d');if(!/^\d{4}-\d{2}-\d{2}$/.test(d||''))return;
 var p=d.split('-'),dt=new Date(+p[0],+p[1]-1,+p[2]);
-document.getElementById('vt-lede').innerHTML='We&rsquo;ll see you Sunday, '+dt.toLocaleDateString('en-US',{month:'long',day:'numeric'})+', at 11:00am. Look for the GateCity Buckhead team at the door. Your guest bag and coffee are on us.';})();
+document.getElementById('vt-lede').innerHTML='We&rsquo;ll see you Sunday, '+dt.toLocaleDateString('en-US',{month:'long',day:'numeric'})+', at 11:00am. Look for the GateCity Buckhead team at the door, where we&rsquo;ll have a guest bag waiting for you.';})();
 </script>
