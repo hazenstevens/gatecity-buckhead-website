@@ -140,7 +140,7 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
-NOINDEX = ("404", "thanks", "visit-thanks")
+NOINDEX = ("404", "thanks", "visit-thanks", "cohort")  # cohort: hidden until Hazen says go
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.
@@ -168,6 +168,7 @@ PAGES = {
     "pledge":            ("pledge.html",                    "Give | GateCity Buckhead",                "Give to GateCity Buckhead — one-time or recurring, and become one of the 99 partners helping us reach the one.", False),
     "99-for-the-1":      ("99-for-the-1.html",              "99 for the 1 | GateCity Buckhead",        "Jesus left the 99 to go after the one. We're believing for 99 partners — 90 individuals and 9 churches — to sustain and expand GateCity Buckhead.", False),
     "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
+    "cohort":            ("cohort.html",                    "Digital Discipleship Cohort | GateCity Buckhead", "Walk with Jesus and stay on track. An online discipleship cohort from GateCity Buckhead: community, prayer, and simple weekly rhythms. Next cohort starts January 10, 2027.", True),
     "visit-thanks":      ("new-here/thanks.html",           "You're All Set | GateCity Buckhead",      "Thanks for planning your visit to GateCity Buckhead. See you Sunday at 11am.", True),
     "thanks":            ("thanks.html",                    "Thanks for Subscribing | GateCity Buckhead", "You're on the GCB Weekly list.", True),
     "404":               ("404.html",                       "Page Not Found | GateCity Buckhead",      "That page doesn't exist.", True),
