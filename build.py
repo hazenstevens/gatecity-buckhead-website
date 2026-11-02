@@ -24,7 +24,8 @@ LINKS = {
     "GIVE_PRAYER":     CC + "/giving/to/building-fund",   # PCO fund slug (still "building-fund" until renamed in Planning Center)
     "FORM_VISIT":      CC + "/people/forms/888536",
     "FORM_SERVE":      CC + "/people/forms/856748",
-    "FORM_CONNECT":    CC + "/people/forms/912170",
+    "FORM_CONNECT":    CC + "/people/forms/854046",   # "I Want To Learn More!" form
+    "FORM_PRAYER":     CC + "/people/forms/912170",   # "Virtual Prayer" form
     "FORM_FORMATION":  CC + "/people/forms/1331359",
     "FORM_MEMBER":     CC + "/people/forms/858540",
     "FORM_BAPTISM":    CC + "/people/forms/888611",
@@ -160,7 +161,7 @@ PAGES = {
     "our-mission":       ("our-mission.html",               "Our Mission | GateCity Buckhead",         "GateCity Buckhead helps you walk closely with Jesus today and for the rest of your life. Our vision map, 5-4-3-2-1: five behaviors, four spaces, three promises, two distinctives, one purpose.", True),
     "our-beliefs":       ("our-beliefs.html",               "Our Beliefs | GateCity Buckhead",         "What we believe: the fifteen statements of faith that shape GateCity Buckhead.", True),
     "our-team":          ("our-team.html",                  "Our Team | GateCity Buckhead",            "Meet the leadership team at GateCity Buckhead in Atlanta.", True),
-    "buckcity-kids":     ("buckcity-kids.html",             "BuckCity Kids | GateCity Buckhead",       "Safe, joy-filled kids ministry for age 3 through 5th grade, every Sunday at 11am (check-in at 10:45am). Pre-register your child before your first visit.", True),
+    "buckcity-kids":     ("buckcity-kids.html",             "Kids & Youth | GateCity Buckhead",       "BuckCity Kids for age 3 through 5th grade every Sunday at 11am (check-in at 10:45am), plus middle and high school youth gatherings. Pre-register before your first visit.", True),
     "digital-community": ("digital-community.html",         "Digital Community | GateCity Buckhead",   "Virtual prayer, Sunday Forum, Formation Nights and the Discipleship Cohort — ways to belong between Sundays.", True),
     "resources":         ("resources/index.html",           "Resources | GateCity Buckhead",           "Podcast, books, YouVersion reading plans, music and more from GateCity Buckhead.", True),
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
