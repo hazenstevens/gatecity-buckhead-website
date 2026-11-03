@@ -1,0 +1,59 @@
+<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Christmas Eve &middot; Thursday, December 24</div>
+    <h1>Christmas Eve Candlelight Service.</h1>
+    <p class="lede">A family-friendly candlelight service at 5:00pm, where kids and parents worship together to classic Christmas songs and modern favorites. Then stay for Christmas cookies. Everyone is welcome, and you don&rsquo;t need to know anyone to come.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#save">Save Your Spot <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost" href="/location">Directions &amp; Parking</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">What to Expect</div>
+      <h2>An hour to slow down and behold Jesus.</h2>
+      <ul class="rows">
+        <li><b>When</b><span>Thursday, December 24, at 5:00pm.</span></li>
+        <li><b>How long</b><span>About one hour, followed by Christmas cookies.</span></li>
+        <li><b>Worship</b><span>Classic Christmas carols and some modern favorites, sung together by candlelight.</span></li>
+        <li><b>Message</b><span>A brief homily, a short reflective message on the joy and meaning of Christmas.</span></li>
+        <li><b>Where</b><span>Atlanta International School, secondary school building, 2890 N Fulton Dr NE, Atlanta, GA 30305.</span></li>
+        <li><b>Parking</b><span>Free, right in front of the building.</span></li>
+        <li><b>What to wear</b><span>Business casual, but if you want to dress up for Christmas, that is welcome!</span></li>
+        <li><b>Families</b><span>Kids stay with their parents and worship together, so the whole family experiences Christmas Eve side by side. Grandparents welcome too.</span></li>
+        <li><b>After</b><span>Stay for Christmas cookies and meet the GateCity Buckhead family.</span></li>
+      </ul>
+      <div class="btn-row"><a class="btn btn-primary" href="#save">Save Your Spot <span class="arrow">&rarr;</span></a></div>
+    </div>
+    <div class="split-photo"><img src="{{PRAYER}}" alt="Worship at GateCity Buckhead" loading="lazy"></div>
+  </div>
+</section>
+
+<section id="save" class="plan-sec">
+  <div class="wrap narrow">
+    <div class="eyebrow">Save Your Spot</div>
+    <h2>Let us know you&rsquo;re coming.</h2>
+    <p class="lede">It takes less than a minute, and it helps us have enough seats, candles, and cookies for everyone.</p>
+    <form id="christmas-form" class="visit-form" name="christmas-eve" method="POST" action="/christmas-eve/thanks" data-netlify="true" netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="christmas-eve">
+      <div class="vf-row">
+        <label>First name<input name="first" autocomplete="given-name" required maxlength="80"></label>
+        <label>Last name<input name="last" autocomplete="family-name" required maxlength="80"></label>
+      </div>
+      <div class="vf-row">
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        <label><span>Mobile phone <span class="opt">(optional)</span></span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+      </div>
+      <div class="vf-row">
+        <label>How many adults?<select name="adults"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6+">6+</option></select></label>
+        <label>How many kids?<select name="kids"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option value="5+">5+</option></select></label>
+      </div>
+      <input type="text" name="website" class="vf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="btn-row"><button class="btn btn-primary" type="submit">Save My Spot <span class="arrow">&rarr;</span></button></div>
+      <p class="vf-fine">We&rsquo;ll only use this to welcome you on Christmas Eve and share what&rsquo;s next at GateCity. <a href="/privacy">Privacy policy</a>.</p>
+    </form>
+  </div>
+</section>

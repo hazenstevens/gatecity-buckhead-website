@@ -129,6 +129,7 @@ ADS_CONVERSIONS = {
     "visit-thanks":   "d_47CJmMzbEdEMmwko9F",   # Plan a Visit form
     "webinar-thanks": "bQGJCO7KzbEdEMmwko9F",   # Walking with Jesus webinar registration
     "thanks":         "SsYGCOeizbEdEMmwko9F",   # Email signup (GCB Weekly)
+    # "christmas-thanks": "",                   # Christmas Eve registration (create the conversion, paste its label)
 }
 
 
@@ -155,7 +156,7 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
-NOINDEX = ("404", "thanks", "visit-thanks", "cohort", "webinar-thanks")  # cohort: hidden until Hazen says go
+NOINDEX = ("404", "thanks", "visit-thanks", "cohort", "webinar-thanks", "christmas-eve", "christmas-thanks")  # christmas-eve: draft until Hazen says go  # cohort: hidden until Hazen says go
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.
@@ -185,6 +186,8 @@ PAGES = {
     "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
     "cohort":            ("cohort.html",                    "Digital Discipleship Cohort | GateCity Buckhead", "Walk with Jesus daily and grow closer to Him than ever before. An online discipleship cohort from GateCity Buckhead: community, prayer, and simple weekly rhythms. Next cohort starts January 10, 2027.", True),
     "webinar-thanks":    ("cohort/thanks.html",             "You're Registered | GateCity Buckhead",  "Thanks for registering for the free Walking with Jesus webinar.", True),
+    "christmas-eve":     ("christmas-eve/index.html",       "Christmas Eve Candlelight Service in Atlanta | GateCity Buckhead", "Christmas Eve candlelight service in Buckhead, Atlanta. Thursday, December 24 at 5pm at Atlanta International School, followed by Christmas cookies. Save your spot.", True),
+    "christmas-thanks":  ("christmas-eve/thanks.html",      "You're All Set for Christmas Eve | GateCity Buckhead", "Thanks for saving your spot at the GateCity Buckhead Christmas Eve candlelight service.", True),
     "visit-thanks":      ("new-here/thanks.html",           "You're All Set | GateCity Buckhead",      "Thanks for planning your visit to GateCity Buckhead. See you Sunday at 11am.", True),
     "thanks":            ("thanks.html",                    "Thanks for Subscribing | GateCity Buckhead", "You're on the GCB Weekly list.", True),
     "404":               ("404.html",                       "Page Not Found | GateCity Buckhead",      "That page doesn't exist.", True),
