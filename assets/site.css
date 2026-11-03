@@ -426,3 +426,19 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .xmas-hero::before{background:linear-gradient(90deg,rgba(8,12,9,.86) 0%,rgba(8,12,9,.6) 45%,rgba(8,12,9,.15) 100%)}
 @media(max-width:760px){.xmas-hero::before{background:linear-gradient(180deg,rgba(8,12,9,.55),rgba(8,12,9,.85))}}
 .xmas-band .msg-thumb img{opacity:1}
+
+/* metro map (our mission) */
+.metro-fig{margin:0;background:var(--paper-2);border-radius:18px;padding:clamp(14px,2vw,24px)}
+.metro-map{width:100%;height:auto;display:block}
+.metro-fig figcaption{font-size:13px;color:var(--ink-soft);margin-top:8px;text-align:center}
+.mm-loop{fill:rgba(47,146,100,.08);stroke:var(--green);stroke-width:3;stroke-dasharray:10 8;opacity:.7}
+.mm-loop-l{font:700 18px/1 inherit;fill:var(--green-ink);opacity:.7;letter-spacing:.08em}
+.mm-county{font:700 20px/1 Inter,system-ui,sans-serif;fill:var(--ink);opacity:.22;letter-spacing:.24em;text-anchor:middle}
+.mm-ray{stroke:var(--green);stroke-width:2;opacity:.35}
+.mm-dot{fill:#fff;stroke:var(--green-ink);stroke-width:4}
+.mm-city{font:700 22px/1 Inter,system-ui,sans-serif;fill:var(--ink)}
+.mm-home{fill:var(--green)}
+.mm-pulse{fill:var(--green);opacity:.18}
+.mm-home-l{font:800 22px/1 Inter,system-ui,sans-serif;fill:var(--green-ink)}
+.mm-home-s{font:600 17px/1 Inter,system-ui,sans-serif;fill:var(--ink-soft)}
+.mm-loop-l{font-family:Inter,system-ui,sans-serif}
