@@ -36,9 +36,8 @@
   <div class="wrap narrow">
     <div class="eyebrow">Save Your Spot</div>
     <h2>Let us know you&rsquo;re coming.</h2>
-    <p class="lede">It takes less than a minute, and it helps us have enough seats, candles, and cookies for everyone.</p>
-    <form id="christmas-form" class="visit-form" name="christmas-eve" method="POST" action="/christmas-eve/thanks" data-netlify="true" netlify-honeypot="website">
-      <input type="hidden" name="form-name" value="christmas-eve">
+    <p class="lede">We&rsquo;re a new church in a new facility, and accurate registration helps us plan for food, seating, and parking, so your family has an amazing experience and we don&rsquo;t have to turn anyone away. Reserve your spot, and we&rsquo;ll reach back out the day of in case your plans change and you want to release it.</p>
+    <form id="christmas-form" class="visit-form" novalidate>
       <div class="vf-row">
         <label>First name<input name="first" autocomplete="given-name" required maxlength="80"></label>
         <label>Last name<input name="last" autocomplete="family-name" required maxlength="80"></label>
@@ -52,8 +51,36 @@
         <label>How many kids?<select name="kids"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option value="5+">5+</option></select></label>
       </div>
       <input type="text" name="website" class="vf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="btn-row"><button class="btn btn-primary" type="submit">Save My Spot <span class="arrow">&rarr;</span></button></div>
+      <p class="vf-err" id="cf-err" role="alert"></p>
+      <div class="btn-row"><button class="btn btn-primary" type="submit" id="cf-submit">Save My Spot <span class="arrow">&rarr;</span></button></div>
       <p class="vf-fine">We&rsquo;ll only use this to welcome you on Christmas Eve and share what&rsquo;s next at GateCity. <a href="/privacy">Privacy policy</a>.</p>
     </form>
   </div>
 </section>
+<script>
+(function(){
+  var SB='https://egccpqcdpmvkkgdunpuc.supabase.co', KEY='sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda';
+  var f=document.getElementById('christmas-form'); if(!f) return;
+  var err=document.getElementById('cf-err'), btn=document.getElementById('cf-submit');
+  function v(n){return (f.elements[n].value||'').trim();}
+  f.addEventListener('submit',async function(e){
+    e.preventDefault(); err.textContent='';
+    if(v('website')) return;
+    if(!v('first')||!v('last')) return err.textContent='Please add your first and last name.';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return err.textContent='Please add a valid email address.';
+    btn.disabled=true; btn.firstChild.textContent='Saving... ';
+    try{
+      var r=await fetch(SB+'/rest/v1/rpc/christmas_register',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},
+        body:JSON.stringify({p_first:v('first'),p_last:v('last'),p_email:v('email'),p_phone:v('phone'),
+          p_adults:parseInt(v('adults'),10)||1,p_kids:parseInt(v('kids'),10)||0,p_source:(document.referrer||'').slice(0,150)+' | '+location.search.slice(0,140)})});
+      if(!r.ok){var t=await r.text();var m=(t.match(/"message":"([^"]+)"/)||[])[1];throw new Error(m||'save');}
+      var id=await r.json();
+      try{await Promise.race([fetch('/api/christmas-register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})}),new Promise(function(res){setTimeout(res,8000);})]);}catch(_){}
+      location.href='/christmas-eve/thanks';
+    }catch(ex){
+      btn.disabled=false; btn.firstChild.textContent='Save My Spot ';
+      err.innerHTML=(ex.message&&ex.message!=='save'&&ex.message.length<120?ex.message+' ':'Something went wrong on our end. ')+'Please email <a href="mailto:info@gatecityatl.com">info@gatecityatl.com</a> and we will save your spot.';
+    }
+  });
+})();
+</script>
