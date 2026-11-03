@@ -33,10 +33,8 @@ export default async (req) => {
   const headers = { Authorization: "Basic " + Buffer.from(appId + ":" + secret).toString("base64"), "Content-Type": "application/json" };
 
   const val = (f, value) => ({ type: "FormSubmissionValue", attributes: { form_field_id: f, value } });
+  // Checkbox and dropdown answers take the option id as a plain string.
   const valueSets = [
-    // option ids
-    [val(F_PHONE, { number: v.phone, location: "Mobile" }), val(F_TZ, [TZ[v.time_zone]]), val(F_COMMIT, [COMMIT_LEARN_MORE]), ...(CONN[v.connection] ? [val(F_CONN, [CONN[v.connection]])] : [])],
-    // option ids as plain strings
     [val(F_PHONE, { number: v.phone, location: "Mobile" }), val(F_TZ, TZ[v.time_zone]), val(F_COMMIT, COMMIT_LEARN_MORE), ...(CONN[v.connection] ? [val(F_CONN, CONN[v.connection])] : [])],
   ];
   const person_attributes = { first_name: v.first_name, last_name: v.last_name, emails_attributes: [{ address: v.email, location: "Home" }] };
