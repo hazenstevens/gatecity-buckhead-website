@@ -299,6 +299,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .nl-form input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(47,146,100,.18)}
 .nl-form .btn{padding:0 26px;height:52px}
 .nl-fine{font-size:12.5px;color:var(--ink-soft);margin-top:10px}
+.nl-msg{font-size:14px;font-weight:600;color:var(--ink);margin-top:10px}
+.nl-msg:empty{display:none}
+.deep .nl-msg,.dark .nl-msg,.f-news .nl-msg{color:#fff}
 .nl-section{background:var(--paper-2)}
 .nl-box{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:center;background:#fff;border-radius:10px;padding:clamp(28px,4vw,56px);border:1px solid rgba(14,26,19,.08)}
 .nl-box h2{font-size:clamp(26px,3.4vw,42px);margin-bottom:16px}

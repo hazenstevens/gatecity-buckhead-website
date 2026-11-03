@@ -122,7 +122,22 @@ IMAGES = {
 # Google tag. Paste the IDs from Google Analytics (G-...) and Google Ads (AW-...).
 # Leave blank and nothing is added to the pages.
 GA4_ID = ""
-ADS_ID = ""
+ADS_ID = "AW-18553804873"   # Google Ads (Ad Grant account 775-246-8219)
+# Google Ads conversions: page slug -> conversion label. The thank-you page each
+# form lands on fires its conversion (counted once per ad click).
+ADS_CONVERSIONS = {
+    "visit-thanks":   "d_47CJmMzbEdEMmwko9F",   # Plan a Visit form
+    "webinar-thanks": "bQGJCO7KzbEdEMmwko9F",   # Walking with Jesus webinar registration
+    "thanks":         "SsYGCOeizbEdEMmwko9F",   # Email signup (GCB Weekly)
+}
+
+
+def ads_conversion(slug):
+    label = ADS_CONVERSIONS.get(slug)
+    if not (ADS_ID and label):
+        return ""
+    return ("\n<script>gtag('event','conversion',{send_to:'%s/%s',value:1.0,currency:'USD'});</script>"
+            % (ADS_ID, label))
 
 def gtag():
     ids = [i for i in (GA4_ID, ADS_ID) if i]
@@ -327,6 +342,7 @@ def main():
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     for slug, (out, title, desc, solid) in PAGES.items():
         body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero)
+        body += ads_conversion(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
                                 "ROBOTS": '<meta name="robots" content="noindex">' if slug in NOINDEX else ""})

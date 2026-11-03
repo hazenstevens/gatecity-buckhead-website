@@ -94,3 +94,51 @@
     }
   }).catch(function(){});
 })();
+
+// Newsletter signup: subscribe to Mailchimp in place (JSONP) and land on /thanks,
+// so a real signup ends on our own page, where the Google Ads conversion fires.
+// On any failure (or a Mailchimp captcha) it falls back to the normal Mailchimp post.
+(function(){
+  document.querySelectorAll('form.nl-form').forEach(function(form){
+    var action=form.getAttribute('action')||'';
+    if(action.indexOf('list-manage.com/subscribe/post')<0)return;
+    var msg=document.createElement('p');
+    msg.className='nl-msg';msg.setAttribute('role','status');msg.setAttribute('aria-live','polite');
+    form.parentNode.insertBefore(msg,form.nextSibling);
+    form.addEventListener('submit',function(ev){
+      if(form.dataset.fallback==='1')return;
+      ev.preventDefault();
+      var btn=form.querySelector('button[type=submit]');
+      if(btn)btn.disabled=true;
+      msg.textContent='Signing you up...';
+      var cb='gcbNl'+Date.now();
+      var params=new URLSearchParams(new FormData(form)).toString();
+      var url=action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+params+'&c='+cb;
+      var script=document.createElement('script');
+      var done=false;
+      function fallback(){
+        if(done)return;done=true;
+        try{delete window[cb];}catch(e){}
+        form.dataset.fallback='1';form.removeAttribute('target');msg.textContent='';
+        if(btn)btn.disabled=false;
+        form.submit();
+      }
+      var timer=setTimeout(fallback,8000);
+      window[cb]=function(r){
+        if(done)return;
+        if(r&&/captcha/i.test(String(r.msg||''))){clearTimeout(timer);fallback();return;}
+        done=true;clearTimeout(timer);
+        try{delete window[cb];}catch(e){}
+        script.remove();
+        if(r&&r.result==='success'){window.location.href='/thanks';return;}
+        var text=(r&&r.msg?String(r.msg):'').replace(/<[^>]*>/g,'').replace(/^\d+\s*-\s*/,'');
+        if(/already subscribed/i.test(text)){text="You're already on the list. Thanks!";}
+        msg.textContent=text||'Something went wrong. Please try again.';
+        if(btn)btn.disabled=false;
+      };
+      script.onerror=fallback;
+      script.src=url;
+      document.body.appendChild(script);
+    });
+  });
+})();
