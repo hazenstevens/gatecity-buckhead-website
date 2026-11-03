@@ -156,7 +156,7 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
-NOINDEX = ("404", "thanks", "visit-thanks", "cohort", "webinar-thanks", "christmas-eve", "christmas-thanks")  # christmas-eve: draft until Hazen says go  # cohort: hidden until Hazen says go
+NOINDEX = ("404", "thanks", "visit-thanks", "cohort", "webinar-thanks", "christmas-thanks")  # christmas-eve: public as of Nov 3 2026  # cohort: hidden until Hazen says go
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.

@@ -420,3 +420,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .ns-wiggle{animation:ns-wiggle 4s ease-in-out infinite;transform-origin:50% 50%}
 @keyframes ns-wiggle{0%,82%,100%{transform:rotate(0)}85%{transform:rotate(-4deg)}88%{transform:rotate(4deg)}91%{transform:rotate(-3deg)}94%{transform:rotate(2deg)}97%{transform:rotate(0)}}
 @media (prefers-reduced-motion:reduce){.ns-wiggle{animation:none}}
+
+/* christmas eve */
+.xmas-hero .pagehead-bg{object-position:70% 50%}
+.xmas-hero::before{background:linear-gradient(90deg,rgba(8,12,9,.86) 0%,rgba(8,12,9,.6) 45%,rgba(8,12,9,.15) 100%)}
+@media(max-width:760px){.xmas-hero::before{background:linear-gradient(180deg,rgba(8,12,9,.55),rgba(8,12,9,.85))}}
+.xmas-band .msg-thumb img{opacity:1}
