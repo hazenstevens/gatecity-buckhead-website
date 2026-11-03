@@ -298,7 +298,54 @@
       <li><b>When</b><span>Dates TBD. Sign up and we will send them to you first.</span></li>
       <li><b>Where</b><span>Live on Zoom, from anywhere. Free, and you do not need to be a member of GateCity.</span></li>
     </ul>
-    <div class="btn-row"><a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/people/forms/1114259">Save My Seat for the Webinar <span class="arrow">&rarr;</span></a></div>
+    <form id="webinar-form" class="visit-form" novalidate>
+      <h3 style="margin:0">Register for the free webinar</h3>
+      <p style="margin:0;color:var(--ink-soft)">When you register, we will send you a free Walking with Jesus assessment, about 30 questions. It helps us get to know where you are spiritually, so we can tailor the webinar to meet the real needs of the group.</p>
+      <div class="vf-row">
+        <label>First name<input name="first" autocomplete="given-name" required maxlength="80"></label>
+        <label>Last name<input name="last" autocomplete="family-name" required maxlength="80"></label>
+      </div>
+      <div class="vf-row">
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        <label><span>Mobile phone <span class="opt">For a text reminder.</span></span><input name="phone" type="tel" autocomplete="tel" required maxlength="40"></label>
+      </div>
+      <div class="vf-row">
+        <label>Your time zone<select name="tz" required><option value="">Choose one</option><option>Eastern</option><option>Central</option><option>Pacific</option></select></label>
+        <label><span>How you know us <span class="opt">(optional)</span></span><select name="conn"><option value=""></option><option>New, exploring</option><option>Online Sunday Services</option><option>Virtual Prayer Gatherings</option><option value="Digital Content (YouTube/Social Media)">YouTube or social media</option><option>In-person occasionally</option></select></label>
+      </div>
+      <label><span>Any questions for us? <span class="opt">(optional)</span></span><textarea name="questions" rows="2" maxlength="1000"></textarea></label>
+      <input type="text" name="website" class="vf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="vf-err" id="wf-err" role="alert"></p>
+      <button type="submit" class="btn btn-primary" id="wf-submit">Save My Seat <span class="arrow">&rarr;</span></button>
+    </form>
+<script>
+(function(){
+  var SB='https://egccpqcdpmvkkgdunpuc.supabase.co', KEY='sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda';
+  var f=document.getElementById('webinar-form'); if(!f) return;
+  var err=document.getElementById('wf-err'), btn=document.getElementById('wf-submit');
+  function v(n){return (f.elements[n].value||'').trim();}
+  f.addEventListener('submit',async function(e){
+    e.preventDefault(); err.textContent='';
+    if(v('website')) return;
+    if(!v('first')||!v('last')) return err.textContent='Please add your first and last name.';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return err.textContent='Please add a valid email address.';
+    if(v('phone').replace(/\D/g,'').length<10) return err.textContent='Please add a valid phone number.';
+    if(!v('tz')) return err.textContent='Please choose your time zone.';
+    btn.disabled=true; btn.firstChild.textContent='Saving... ';
+    try{
+      var r=await fetch(SB+'/rest/v1/rpc/webinar_register',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},
+        body:JSON.stringify({p_first:v('first'),p_last:v('last'),p_email:v('email'),p_phone:v('phone'),p_time_zone:v('tz'),p_connection:v('conn'),p_questions:v('questions'),p_source:(document.referrer||'').slice(0,150)+' | '+location.search.slice(0,140)})});
+      if(!r.ok){var t=await r.text();var m=(t.match(/"message":"([^"]+)"/)||[])[1];throw new Error(m||'save');}
+      var id=await r.json();
+      try{await Promise.race([fetch('/api/webinar-register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})}),new Promise(function(res){setTimeout(res,8000);})]);}catch(_){}
+      location.href='/cohort/thanks';
+    }catch(ex){
+      btn.disabled=false; btn.firstChild.textContent='Save My Seat ';
+      err.innerHTML=(ex.message&&ex.message!=='save'&&ex.message.length<120?ex.message+' ':'Something went wrong on our end. ')+'You can also <a href="https://gatecity-buckhead.churchcenter.com/people/forms/1114259">sign up here</a>.';
+    }
+  });
+})();
+</script>
     </div>
     <div style="position:sticky;top:110px"><img src="/assets/img/cohort-webinar-laptop-v2.svg" alt="A laptop showing the live Walking with Jesus webinar with GateCity Buckhead" style="width:100%;height:auto" loading="lazy"></div>
   </div>
