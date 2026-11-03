@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Illustration of one figure leading another by the hand along a path toward the sunrise">
+<defs>
+<radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF3D6"/><stop offset=".45" stop-color="#F3C969" stop-opacity=".9"/><stop offset="1" stop-color="#F3C969" stop-opacity="0"/></radialGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#183828"/><stop offset="1" stop-color="#2c5a42"/></linearGradient>
+<linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E3B8" stop-opacity=".9"/><stop offset="1" stop-color="#F4F3EF" stop-opacity=".25"/></linearGradient>
+<clipPath id="c"><rect width="600" height="600" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#c)">
+<rect width="600" height="600" fill="url(#sky)"/>
+<circle cx="380" cy="250" r="190" fill="url(#sun)"/>
+<circle cx="380" cy="250" r="48" fill="#FFF3D6"/>
+<path d="M0 300 Q150 250 300 285 T600 270 V600 H0Z" fill="#1F4A35"/>
+<path d="M0 360 Q170 310 330 345 T600 330 V600 H0Z" fill="#183828"/>
+<path d="M0 430 Q200 390 360 420 T600 410 V600 H0Z" fill="#0E1A13"/>
+<path d="M372 296 C360 360 300 420 120 600 L330 600 C390 470 392 380 388 296 Z" fill="url(#road)"/>
+<!-- leader (robed figure), looking back and reaching -->
+<g transform="translate(350 440)">
+  <circle cx="-2" cy="-110" r="14" fill="#F4F3EF"/>
+  <path d="M-15 -94 Q0 -100 15 -94 L27 0 Q0 6 -27 0 Z" fill="#F4F3EF"/>
+  <path d="M-11 -84 Q-30 -70 -54 -56" stroke="#F4F3EF" stroke-width="9" stroke-linecap="round" fill="none"/>
+</g>
+<!-- follower -->
+<g transform="translate(270 478)">
+  <circle cx="0" cy="-104" r="13" fill="#6FD0A0"/>
+  <path d="M-13 -90 Q0 -95 13 -90 L17 -40 L9 -40 L6 0 L1 0 L0 -38 L-1 0 L-6 0 L-9 -40 L-17 -40 Z" fill="#6FD0A0"/>
+  <path d="M12 -80 Q20 -88 26 -94" stroke="#6FD0A0" stroke-width="8" stroke-linecap="round" fill="none"/>
+</g>
+<circle cx="296" cy="384" r="7" fill="#F4F3EF"/>
+</g>
+</svg>
