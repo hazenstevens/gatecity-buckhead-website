@@ -402,3 +402,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .vf-fine a{color:inherit;text-decoration:underline}
 #vf-submit[disabled]{opacity:.6;cursor:wait}
 @media (max-width:640px){.vf-row,.vf-kid{grid-template-columns:1fr}.vf-kid .wide{grid-column:auto}.vf-remove{text-align:left}}
+
+/* cohort next-step band: soft moving gradient, shimmer sweep, pulsing button */
+.next-step{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAE8E2 0%,#dcefe3 35%,#EAE8E2 60%,#e6f3ea 100%);background-size:250% 100%;animation:ns-drift 9s ease-in-out infinite}
+.next-step::after{content:"";position:absolute;top:0;left:-40%;width:35%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-18deg);animation:ns-shine 4.5s ease-in-out infinite;pointer-events:none}
+.next-step .wrap{position:relative;z-index:1}
+.ns-pulse{box-shadow:0 0 0 0 rgba(47,146,100,.55);animation:ns-pulse 2.4s ease-out infinite}
+@keyframes ns-drift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes ns-shine{0%{left:-40%}55%,100%{left:120%}}
+@keyframes ns-pulse{0%{box-shadow:0 0 0 0 rgba(47,146,100,.55)}70%{box-shadow:0 0 0 14px rgba(47,146,100,0)}100%{box-shadow:0 0 0 0 rgba(47,146,100,0)}}
+@media (prefers-reduced-motion:reduce){.next-step,.next-step::after,.ns-pulse{animation:none}.next-step::after{display:none}}
