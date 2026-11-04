@@ -371,7 +371,7 @@
         '<div class="as-bar"><i style="width:'+Math.max(8,Math.round((s.avg-1)/4*100))+'%"></i></div>'+
         '<p>'+rec.e+'</p><ul><li>'+rec.r[0]+'</li><li>'+rec.r[1]+'</li>'+extra+'</ul></div>';
     });
-    h+='<div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort">About the Cohort <span class="arrow">&rarr;</span></a></div>'+
+    h+='<div class="as-card" style="background:var(--paper-2);border:0"><h3 style="margin:0 0 8px">Take your next step: Walking with Jesus</h3><p>Join Pastors Hazen and Hannah Stevens for a free, live 50-minute webinar on Monday, November 16, at 8pm ET on Zoom. We\'ll walk through the five practices in this snapshot and help you take your next step.</p></div><div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort#masterclass">Join the Free Webinar, Nov 16 <span class="arrow">&rarr;</span></a></div>'+
       '<p class="vf-fine" style="margin-top:18px">This snapshot is a conversation starter, not a grade. Want to retake it? <a href="#" id="as-reset">Start over</a>.</p>';
     app.innerHTML=h;
     document.getElementById('as-reset').onclick=function(e){e.preventDefault();state={i:-1,a:{},who:state.who};persist();render();scrollTop();};
