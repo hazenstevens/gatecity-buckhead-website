@@ -443,3 +443,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .mm-home-l{font:800 22px/1 Inter,system-ui,sans-serif;fill:var(--green-ink)}
 .mm-home-s{font:600 17px/1 Inter,system-ui,sans-serif;fill:var(--ink-soft)}
 .mm-loop-l{font-family:Inter,system-ui,sans-serif}
+.wwj-band{background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
+.wwj-band .btn-row{flex-wrap:nowrap}
+@media(max-width:700px){.wwj-band .btn-row{flex-wrap:wrap}}
