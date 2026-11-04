@@ -346,7 +346,7 @@ def main():
     built = []
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     for slug, (out, title, desc, solid) in PAGES.items():
-        body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero)
+        body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"])
         body += ads_conversion(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
