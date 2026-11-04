@@ -26,6 +26,13 @@ export default async () => {
     if (r.ok) entries = parse(await r.text());
   } catch (e) { /* fall through */ }
   if (!entries.filter(isMessage).length) {
+    // RSS feeds don't support newer short playlist IDs, so read the playlist page itself.
+    try {
+      const r = await fetch("https://www.youtube.com/playlist?list=" + playlist, { headers: { "user-agent": "Mozilla/5.0", "accept-language": "en-US" } });
+      if (r.ok) entries = parsePlaylistPage(await r.text());
+    } catch (e) { /* fall through */ }
+  }
+  if (!entries.filter(isMessage).length) {
     try {
       const r = await fetch(channelUrl, { headers: { "user-agent": "gatecitybuckhead.com latest-message" } });
       if (r.ok) entries = parse(await r.text());
@@ -45,7 +52,7 @@ export default async () => {
     series,
     part: pm ? Number(pm[1]) : null,
     messageTitle: pm ? pm[2].trim() : rest,
-    published: m.published,
+    published: m.fromPage ? null : m.published,
     thumbnail: "https://i.ytimg.com/vi/" + m.id + "/maxresdefault.jpg",
     thumbnailFallback: "https://i.ytimg.com/vi/" + m.id + "/hqdefault.jpg",
     updated: new Date().toISOString(),
@@ -73,6 +80,32 @@ function parse(xml) {
     if (id && title) out.push({ id, title, published });
   }
   return out;
+}
+
+function parsePlaylistPage(html) {
+  const out = [], seen = new Set();
+  const pats = [
+    /"playlistVideoRenderer":\{"videoId":"([\w-]{11})"[\s\S]*?"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/g,
+    /"lockupViewModel":\{"contentImage"[\s\S]*?"contentId":"([\w-]{11})"/g,
+  ];
+  let m;
+  while ((m = pats[0].exec(html))) push(m[1], m[2]);
+  if (!out.length) {
+    // Newer page format: video IDs and titles in lockupViewModel blocks.
+    const re = /"contentId":"([\w-]{11})"/g;
+    while ((m = re.exec(html))) {
+      const win = html.slice(Math.max(0, m.index - 6000), m.index + 6000);
+      const titles = [...win.matchAll(/"title":\{"content":"((?:[^"\\]|\\.)*)"/g)].map(x => x[1]);
+      const t = titles.find(x => /\|\s*Part\s*\d+/i.test(x)) || titles[0];
+      if (t) push(m[1], t);
+    }
+  }
+  return out;
+  function push(id, raw) {
+    if (seen.has(id)) return; seen.add(id);
+    let title; try { title = JSON.parse('"' + raw + '"'); } catch (e) { title = raw; }
+    out.push({ id, title, published: new Date(Date.UTC(2000, 0, 1 + out.length)).toISOString(), fromPage: true });
+  }
 }
 
 function decode(s) {
