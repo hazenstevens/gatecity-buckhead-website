@@ -85,3 +85,11 @@
   for = "/assets/*.js"
   [headers.values]
     Cache-Control = "public, max-age=300, must-revalidate"
+
+# Walking with Jesus webinar replay link used in the Nov 17 follow-up email.
+# Point this at the recording (YouTube or Zoom) once it is posted.
+[[redirects]]
+  from = "/webinar-replay"
+  to = "https://www.youtube.com/@GateCityBuckhead"
+  status = 302
+  force = true
