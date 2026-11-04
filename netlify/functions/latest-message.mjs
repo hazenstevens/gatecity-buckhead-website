@@ -10,7 +10,7 @@
 // a new series starts). Update DEFAULT_PLAYLIST at each series launch.
 
 const CHANNEL = "UCPCYw3AOeXT5GInwE2RcRXA";
-const DEFAULT_PLAYLIST = "PLKSdukVm_qVM"; // Incense & Oil | Message Only
+const DEFAULT_PLAYLIST = "PLR3fw1RacPTk"; // Formed for a Purpose | Message Only
 
 export default async () => {
   const playlist = process.env.MESSAGE_PLAYLIST || DEFAULT_PLAYLIST;
