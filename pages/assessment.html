@@ -83,11 +83,13 @@
         ['I\'m not sure where to start',1],['I\'ve read parts of it',2],['I\'ve read the New Testament',3],['I\'ve read the whole Bible',4],['I\'ve read it through more than once',5]]}
     ]},
     {id:'spirit',name:'Life in the Spirit',intro:'How you\'re experiencing the Holy Spirit. Wherever you are, there\'s room to grow.',qs:[
+      {id:'s0',t:'n',q:'Water baptism is something I would describe as:',o:[
+        ['New to me, or I\'m not sure what it means','new'],['Something I haven\'t done yet, but I\'d like to learn more or take that step','want'],['Something I experienced as a child, and I\'m exploring what it means for me now','child'],['A step I\'ve taken as a follower of Jesus','done'],['A step I\'ve taken, and a meaningful part of my story with Jesus','done']]},
       {id:'s1',t:'c',q:'Being baptized in (filled with) the Holy Spirit is something I would describe as:',o:[
         ['New to me, or I\'m not sure what it means',1],['Something I\'m curious about and want to understand',2],['Something I believe in and am seeking',3],['Something I have experienced',4],['Something I\'ve experienced and walk in day to day',5]]},
       {id:'s2',t:'s',q:'I sense the Holy Spirit leading and empowering me in everyday life.'},
-      {id:'s3',t:'s',q:'I have operated in spiritual gifts, such as encouragement, teaching, prophecy, healing, or serving.'},
-      {id:'s4',t:'s',q:'I see the fruit of the Spirit growing in my life: love, joy, peace, patience, kindness, and self-control.'},
+      {id:'s3',t:'s',q:'I have operated in spiritual gifts (1 Corinthians 12:4 to 11), such as wisdom, knowledge, faith, healing, miracles, prophecy, discernment, tongues, or interpretation of tongues.'},
+      {id:'s4',t:'s',q:'I see the fruit of the Spirit growing in my life (Galatians 5:22 to 23): love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control.'},
       {id:'s5',t:'s',q:'Taking communion (the Lord\'s Supper) is a meaningful priority in my life with Christ.'}
     ]},
     {id:'serve',name:'Serving',intro:'There\'s no single right place to serve. This helps us understand your season.',qs:[
@@ -238,6 +240,7 @@
     ids.forEach(function(id){
       var s=sc[id], rec=RECS[id][s.stage], extra='';
       if(id==='word'){var w5=+state.a.w5; if(w5===0) extra='<li>Not sure where to start? Begin with the Gospel of Mark, then John, then Acts. That\'s a great first path.</li>'; if(w5===1||w5===2) extra='<li>Consider a plan that takes you through the whole Bible in a year. It changes how all of Scripture fits together.</li>';}
+      if(id==='spirit'){var s0=state.a.s0; var bm={new:'Curious about water baptism? It is a beautiful first step of following Jesus (Romans 6:3 to 4). Ask us about it at the webinar.',want:'You\'d like to take the step of water baptism. That is wonderful. Let us know at the webinar and we\'ll walk with you toward it.',child:'If you were baptized as a child and want to talk through what it means for you now, we would love to have that conversation with you.'}[['new','want','child','done','done'][+s0]]; if(bm) extra='<li>'+bm+'</li>';}
       if(id==='serve'){var v4=state.a.v4; var m={in:'Most of your serving is inside the church. Look for one way to carry that same love to your workplace or neighborhood.',out:'Most of your serving is out in the world. That matters. Consider one way to serve within a church family too, where you can be known and built up.',both:'You have a healthy mix of serving inside and outside the church. Keep both rhythms going.',want:'You\'d like to serve. Tell us during the webinar and we\'ll help you find a fit.',not:'Serving may be new for you. Start by noticing one need around you each day.'}[['in','out','both','want','not'][+v4]]; if(m) extra='<li>'+m+'</li>';}
       h+='<div class="as-card"><div class="as-card-h"><h3>'+name(id)+'</h3><span class="as-stage st-'+(s.stage+1)+'">'+STAGES[s.stage]+'</span></div>'+
         '<div class="as-bar"><i style="width:'+Math.max(8,Math.round((s.avg-1)/4*100))+'%"></i></div>'+
