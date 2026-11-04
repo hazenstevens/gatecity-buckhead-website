@@ -80,7 +80,7 @@
       img.alt=j.title;
     }
     sec.querySelectorAll('[data-lm-link]').forEach(function(a){a.href=j.url});
-    var th=window.GCB_EMBED_LM?sec.querySelector('.msg-thumb'):null; // embed on once YouTube embedding is allowed
+    var th=sec.querySelector('.msg-thumb');
     if(th){
       var f=document.createElement('div'); f.className='msg-thumb msg-embed';
       var ifr=document.createElement('iframe');
