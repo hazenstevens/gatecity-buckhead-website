@@ -4,7 +4,9 @@
 // browser is trusted), submits it to the PCO form "I'm interested in the Digital
 // Discipleship Cohort!" (1114259) so the existing workflow and emails fire, adds a note
 // that they registered for the webinar, and records the result.
-// Zoom link email: to be added once the webinar date and link are set.
+// Mailchimp: each registrant is added to the GateCity Buckhead audience (new contacts as subscribed,
+// existing contacts keep their status) and tagged MC_WEBINAR_TAG. That tag starts the Mailchimp
+// confirmation journey (Zoom link) and puts them in the reminder sends. Needs MAILCHIMP_API_KEY in Netlify.
 
 const SB = "https://egccpqcdpmvkkgdunpuc.supabase.co";
 const SB_KEY = "sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda";
@@ -15,6 +17,24 @@ const CONN = { "Online Sunday Services": "9674428", "Virtual Prayer Gatherings":
 const COMMIT_LEARN_MORE = "9674475";
 const NOTE_CATEGORY = process.env.PCO_VISIT_NOTE_CATEGORY || "248939";
 const PCO = "https://api.planningcenteronline.com/people/v2";
+const MC_LIST = process.env.MAILCHIMP_LIST_ID || "cdb1521460";
+const MC_TAG = process.env.MC_WEBINAR_TAG || "WWJ Webinar 2026-11-16";
+import { createHash } from "node:crypto";
+
+async function mailchimp(v) {
+  const key = process.env.MAILCHIMP_API_KEY;
+  if (!key) return "mailchimp: no key";
+  const dc = key.split("-")[1] || "us3";
+  const base = `https://${dc}.api.mailchimp.com/3.0/lists/${MC_LIST}/members/${createHash("md5").update(v.email.toLowerCase()).digest("hex")}`;
+  const headers = { Authorization: "Basic " + Buffer.from("gcb:" + key).toString("base64"), "Content-Type": "application/json" };
+  const merge = { FNAME: v.first_name, LNAME: v.last_name };
+  if (v.phone) merge.PHONE = v.phone;
+  let r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: v.email, status_if_new: "subscribed", merge_fields: merge }) });
+  if (!r.ok && merge.PHONE) { delete merge.PHONE; r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: v.email, status_if_new: "subscribed", merge_fields: merge }) }); }
+  if (!r.ok) return `mailchimp member ${r.status}`;
+  const t = await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: [{ name: MC_TAG, status: "active" }] }) });
+  return t.ok ? "mailchimp ok" : `mailchimp tag ${t.status}`;
+}
 
 async function rpc(fn, body) {
   const r = await fetch(`${SB}/rest/v1/rpc/${fn}`, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -28,8 +48,9 @@ export default async (req) => {
   if (!/^[0-9a-f-]{36}$/i.test(id || "")) return json({ error: "bad id" }, 400);
   const v = await rpc("webinar_registration_get", { p_id: id }).catch(() => null);
   if (!v) return json({ error: "not found" }, 404);
+  const mc = await mailchimp(v).catch((e) => "mailchimp error " + String(e).slice(0, 80));
   const appId = process.env.PCO_APP_ID, secret = process.env.PCO_SECRET;
-  if (!appId || !secret) { await rpc("webinar_registration_mark", { p_id: id, p_status: "failed", p_detail: "PCO not configured" }).catch(() => {}); return json({ error: "not configured" }, 503); }
+  if (!appId || !secret) { await rpc("webinar_registration_mark", { p_id: id, p_status: "failed", p_detail: "PCO not configured; " + mc }).catch(() => {}); return json({ error: "not configured" }, 503); }
   const headers = { Authorization: "Basic " + Buffer.from(appId + ":" + secret).toString("base64"), "Content-Type": "application/json" };
 
   const val = (f, value) => ({ type: "FormSubmissionValue", attributes: { form_field_id: f, value } });
@@ -47,7 +68,7 @@ export default async (req) => {
       if (r.status !== 422 && r.status !== 400) break outer;
     }
   }
-  if (!sub) { await rpc("webinar_registration_mark", { p_id: id, p_status: "failed", p_detail: lastErr }).catch(() => {}); return json({ error: "planning center" }, 502); }
+  if (!sub) { await rpc("webinar_registration_mark", { p_id: id, p_status: "failed", p_detail: lastErr + "; " + mc }).catch(() => {}); return json({ error: "planning center" }, 502); }
 
   const personId = sub.data?.relationships?.person?.data?.id;
   const lines = [`Registered for the free Walking with Jesus webinar (website). Time zone: ${v.time_zone}.`];
@@ -58,7 +79,7 @@ export default async (req) => {
     const r = await fetch(`${PCO}/people/${personId}/notes`, { method: "POST", headers, body: JSON.stringify({ data: { type: "Note", attributes: { note: lines.join("\n"), note_category_id: NOTE_CATEGORY } } }) });
     noteOk = r.ok;
   }
-  await rpc("webinar_registration_mark", { p_id: id, p_status: "sent", p_detail: `submission ${sub.data?.id} person ${personId || "?"}${noteOk ? "" : " (note failed)"}` }).catch(() => {});
+  await rpc("webinar_registration_mark", { p_id: id, p_status: "sent", p_detail: `submission ${sub.data?.id} person ${personId || "?"}${noteOk ? "" : " (note failed)"}; ${mc}` }).catch(() => {});
   return json({ ok: true });
 };
 
