@@ -6,6 +6,10 @@
   </div>
 </div>
 
+<form name="wwj-assessment" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="name"><input name="email"><input name="snapshot"><textarea name="results"></textarea><textarea name="answers"></textarea>
+</form>
+
 <section class="as-sec">
   <div class="wrap narrow">
     <div id="as-app">
@@ -212,7 +216,15 @@
     SECTIONS.forEach(function(s){s.qs.forEach(function(q){var v=state.a[q.id]; named[q.id]=(q.t==='c'||q.t==='n')?q.o[+v][0]:+v;});});
     fetch(SB+'/rest/v1/rpc/wwj_assessment_submit',{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},
       body:JSON.stringify({p_first:state.who.first,p_last:state.who.last,p_email:state.who.email,p_answers:named,p_scores:sc,p_source:(document.referrer||'').slice(0,150)+' | '+location.search.slice(0,140)})})
-      .catch(function(){}).then(function(){renderResults();scrollTop();});
+      .catch(function(){}).then(function(){
+        var lines=[], qa=[], nm=function(id){return SECTIONS.filter(function(x){return x.id===id;})[0].name;};
+        SECTIONS.forEach(function(s){lines.push(s.name+': '+STAGES[sc[s.id].stage]+' ('+sc[s.id].avg.toFixed(1)+' of 5)');
+          qa.push('-- '+s.name+' --'); s.qs.forEach(function(q){qa.push(q.q+'  =>  '+(typeof named[q.id]==='number'?named[q.id]+' ('+SCALE[named[q.id]-1]+')':named[q.id]));});});
+        var ids=SECTIONS.map(function(s){return s.id;}).sort(function(a,b){return sc[b].avg-sc[a].avg;});
+        var body=new URLSearchParams({'form-name':'wwj-assessment',name:(state.who.first+' '+(state.who.last||'')).trim(),email:state.who.email,
+          snapshot:'Strongest: '+nm(ids[0])+'. Focus next: '+nm(ids[ids.length-1])+'.',results:lines.join('\n'),answers:qa.join('\n')});
+        return fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
+      }).then(function(){renderResults();scrollTop();});
   }
 
   function renderResults(){
