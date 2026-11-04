@@ -69,9 +69,11 @@
 (function(){
   var sec=document.getElementById('latest-message');
   if(!sec)return;
-  fetch('/api/latest-message').then(function(r){return r.ok?r.json():null}).then(function(j){
-    if(!j||!j.videoId)return;
-    var img=sec.querySelector('[data-lm-thumb]');
+  var fb=sec.dataset.lmFallback?{videoId:sec.dataset.lmFallback,title:sec.dataset.lmFallbackTitle||'Latest message',url:'https://www.youtube.com/watch?v='+sec.dataset.lmFallback,messageTitle:sec.dataset.lmFallbackMsg,series:sec.dataset.lmFallbackSeries,part:sec.dataset.lmFallbackPart,embedOnly:true}:null;
+  fetch('/api/latest-message').then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){
+    if(!j||!j.videoId)j=fb;
+    if(!j)return;
+    var img=j.embedOnly?null:sec.querySelector('[data-lm-thumb]');
     if(img){
       var probe=new Image();
       probe.onload=function(){ if(probe.naturalWidth>400){img.src=j.thumbnail;} else {img.src=j.thumbnailFallback;} };
