@@ -51,6 +51,7 @@ LINKS = {
     "AMZ_CONVERSATIONS": "https://www.amazon.com/dp/B0F8J7F553",
     "AMZ_TRANSFORMED": "https://www.amazon.com/dp/B0DZCRD4C2",
     "AMZ_SEVEN_SEEDS": "https://www.amazon.com/dp/B0DX5244NC",
+    "AMZ_LEGACY":      "https://www.amazon.com/dp/B0FMLMGGCN",
     "AMZ_KOC":         "https://www.amazon.com/dp/0802424899",
     "YV_KOC":          "https://my.bible.com/reading-plans/31471-know-own-change-journeying-towards-gods-heart-for",
     "OG_IMAGE":        BASE + "/assets/img/hero.jpg",  # link-preview image; must be absolute
