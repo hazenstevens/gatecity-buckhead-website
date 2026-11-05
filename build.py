@@ -450,7 +450,7 @@ def plan_pages():
 """
         if extra_html:
             body = body.replace('<!--EXTRA-->', extra_html, 1)
-        body = body.replace('<!--EXTRA-->', '').replace('{{CTA_DEEPER}}', CTA_DEEPER)
+        body = body.replace('<!--EXTRA-->', '').replace('{CTA_DEEPER}', CTA_DEEPER).replace('{{CTA_DEEPER}}', CTA_DEEPER)
         key = "plan:" + pl["slug"]
         desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
         pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)
