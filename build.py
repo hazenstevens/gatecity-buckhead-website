@@ -370,15 +370,6 @@ def plan_pages():
   </div>
 </section>
 
-<section class="tight wwj-band" id="plan-signup">
-  <div class="wrap narrow">
-    <div class="eyebrow">Keep Growing</div>
-    <h2>Get the next plan in your inbox.</h2>
-    <p class="lede">Every week GateCity Buckhead shares new Bible plans, teaching, and simple next steps for walking closely with Jesus. Free, and you can unsubscribe anytime.</p>
-    {{{{NL_FORM:nl-plan-{pl['slug']}}}}}
-  </div>
-</section>
-
 <section>
   <div class="wrap narrow">
     <div class="eyebrow">Want to go deeper?</div>
@@ -425,13 +416,6 @@ def plan_pages():
   </div>
 </section>
 
-<section class="tight wwj-band">
-  <div class="wrap narrow">
-    <div class="eyebrow">New plans by email</div>
-    <h2>Get the next plan in your inbox.</h2>
-    {{NL_FORM:nl-plans}}
-  </div>
-</section>
 """ % "\n".join(cards)
     pages["plan:hub"] = ("plans/index.html", "Free Bible Plans | GateCity Buckhead", "Free Bible reading plans from GateCity Buckhead in the Bible App: prayer, money, holiness, Jesus, and the whole Bible in 100 days.", True, hub)
     return pages
