@@ -162,3 +162,20 @@
     });
   });
 })();
+
+// Click-to-play for any poster marked data-yt-embed="VIDEO_ID" (used on the Bible plan pages).
+(function(){
+  document.querySelectorAll('[data-yt-embed]').forEach(function(th){
+    th.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var id=th.getAttribute('data-yt-embed');
+      var f=document.createElement('div'); f.className='msg-thumb msg-embed';
+      var ifr=document.createElement('iframe');
+      ifr.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0&modestbranding=1&autoplay=1';
+      ifr.title=(th.querySelector('img')||{}).alt||'Message';
+      ifr.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      ifr.setAttribute('allowfullscreen','');
+      f.appendChild(ifr); th.parentNode.replaceChild(f,th);
+    });
+  });
+})();

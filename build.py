@@ -379,6 +379,24 @@ def plan_pages():
   </div>
 </section>
 """
+        se = pl.get("series")
+        if se:
+            series_html = f"""<section class="tight wwj-band">
+  <div class="wrap split wide-left">
+    <a class="msg-thumb" href="https://www.youtube.com/watch?v={se['video']}&list={se['playlist']}" data-yt-embed="{se['video']}" target="_blank" rel="noopener">
+      <img src="https://i.ytimg.com/vi/{se['video']}/maxresdefault.jpg" alt="{H.escape(se['name'])} {H.escape(se['part'])}" loading="lazy">
+      <span class="play" aria-hidden="true"></span>
+    </a>
+    <div>
+      <div class="eyebrow">The Message Series</div>
+      <h2>{H.escape(se['name'])}.</h2>
+      <p class="lede">This plan grew out of our {H.escape(se['name'])} series at GateCity Buckhead. Start with {H.escape(se['part'])}, then watch the rest of the series.</p>
+      <div class="btn-row"><a class="btn btn-primary" href="https://www.youtube.com/playlist?list={se['playlist']}" target="_blank" rel="noopener">Watch the Full Series <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+"""
+            body = body.replace('\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', "\n" + series_html + '\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', 1)
         key = "plan:" + pl["slug"]
         desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
         pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)

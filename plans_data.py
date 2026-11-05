@@ -25,6 +25,7 @@ PLANS = [
                    "How generosity and the tithe can ease money anxiety",
                    "Three simple principles for earning, saving, and giving"],
         "who": "For anyone who wants a biblical, practical way to think about money.",
+        "series": {"name": 'Wisdom for Wealth', "video": 'MyXJrHgIX3A', "part": 'Part 1: How to Master Money Before It Masters You', "playlist": 'PLZe6ANQOBlot2sAtr503IU-J_2aHDJMyY'},
     },
     {
         "slug": "detox", "id": "78079", "days": 21,
@@ -35,6 +36,7 @@ PLANS = [
         "points": ["Reflect until you see clearly", "Remove what is harmful", "Replace it with something better",
                    "Stay connected to God", "Encourage the people your life touches"],
         "who": "For anyone ready for a reset in body, mind, and spirit. Pairs with the book Detox.",
+        "series": {"name": 'Detox', "video": 'YMyug6Sxlfc', "part": 'Part 1: Reflect', "playlist": 'PLCPKL77uWapo'},
     },
     {
         "slug": "culture-of-hunger", "id": "77898", "days": 8,
@@ -45,6 +47,7 @@ PLANS = [
         "points": ["Seeking God's presence", "Engaging deeply with Scripture", "Valuing holiness",
                    "Expecting God's power and pressing for breakthrough", "Keeping your passion through every season"],
         "who": "For anyone who feels spiritually dry and wants to want God again.",
+        "series": {"name": 'Culture of Hunger', "video": 'UOxMZ2kUlaQ', "part": 'Part 1: A Culture of Spiritual Hunger', "playlist": 'PLZe6ANQOBloubHj2gWM9sYuhLbcB5RlTm'},
     },
     {
         "slug": "start-strong", "id": "77910", "days": 7,
@@ -55,6 +58,7 @@ PLANS = [
         "points": ["Counting the cost and committing", "Recognizing what is worth the most",
                    "Finding strength in joy", "Persevering through the final stretch"],
         "who": "For anyone starting fresh with God, or needing courage to keep going.",
+        "series": {"name": 'Start Strong', "video": 'PsH7CwBJhIc', "part": 'Part 1: Count the Cost', "playlist": 'PLZe6ANQOBlot3N_siH-z_VKBkwDrWVaOX'},
     },
     {
         "slug": "blessed-to-be-a-blessing", "id": "65940", "days": 7,
@@ -65,6 +69,7 @@ PLANS = [
         "points": ["The first blessing in Genesis", "Abraham's faith and God's promise",
                    "The character Jesus shapes in His people", "Daily readings, reflections, and simple practices"],
         "who": "For anyone with a heart for missions and for the nations to know Jesus.",
+        "series": {"name": 'Blessed to Be a Blessing', "video": '7D1i0n9PrcU', "part": 'Part 1: The Pilgrim Faith of Abraham', "playlist": 'PLZe6ANQOBlouPRiUTUEJNNRwByrIyUxrN'},
     },
     {
         "slug": "meditations-on-messiah", "id": "64548", "days": 15,
@@ -75,6 +80,7 @@ PLANS = [
         "points": ["The gospel story from promise to fulfillment", "The wonder of the incarnation",
                    "The majesty of Jesus", "Scripture, reflection, and prayer each day"],
         "who": "For anyone who wants to slow down and behold Jesus, especially in the Advent and Christmas season.",
+        "series": {"name": 'Messiah', "video": 'plm2LYdikdo', "part": 'Part 1: Christ Is Coming', "playlist": 'PLZe6ANQOBlouvE1j50jNRp2why_oRXbQE'},
     },
     {
         "slug": "know-own-change", "id": "31471", "days": 7,
@@ -95,6 +101,7 @@ PLANS = [
         "points": ["Learning to talk with God, not just at Him", "Speaking with intention, humility, and love",
                    "Words that build up and encourage", "Conversations that cross cultures and share the gospel"],
         "who": "For anyone who wants a richer prayer life. Pairs with the book Conversations.",
+        "series": {"name": 'Conversations', "video": 'Gy4XsBoWSjE', "part": 'Part 1: The Trinity Talks', "playlist": 'PLZe6ANQOBlovhSSRNNxxELaJFEWuDNi_g'},
     },
     {
         "slug": "preparing-for-outpouring", "id": "59506", "days": 10,
@@ -125,6 +132,7 @@ PLANS = [
         "points": ["Living with eternal purpose", "Lessons from David and Solomon",
                    "Practical steps to invest in what lasts", "Passing faith on to the next generation"],
         "who": "For anyone asking what their life will leave behind.",
+        "series": {"name": 'Legacy', "video": 'BebLCr2TS2I', "part": 'Part 1: He Has Set Eternity in the Human Heart', "playlist": 'PLZe6ANQOBloucCaK3GNvv24zR06qJRL1c'},
     },
     {
         "slug": "lessons-from-christs-final-week", "id": "62314", "days": 8,
