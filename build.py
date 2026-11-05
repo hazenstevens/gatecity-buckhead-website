@@ -374,7 +374,7 @@ def plan_pages():
   <div class="wrap narrow">
     <div class="eyebrow">Want to go deeper?</div>
     <h2>Walk with Jesus, together.</h2>
-    <p class="lede">Take the Your Walk with Jesus Assessment, free and about 10 minutes, for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
+    <p class="lede">Take the free Your Walk with Jesus Assessment, about 10 minutes, for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
     <div class="btn-row"><a class="btn btn-primary" href="/assessment/">Take the Free Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-outline" href="/plans/">More Bible Plans</a></div>
   </div>
 </section>
