@@ -338,6 +338,105 @@ def render_blog(head, header, footer):
     return outs, latest, hero
 
 
+# --- Bible plan landing pages (data in plans_data.py) ----------------------
+def plan_pages():
+    import html as H
+    from plans_data import PLANS
+    pages = {}
+    cards = []
+    for pl in PLANS:
+        days = ("%d days" % pl["days"]) if pl.get("days") else "Reading plan"
+        pts = "".join("<li>%s</li>" % H.escape(x) for x in pl["points"])
+        body = f"""<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Free Bible Plan &middot; {days}</div>
+    <h1>{H.escape(pl['title'])}.</h1>
+    <p class="lede">{H.escape(pl['subtitle'])}</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split wide-left">
+    <a class="msg-thumb" href="{pl['url']}" target="_blank" rel="noopener">
+      <img src="/assets/img/plans/yv/{pl['id']}.jpg" alt="{H.escape(pl['title'])} Bible plan cover" style="opacity:1">
+    </a>
+    <div>
+      <p class="lede">{H.escape(pl['lede'])}</p>
+      <ul class="plan-points">{pts}</ul>
+      <p style="color:var(--ink-soft)">{H.escape(pl['who'])}</p>
+      <div class="btn-row"><a class="btn btn-primary" href="{pl['url']}" target="_blank" rel="noopener">Start the Plan in the Bible App <span class="arrow">&rarr;</span></a></div>
+      <p style="color:var(--ink-soft);font-size:14px;margin-top:14px">Free in the Bible App by YouVersion, on your phone or computer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tight wwj-band" id="plan-signup">
+  <div class="wrap narrow">
+    <div class="eyebrow">Keep Growing</div>
+    <h2>Get the next plan in your inbox.</h2>
+    <p class="lede">Every week GateCity Buckhead shares new Bible plans, teaching, and simple next steps for walking closely with Jesus. Free, and you can unsubscribe anytime.</p>
+    {{{{NL_FORM:nl-plan-{pl['slug']}}}}}
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="eyebrow">Want to go deeper?</div>
+    <h2>Walk with Jesus, together.</h2>
+    <p class="lede">Take the free 10-minute Walk with Jesus assessment for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
+    <div class="btn-row"><a class="btn btn-primary" href="/assessment/">Take the Free Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-outline" href="/plans/">More Bible Plans</a></div>
+  </div>
+</section>
+"""
+        key = "plan:" + pl["slug"]
+        desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
+        pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)
+        cards.append(f"""      <div class="card">
+        <div class="card-img"><img src="/assets/img/plans/yv/{pl['id']}.jpg" alt="{H.escape(pl['title'])}" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-when">{days}</div>
+          <h3>{H.escape(pl['title'])}</h3>
+          <p>{H.escape(pl['subtitle'])}</p>
+          <div class="card-links"><a class="card-link" href="/plans/{pl['slug']}/">See the plan <span class="arrow">&rarr;</span></a></div>
+        </div>
+      </div>""")
+    hub = """<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Free Bible Plans</div>
+    <h1>Read the Bible with us.</h1>
+    <p class="lede">Free reading plans from GateCity Buckhead in the Bible App, from a few days on prayer and money to the whole Bible in 100 days.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+%s
+      <div class="card">
+        <div class="card-img"><img src="{{PRAYER}}" alt="The Songs of Ascent" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-when">Read along on our site</div>
+          <h3>The Songs of Ascent</h3>
+          <p>Psalms 120 to 134, with the passages built in.</p>
+          <div class="card-links"><a class="card-link" href="/songs-of-ascent/">Open the reading plan <span class="arrow">&rarr;</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight wwj-band">
+  <div class="wrap narrow">
+    <div class="eyebrow">New plans by email</div>
+    <h2>Get the next plan in your inbox.</h2>
+    {{NL_FORM:nl-plans}}
+  </div>
+</section>
+""" % "\n".join(cards)
+    pages["plan:hub"] = ("plans/index.html", "Free Bible Plans | GateCity Buckhead", "Free Bible reading plans from GateCity Buckhead in the Bible App: prayer, money, holiness, Jesus, and the whole Bible in 100 days.", True, hub)
+    return pages
+
+
 def main():
     head = read("partials/head.html")
     header = read("partials/header.html")
@@ -345,8 +444,12 @@ def main():
 
     built = []
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
+    GEN = plan_pages()
+    for k, v in GEN.items():
+        PAGES[k] = v[:4]
     for slug, (out, title, desc, solid) in PAGES.items():
-        body = read("pages/%s.html" % slug).replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"]).replace("{{BLOG_LATEST_TITLE}}", _html.escape(load_posts()[0]["title"])).replace("{{BLOG_LATEST_DESC}}", _html.escape(load_posts()[0].get("description", "")))
+        body = GEN[slug][4] if slug in GEN else read("pages/%s.html" % slug)
+        body = body.replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"]).replace("{{BLOG_LATEST_TITLE}}", _html.escape(load_posts()[0]["title"])).replace("{{BLOG_LATEST_DESC}}", _html.escape(load_posts()[0].get("description", "")))
         body += ads_conversion(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,

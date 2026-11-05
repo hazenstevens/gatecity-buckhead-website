@@ -446,3 +446,4 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .wwj-band{background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
 .wwj-band .btn-row{flex-wrap:nowrap}
 @media(max-width:700px){.wwj-band .btn-row{flex-wrap:wrap}}
+.plan-points{margin:18px 0 18px 20px;padding:0;line-height:1.7}.plan-points li{margin:4px 0}
