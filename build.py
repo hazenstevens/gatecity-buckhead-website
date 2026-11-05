@@ -127,7 +127,7 @@ ADS_ID = "AW-18553804873"   # Google Ads (Ad Grant account 775-246-8219)
 # form lands on fires its conversion (counted once per ad click).
 ADS_CONVERSIONS = {
     "visit-thanks":   "d_47CJmMzbEdEMmwko9F",   # Plan a Visit form
-    "webinar-thanks": "bQGJCO7KzbEdEMmwko9F",   # Walking with Jesus webinar registration
+    "webinar-thanks": "bQGJCO7KzbEdEMmwko9F",   # Your Walk with Jesus Webinar registration
     "thanks":         "SsYGCOeizbEdEMmwko9F",   # Email signup (GCB Weekly)
     # "christmas-thanks": "",                   # Christmas Eve registration (create the conversion, paste its label)
 }
@@ -185,8 +185,8 @@ PAGES = {
     "99-for-the-1":      ("99-for-the-1.html",              "99 for the 1 | GateCity Buckhead",        "Jesus left the 99 to go after the one. We're believing for 99 partners — 90 individuals and 9 churches — to sustain and expand GateCity Buckhead.", False),
     "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
     "cohort":            ("cohort.html",                    "Digital Discipleship Cohort | GateCity Buckhead", "Walk with Jesus daily and grow closer to Him than ever before. An online discipleship cohort from GateCity Buckhead: community, prayer, and simple weekly rhythms. Next cohort starts January 10, 2027.", True),
-    "assessment":        ("assessment/index.html",         "Walking with Jesus Assessment | GateCity Buckhead", "A free, private snapshot of where you are in your walk with Jesus, with personal growth recommendations.", True),
-    "webinar-thanks":    ("cohort/thanks.html",             "You're Registered | GateCity Buckhead",  "Thanks for registering for the free Walking with Jesus webinar.", True),
+    "assessment":        ("assessment/index.html",         "Your Walk with Jesus Assessment | GateCity Buckhead", "A free, private snapshot of where you are in your walk with Jesus, with personal growth recommendations.", True),
+    "webinar-thanks":    ("cohort/thanks.html",             "You're Registered | GateCity Buckhead",  "Thanks for registering for Your Walk with Jesus Webinar.", True),
     "events":            ("events/index.html",              "Events | GateCity Buckhead", "Upcoming events at GateCity Buckhead in Buckhead, Atlanta, including our Christmas Eve candlelight service.", True),
     "christmas-eve":     ("christmas-eve/index.html",       "Christmas Eve Candlelight Service in Atlanta | GateCity Buckhead", "Christmas Eve candlelight service in Buckhead, Atlanta. Thursday, December 24 at 5pm at Atlanta International School, followed by Christmas cookies. Save your spot.", True),
     "christmas-thanks":  ("christmas-eve/thanks.html",      "You're All Set for Christmas Eve | GateCity Buckhead", "Thanks for saving your spot at the GateCity Buckhead Christmas Eve candlelight service.", True),
@@ -374,7 +374,7 @@ def plan_pages():
   <div class="wrap narrow">
     <div class="eyebrow">Want to go deeper?</div>
     <h2>Walk with Jesus, together.</h2>
-    <p class="lede">Take the free 10-minute Walk with Jesus assessment for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
+    <p class="lede">Take the Your Walk with Jesus Assessment, free and about 10 minutes, for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
     <div class="btn-row"><a class="btn btn-primary" href="/assessment/">Take the Free Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-outline" href="/plans/">More Bible Plans</a></div>
   </div>
 </section>

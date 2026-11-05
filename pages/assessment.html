@@ -1,8 +1,8 @@
 <div class="pagehead">
   <div class="wrap">
-    <div class="eyebrow on-dark">Walking with Jesus &middot; Free Assessment</div>
+    <div class="eyebrow on-dark">Your Walk with Jesus Assessment</div>
     <h1>Where are you in your walk with Jesus?</h1>
-    <p class="lede">A short, private snapshot of where you are today in prayer, the Word, life in the Spirit, serving, generosity, and sharing your faith. It takes less than 10 minutes. There are no right or wrong answers, and your results are just for you, with a few growth recommendations to bring into the Walking with Jesus webinar.</p>
+    <p class="lede">A short, private snapshot of where you are today in prayer, the Word, life in the Spirit, serving, generosity, and sharing your faith. It takes less than 10 minutes. There are no right or wrong answers, and your results are just for you, with a few growth recommendations to bring into Your Walk with Jesus Webinar.</p>
   </div>
 </div>
 
@@ -236,7 +236,7 @@
     var strong=sorted[0], grow=sorted[sorted.length-1];
     var h='<div class="as-res-top"><div class="eyebrow on-dark">Your Walk with Jesus Snapshot</div><h2>'+esc(state.who.first||'Friend')+', thank you for taking this.</h2>'+
       '<p>Psalm 1 describes a life with God like "a tree planted by streams of water that yields its fruit in its season." Wherever you are today, that is where God meets you, and growth happens one step at a time.</p>'+
-      '<p><strong>Where you\'re strong:</strong> '+name(strong)+'. <strong>Where to focus next:</strong> '+name(grow)+'. Bring this with you to the Walking with Jesus webinar.</p></div>';
+      '<p><strong>Where you\'re strong:</strong> '+name(strong)+'. <strong>Where to focus next:</strong> '+name(grow)+'. Bring this with you to Your Walk with Jesus Webinar.</p></div>';
     ids.forEach(function(id){
       var s=sc[id], rec=RECS[id][s.stage], extra='';
       if(id==='word'){var w5=+state.a.w5; if(w5===0) extra='<li>Not sure where to start? Begin with the Gospel of Mark, then John, then Acts. That\'s a great first path.</li>'; if(w5===1||w5===2) extra='<li>Consider a plan that takes you through the whole Bible in a year. It changes how all of Scripture fits together.</li>';}
@@ -246,7 +246,7 @@
         '<div class="as-bar"><i style="width:'+Math.max(8,Math.round((s.avg-1)/4*100))+'%"></i></div>'+
         '<p>'+rec.e+'</p><ul><li>'+rec.r[0]+'</li><li>'+rec.r[1]+'</li>'+extra+'</ul></div>';
     });
-    h+='<div class="as-card" style="background:var(--paper-2);border:0"><h3 style="margin:0 0 8px">Take your next step: Walking with Jesus</h3><p>Join Pastors Hazen and Hannah Stevens for a free, live 50-minute webinar on Tuesday, November 17, at 8pm ET on Zoom. We\'ll walk through the five practices in this snapshot and help you take your next step.</p></div><div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort#masterclass">Join the Free Webinar, Nov 17 <span class="arrow">&rarr;</span></a></div>'+
+    h+='<div class="as-card" style="background:var(--paper-2);border:0"><h3 style="margin:0 0 8px">Take your next step: Your Walk with Jesus Webinar</h3><p>Join Pastors Hazen and Hannah Stevens for a free, live 50-minute webinar on Tuesday, November 17, at 8pm ET on Zoom. We\'ll walk through the five practices in this snapshot and help you take your next step.</p></div><div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort#masterclass">Join the Free Webinar, Nov 17 <span class="arrow">&rarr;</span></a></div>'+
       '<p class="vf-fine" style="margin-top:18px">This snapshot is a conversation starter, not a grade. Want to retake it? <a href="#" id="as-reset">Start over</a>.</p>';
     app.innerHTML=h;
     document.getElementById('as-reset').onclick=function(e){e.preventDefault();state={i:-1,a:{},who:state.who};persist();render();scrollTop();};

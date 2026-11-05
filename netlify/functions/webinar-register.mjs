@@ -1,4 +1,4 @@
-// Walking with Jesus webinar registration: hands a website signup to Planning Center.
+// Your Walk with Jesus Webinar registration: hands a website signup to Planning Center.
 // The browser saves the registration in Supabase (rpc webinar_register) and gets an id,
 // then POSTs {id} here. This function reads it back from Supabase (nothing from the
 // browser is trusted), submits it to the PCO form "I'm interested in the Digital
@@ -71,7 +71,7 @@ export default async (req) => {
   if (!sub) { await rpc("webinar_registration_mark", { p_id: id, p_status: "failed", p_detail: lastErr + "; " + mc }).catch(() => {}); return json({ error: "planning center" }, 502); }
 
   const personId = sub.data?.relationships?.person?.data?.id;
-  const lines = [`Registered for the free Walking with Jesus webinar (website). Time zone: ${v.time_zone}.`];
+  const lines = [`Registered for Your Walk with Jesus Webinar (website). Time zone: ${v.time_zone}.`];
   if (v.connection) lines.push(`Connected through: ${v.connection}.`);
   if (v.questions) lines.push("Questions: " + v.questions);
   let noteOk = true;
