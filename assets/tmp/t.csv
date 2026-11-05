@@ -1,9 +1,0 @@
-Campaign,Campaign Type,Networks,Budget,Budget type,Bid Strategy Type,Campaign Status,EU political ads,Keyword,Criterion Type
-ZZ Test 0,Search,Google search,1.00,Daily,Maximize conversions,Paused,No,,
-ZZ Test 0,,,,,,,,jobs,Negative broad
-ZZ Test 1,Search,Google search,1.00,Daily,Maximize conversions,Paused,Does not contain EU political ads,,
-ZZ Test 1,,,,,,,,jobs,Campaign Negative Broad
-ZZ Test 2,Search,Google search,1.00,Daily,Maximize conversions,Paused,false,,
-ZZ Test 2,,,,,,,,jobs,Negative
-ZZ Test 3,Search,Google search,1.00,Daily,Maximize conversions,Paused,Doesn’t have EU political ads,,
-ZZ Test 3,,,,,,,,jobs,Negative Broad
