@@ -25,6 +25,7 @@ PLANS = [
                    "How generosity and the tithe can ease money anxiety",
                    "Three simple principles for earning, saving, and giving"],
         "who": "For anyone who wants a biblical, practical way to think about money.",
+        "blogs": ['wisdom-for-wealth-how-to-master-money-before-it-masters-you', 'wisdom-for-wealth-the-three-rules-that-produce-it'],
         "series": {"name": 'Wisdom for Wealth', "video": 'MyXJrHgIX3A', "part": 'Part 1: How to Master Money Before It Masters You', "playlist": 'PLZe6ANQOBlot2sAtr503IU-J_2aHDJMyY'},
     },
     {
@@ -36,6 +37,8 @@ PLANS = [
         "points": ["Reflect until you see clearly", "Remove what is harmful", "Replace it with something better",
                    "Stay connected to God", "Encourage the people your life touches"],
         "who": "For anyone ready for a reset in body, mind, and spirit. Pairs with the book Detox.",
+        "book": {"title": 'Detox', "cover": 'detox', "link": 'AMZ_DETOX', "by": 'Hazen Stevens', "desc": 'Five movements toward a holy and healthy life, rooted in Jesus\' words, "remain in me."'},
+        "blogs": ['preparing-for-detox', 'detox-part-two-remove'],
         "series": {"name": 'Detox', "video": 'YMyug6Sxlfc', "part": 'Part 1: Reflect', "playlist": 'PLCPKL77uWapo'},
     },
     {
@@ -47,6 +50,7 @@ PLANS = [
         "points": ["Seeking God's presence", "Engaging deeply with Scripture", "Valuing holiness",
                    "Expecting God's power and pressing for breakthrough", "Keeping your passion through every season"],
         "who": "For anyone who feels spiritually dry and wants to want God again.",
+        "blogs": ['hunger-for-the-word', 'hunger-and-thirst-for-righteousness'],
         "series": {"name": 'Culture of Hunger', "video": 'UOxMZ2kUlaQ', "part": 'Part 1: A Culture of Spiritual Hunger', "playlist": 'PLZe6ANQOBloubHj2gWM9sYuhLbcB5RlTm'},
     },
     {
@@ -58,6 +62,8 @@ PLANS = [
         "points": ["Counting the cost and committing", "Recognizing what is worth the most",
                    "Finding strength in joy", "Persevering through the final stretch"],
         "who": "For anyone starting fresh with God, or needing courage to keep going.",
+        "book": {"title": 'Strong', "cover": 'strong', "link": 'AMZ_STRONG', "by": 'Hazen Stevens', "desc": 'How to start, stay, and finish strong, with your faithfulness intact through the messy middle.'},
+        "blogs": ['start-strong-part-1-count-the-cost', 'start-strong-part-2-sell-all-for-the-ultimate-riches', 'finishing-strong-what-faithfulness-really-looks-like'],
         "series": {"name": 'Start Strong', "video": 'PsH7CwBJhIc', "part": 'Part 1: Count the Cost', "playlist": 'PLZe6ANQOBlot3N_siH-z_VKBkwDrWVaOX'},
     },
     {
@@ -69,6 +75,8 @@ PLANS = [
         "points": ["The first blessing in Genesis", "Abraham's faith and God's promise",
                    "The character Jesus shapes in His people", "Daily readings, reflections, and simple practices"],
         "who": "For anyone with a heart for missions and for the nations to know Jesus.",
+        "book": {"title": 'Blessed to Be a Blessing', "cover": 'blessed', "link": 'AMZ_BLESSED', "by": 'Hazen Stevens', "desc": 'From Genesis to the Beatitudes: God blesses us so that blessing can flow through us to the nations.'},
+        "blogs": ['the-pilgrim-faith-of-abraham-blessed-to-be-a-blesssing', 'part-1-from-darkness-to-light', 'possessing-the-gates-gods-heart-for-the-nations'],
         "series": {"name": 'Blessed to Be a Blessing', "video": '7D1i0n9PrcU', "part": 'Part 1: The Pilgrim Faith of Abraham', "playlist": 'PLZe6ANQOBlouPRiUTUEJNNRwByrIyUxrN'},
     },
     {
@@ -80,6 +88,7 @@ PLANS = [
         "points": ["The gospel story from promise to fulfillment", "The wonder of the incarnation",
                    "The majesty of Jesus", "Scripture, reflection, and prayer each day"],
         "who": "For anyone who wants to slow down and behold Jesus, especially in the Advent and Christmas season.",
+        "blogs": ['the-manger-wed-rather-not-picture', 'a-thousand-miles-to-kneel', 'messiah-god-in-the-flesh-will-come-again'],
         "series": {"name": 'Messiah', "video": 'plm2LYdikdo', "part": 'Part 1: Christ Is Coming', "playlist": 'PLZe6ANQOBlouvE1j50jNRp2why_oRXbQE'},
     },
     {
@@ -91,6 +100,7 @@ PLANS = [
         "points": ["What Scripture says about God's heart for every nation", "Owning our part with humility",
                    "Practical steps toward change and unity in the church"],
         "who": "For anyone who wants to pursue unity across ethnic and cultural lines. Pairs with the book from Moody.",
+        "book": {"title": 'Know. Own. Change.', "cover": 'know-own-change', "link": 'AMZ_KOC', "by": 'Josh Clemons & Hazen Stevens', "desc": 'A gospel-centered journey toward racial reconciliation and unity, from Moody Publishers.'},
     },
     {
         "slug": "conversations", "id": "60199", "days": 10,
@@ -101,6 +111,8 @@ PLANS = [
         "points": ["Learning to talk with God, not just at Him", "Speaking with intention, humility, and love",
                    "Words that build up and encourage", "Conversations that cross cultures and share the gospel"],
         "who": "For anyone who wants a richer prayer life. Pairs with the book Conversations.",
+        "book": {"title": 'Conversations', "cover": 'conversations', "link": 'AMZ_CONVERSATIONS', "by": 'Hazen & Hannah Stevens', "desc": 'Dialogue with God and with each other as the foundation of spiritual growth.'},
+        "blogs": ['the-power-of-holy-conversation', 'having-spiritual-conversations-three-keys-to-transformative-gospel-discussions', 'from-dirt-to-gardens-the-faith-to-sow-seeds'],
         "series": {"name": 'Conversations', "video": 'Gy4XsBoWSjE', "part": 'Part 1: The Trinity Talks', "playlist": 'PLZe6ANQOBlovhSSRNNxxELaJFEWuDNi_g'},
     },
     {
@@ -112,6 +124,7 @@ PLANS = [
         "points": ["Who the Holy Spirit is and what He does", "Making room for God's presence",
                    "Asking to be filled with the Spirit", "Preparing your heart for a fresh outpouring"],
         "who": "For anyone hungry to know the Holy Spirit and be filled with His power.",
+        "blogs": ['do-you-want-the-fire', 'the-baptism-of-water-and-fire'],
     },
     {
         "slug": "seven-seeds-for-flourishing", "id": "60364", "days": 7,
@@ -122,6 +135,8 @@ PLANS = [
         "points": ["Salvation and devotion", "The power of the Holy Spirit", "Unity and generosity",
                    "Cultural impact and lasting spiritual growth"],
         "who": "For anyone who wants a faith that grows, not one that just gets by.",
+        "book": {"title": 'Seven Seeds for Flourishing', "cover": 'seven-seeds', "link": 'AMZ_SEVEN_SEEDS', "by": 'Hazen Stevens with Billy Humphrey', "desc": 'Seven seeds from the Book of Acts that nurture flourishing in every part of life.'},
+        "blogs": ['what-is-the-church', 'of-one-accord-discovering-the-power-of-unity-in-your-home'],
     },
     {
         "slug": "legacy", "id": "60643", "days": 10,
@@ -132,6 +147,7 @@ PLANS = [
         "points": ["Living with eternal purpose", "Lessons from David and Solomon",
                    "Practical steps to invest in what lasts", "Passing faith on to the next generation"],
         "who": "For anyone asking what their life will leave behind.",
+        "blogs": ['generational-blessing-in-action'],
         "series": {"name": 'Legacy', "video": 'BebLCr2TS2I', "part": 'Part 1: He Has Set Eternity in the Human Heart', "playlist": 'PLZe6ANQOBloucCaK3GNvv24zR06qJRL1c'},
     },
     {
@@ -143,6 +159,8 @@ PLANS = [
         "points": ["The road to Jerusalem", "The cross and what it means for you",
                    "The empty tomb and the hope of resurrection", "Daily Scripture and reflection for Holy Week"],
         "who": "For anyone preparing their heart for Easter, or wanting to know who Jesus really is.",
+        "blogs": ['the-blood-that-still-speaks', 'transformed-at-the-table-washed-fed-and-blessed'],
+        "series": {"name": "Resurrection Sunday", "video": "z4OThJduW4E", "part": "The Blood That Still Speaks", "playlist": "PLZe6ANQOBlouBPjtmSF_9fmTZ4M6xbZf_", "single": True},
     },
 ]
 

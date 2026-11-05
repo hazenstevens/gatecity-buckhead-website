@@ -380,7 +380,14 @@ def plan_pages():
 </section>
 """
         se = pl.get("series")
+        extra_html = ""
         if se:
+            if se.get("single"):
+                lede = "Watch %s, the %s message at GateCity Buckhead that goes with this plan." % (H.escape(se['part']), H.escape(se['name']))
+                btn = "More from %s" % H.escape(se['name'])
+            else:
+                lede = "This plan grew out of our %s series at GateCity Buckhead. Start with %s, then watch the rest of the series." % (H.escape(se['name']), H.escape(se['part']))
+                btn = "Watch the Full Series"
             series_html = f"""<section class="tight wwj-band">
   <div class="wrap split wide-left">
     <a class="msg-thumb" href="https://www.youtube.com/watch?v={se['video']}&list={se['playlist']}" data-yt-embed="{se['video']}" target="_blank" rel="noopener">
@@ -388,15 +395,47 @@ def plan_pages():
       <span class="play" aria-hidden="true"></span>
     </a>
     <div>
-      <div class="eyebrow">The Message Series</div>
+      <div class="eyebrow">{'The Message' if se.get('single') else 'The Message Series'}</div>
       <h2>{H.escape(se['name'])}.</h2>
-      <p class="lede">This plan grew out of our {H.escape(se['name'])} series at GateCity Buckhead. Start with {H.escape(se['part'])}, then watch the rest of the series.</p>
-      <div class="btn-row"><a class="btn btn-primary" href="https://www.youtube.com/playlist?list={se['playlist']}" target="_blank" rel="noopener">Watch the Full Series <span class="arrow">&rarr;</span></a></div>
+      <p class="lede">{lede}</p>
+      <div class="btn-row"><a class="btn btn-primary" href="https://www.youtube.com/playlist?list={se['playlist']}" target="_blank" rel="noopener">{btn} <span class="arrow">&rarr;</span></a></div>
     </div>
   </div>
 </section>
 """
-            body = body.replace('\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', "\n" + series_html + '\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', 1)
+            extra_html += series_html
+        bk = pl.get("book")
+        if bk:
+            amz = LINKS[bk["link"]]
+            extra_html += f"""<section class="tight wwj-band">
+  <div class="wrap split">
+    <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{bk['cover']}.jpg" alt="{H.escape(bk['title'])} by {H.escape(bk['by'])}" loading="lazy"></a>
+    <div>
+      <div class="eyebrow">The Book</div>
+      <h2>{H.escape(bk['title'])}.</h2>
+      <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">{H.escape(bk['by'])}</div>
+      <p class="lede">{H.escape(bk['desc'])} Go deeper than the plan with the full book.</p>
+      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+"""
+        if pl.get("blogs"):
+            bymap = {p["slug"]: p for p in load_posts()}
+            bcards = "\n".join(post_card(bymap[b]) for b in pl["blogs"] if b in bymap)
+            heading = "Read more from the series." if se and not se.get("single") else "Read more on this theme."
+            extra_html += f"""<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow">From the Blog</div>
+    <h2>{heading}</h2>
+    <div class="cards">
+{bcards}
+    </div>
+  </div>
+</section>
+"""
+        if extra_html:
+            body = body.replace('\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', "\n" + extra_html + '\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', 1)
         key = "plan:" + pl["slug"]
         desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
         pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)
