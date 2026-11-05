@@ -340,6 +340,17 @@ def render_blog(head, header, footer):
 
 
 # --- Bible plan landing pages (data in plans_data.py) ----------------------
+CTA_DEEPER = """<section class="dark">
+  <div class="wrap narrow" style="text-align:center">
+    <div class="eyebrow on-dark">Your Next Step</div>
+    <h2>Do you want to go deeper in your walk with Jesus?</h2>
+    <p class="lede">Take Your Walk with Jesus Assessment, about 10 minutes, for a personal snapshot and growth steps. Or join Your Walk with Jesus Webinar, a free live hour on Zoom with Pastors Hazen and Hannah Stevens.</p>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="/assessment/">Take the Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-ghost" href="/cohort#masterclass">Join the Webinar</a></div>
+  </div>
+</section>
+"""
+
+
 def plan_pages():
     import html as H
     from plans_data import PLANS
@@ -371,19 +382,21 @@ def plan_pages():
   </div>
 </section>
 
-<section>
-  <div class="wrap narrow">
-    <div class="eyebrow">Want to go deeper?</div>
-    <h2>Walk with Jesus, together.</h2>
-    <p class="lede">Take the free Your Walk with Jesus Assessment, about 10 minutes, for a personal snapshot and growth steps, or join us on a Sunday in Buckhead, Atlanta.</p>
-    <div class="btn-row"><a class="btn btn-primary" href="/assessment/">Take the Free Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-outline" href="/plans/">More Bible Plans</a></div>
-  </div>
-</section>
-"""
+<!--EXTRA-->{{CTA_DEEPER}}"""
         se = pl.get("series")
         extra_html = ""
+        from series_data import SERIES as _S
+        _ss = next((x for x in _S if pl["slug"] in ([x["plan"]] if isinstance(x.get("plan"), str) else (x.get("plan") or []))), None)
+        series_href = ("/series/%s/" % _ss["slug"]) if _ss else ("https://www.youtube.com/playlist?list=" + se["playlist"] if se else "")
+        if not se and _ss:
+            p1 = _ss["parts"][0]
+            se = {"name": _ss["name"], "video": p1["video"], "part": "Part 1: " + p1["title"], "playlist": _ss["playlist"], "related": True}
         if se:
-            if se.get("single"):
+            if se.get("related"):
+                lede = "Go deeper with %s, our message series on %s. Start with %s." % (H.escape(se['name']), H.escape(_ss['theme'].lower()), H.escape(se['part']))
+                btn = "Watch the Full Series"
+            elif se.get("single"):
+                series_href = "https://www.youtube.com/playlist?list=" + se["playlist"]
                 lede = "Watch %s, the %s message at GateCity Buckhead that goes with this plan." % (H.escape(se['part']), H.escape(se['name']))
                 btn = "More from %s" % H.escape(se['name'])
             else:
@@ -399,7 +412,7 @@ def plan_pages():
       <div class="eyebrow">{'The Message' if se.get('single') else 'The Message Series'}</div>
       <h2>{H.escape(se['name'])}.</h2>
       <p class="lede">{lede}</p>
-      <div class="btn-row"><a class="btn btn-primary" href="https://www.youtube.com/playlist?list={se['playlist']}" target="_blank" rel="noopener">{btn} <span class="arrow">&rarr;</span></a></div>
+      <div class="btn-row"><a class="btn btn-primary" href="{series_href}"{' target="_blank" rel="noopener"' if series_href.startswith('http') else ''}>{btn} <span class="arrow">&rarr;</span></a></div>
     </div>
   </div>
 </section>
@@ -436,7 +449,8 @@ def plan_pages():
 </section>
 """
         if extra_html:
-            body = body.replace('\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', "\n" + extra_html + '\n<section>\n  <div class="wrap narrow">\n    <div class="eyebrow">Want to go deeper?', 1)
+            body = body.replace('<!--EXTRA-->', extra_html, 1)
+        body = body.replace('<!--EXTRA-->', '').replace('{{CTA_DEEPER}}', CTA_DEEPER)
         key = "plan:" + pl["slug"]
         desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
         pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)
@@ -479,6 +493,128 @@ def plan_pages():
     return pages
 
 
+def series_pages():
+    import html as H
+    from series_data import SERIES
+    from plans_data import PLANS
+    plans = {p["slug"]: p for p in PLANS}
+    posts = {p["slug"]: p for p in load_posts()}
+    pages, cards = {}, []
+    for s in SERIES:
+        n = len(s["parts"])
+        p1 = s["parts"][0]
+        yt_list = "https://www.youtube.com/playlist?list=" + s["playlist"]
+        parts = "\n".join(f"""      <div class="card part-card">
+        <a class="msg-thumb" href="https://www.youtube.com/watch?v={p['video']}&list={s['playlist']}" data-yt-embed="{p['video']}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/{p['video']}/hqdefault.jpg" alt="{H.escape(s['name'])} Part {p['n']}: {H.escape(p['title'])}" loading="lazy"><span class="play" aria-hidden="true"></span></a>
+        <div class="card-body"><div class="card-when">Part {p['n']}</div><h3>{H.escape(p['title'])}</h3></div>
+      </div>""" for p in s["parts"])
+        body = f"""<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Message Series &middot; {n} Messages &middot; {H.escape(s['theme'])}</div>
+    <h1>{H.escape(s['name'])}.</h1>
+    <p class="lede">{H.escape(s['lede'])}</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split wide-left">
+    <a class="msg-thumb" href="https://www.youtube.com/watch?v={p1['video']}&list={s['playlist']}" data-yt-embed="{p1['video']}" target="_blank" rel="noopener">
+      <img src="https://i.ytimg.com/vi/{p1['video']}/maxresdefault.jpg" alt="{H.escape(s['name'])} Part 1: {H.escape(p1['title'])}">
+      <span class="play" aria-hidden="true"></span>
+    </a>
+    <div>
+      <div class="eyebrow">Start Here</div>
+      <h2>Part 1: {H.escape(p1['title'])}.</h2>
+      <p class="lede">Press play to watch here, then keep going with the rest of the series below.</p>
+      <div class="btn-row"><a class="btn btn-outline" href="{yt_list}" target="_blank" rel="noopener">Full Playlist on YouTube <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight wwj-band">
+  <div class="wrap">
+    <div class="eyebrow">Watch the Series</div>
+    <h2>All {n} messages.</h2>
+    <div class="cards">
+{parts}
+    </div>
+  </div>
+</section>
+"""
+        pl = s.get("plan")
+        pl = [pl] if isinstance(pl, str) and pl else (pl or [])
+        if pl:
+            pcards = "\n".join(f"""      <a class="card" href="/plans/{plans[x]['slug']}/"><div class="card-img"><img src="/assets/img/plans/yv/{plans[x]['id']}.jpg" alt="{H.escape(plans[x]['title'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{plans[x]['days']} days &middot; Free</div><h3>{H.escape(plans[x]['title'])}</h3><p>{H.escape(plans[x]['subtitle'])}</p><span class="card-link">See the plan <span class="arrow">&rarr;</span></span></div></a>""" for x in pl if x in plans)
+            body += f"""
+<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow">Read Along</div>
+    <h2>A free Bible plan to go with it.</h2>
+    <p class="lede">Short daily readings in the Bible App by YouVersion, on your phone or computer.</p>
+    <div class="cards">
+{pcards}
+    </div>
+  </div>
+</section>
+"""
+        bk = s.get("book")
+        if bk:
+            amz = LINKS[bk["link"]]
+            chapters = ""
+            if s.get("chapters"):
+                chapters = '<ol class="plan-points">' + "".join("<li>%s</li>" % H.escape(c) for c in s["chapters"]) + "</ol>"
+            body += f"""
+<section class="tight wwj-band">
+  <div class="wrap split">
+    <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{bk['cover']}.jpg" alt="{H.escape(s['name'])} by {H.escape(bk['by'])}" loading="lazy"></a>
+    <div>
+      <div class="eyebrow">The Book</div>
+      <h2>{H.escape(s['name'])}.</h2>
+      <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">{H.escape(bk['by'])}</div>
+      <p class="lede">{H.escape(bk['desc'])}</p>
+      {chapters}
+      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+"""
+        bl = [posts[x] for x in s.get("blogs", []) if x in posts]
+        if bl:
+            body += f"""
+<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow">From the Blog</div>
+    <h2>Read more from the series.</h2>
+    <div class="cards">
+{chr(10).join(post_card(p) for p in bl)}
+    </div>
+  </div>
+</section>
+"""
+        body += "\n" + CTA_DEEPER
+        desc = "Watch the %s message series from GateCity Buckhead: %d messages on %s, plus %s." % (s["name"], n, s["theme"].lower(), "the book, a free Bible plan, and blog posts" if bk else "a free Bible plan and blog posts")
+        pages["series:" + s["slug"]] = ("series/%s/index.html" % s["slug"], "%s: Watch the Series | GateCity Buckhead" % s["name"], desc, True, body)
+        cards.append(f"""      <a class="card" href="/series/{s['slug']}/"><div class="card-img wide"><img src="https://i.ytimg.com/vi/{p1['video']}/hqdefault.jpg" alt="{H.escape(s['name'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{n} messages &middot; {H.escape(s['theme'])}</div><h3>{H.escape(s['name'])}</h3><span class="card-link">Watch the series <span class="arrow">&rarr;</span></span></div></a>""")
+    hub = """<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Watch</div>
+    <h1>Message series.</h1>
+    <p class="lede">Teaching from GateCity Buckhead in Atlanta on prayer, the Holy Spirit, perseverance, and walking with Jesus every day. Each series comes with a free Bible plan, blog posts, and often a book.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+%s
+    </div>
+  </div>
+</section>
+""" % "\n".join(cards) + CTA_DEEPER
+    pages["series:hub"] = ("series/index.html", "Message Series | GateCity Buckhead", "Watch message series from GateCity Buckhead in Atlanta: the Holy Spirit, prayer, perseverance, forgiveness, and more, with free Bible plans and books.", True, hub)
+    return pages
+
+
 def main():
     head = read("partials/head.html")
     header = read("partials/header.html")
@@ -487,6 +623,7 @@ def main():
     built = []
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     GEN = plan_pages()
+    GEN.update(series_pages())
     for k, v in GEN.items():
         PAGES[k] = v[:4]
     for slug, (out, title, desc, solid) in PAGES.items():
