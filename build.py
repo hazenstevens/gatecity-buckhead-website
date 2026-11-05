@@ -404,7 +404,7 @@ def plan_pages():
     <div class="cards">
 %s
       <div class="card">
-        <div class="card-img"><img src="/assets/img/plans/songs-of-ascent.jpg" alt="Read the Songs of Ascent with us" loading="lazy"></div>
+        <div class="card-img"><img src="/assets/img/plans/songs-of-ascent.jpg?v=2" alt="Read the Songs of Ascent with us" loading="lazy"></div>
         <div class="card-body">
           <div class="card-when">Read along on our site</div>
           <h3>The Songs of Ascent</h3>
