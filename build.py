@@ -142,7 +142,14 @@ def ads_conversion(slug):
     label = ADS_CONVERSIONS.get(slug)
     if not (ADS_ID and label):
         return ""
-    return ("\n<script>gtag('event','conversion',{send_to:'%s/%s',value:1.0,currency:'USD'});</script>"
+    # Enhanced conversions: the form stashes the visitor's contact info in sessionStorage
+    # (key gcb-ec) right before redirecting here; gtag hashes it before sending to Google.
+    return ("\n<script>(function(){var u=null;try{u=JSON.parse(sessionStorage.getItem('gcb-ec')||'null');sessionStorage.removeItem('gcb-ec');}catch(e){}"
+            "if(u&&u.email){var d={email:String(u.email).trim().toLowerCase()};"
+            "var p=String(u.phone||'').replace(/\\D/g,'');if(p.length===10)p='1'+p;if(p.length===11)d.phone_number='+'+p;"
+            "if(u.first||u.last)d.address={first_name:String(u.first||'').trim().toLowerCase(),last_name:String(u.last||'').trim().toLowerCase()};"
+            "gtag('set','user_data',d);}"
+            "gtag('event','conversion',{send_to:'%s/%s',value:1.0,currency:'USD'});})();</script>"
             % (ADS_ID, label))
 
 def gtag():

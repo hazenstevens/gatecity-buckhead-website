@@ -150,7 +150,7 @@
         done=true;clearTimeout(timer);
         try{delete window[cb];}catch(e){}
         script.remove();
-        if(r&&r.result==='success'){window.location.href='/thanks';return;}
+        if(r&&r.result==='success'){try{var em=(form.querySelector('[name=EMAIL]')||{}).value;var fn=(form.querySelector('[name=FNAME]')||{}).value;sessionStorage.setItem('gcb-ec',JSON.stringify({email:em,first:fn||''}));}catch(_){}window.location.href='/thanks';return;}
         var text=(r&&r.msg?String(r.msg):'').replace(/<[^>]*>/g,'').replace(/^\d+\s*-\s*/,'');
         if(/already subscribed/i.test(text)){text="You're already on the list. Thanks!";}
         msg.textContent=text||'Something went wrong. Please try again.';

@@ -362,6 +362,7 @@
       if(!r.ok){var t=await r.text();var m=(t.match(/"message":"([^"]+)"/)||[])[1];throw new Error(m||'save');}
       var id=await r.json();
       try{await Promise.race([fetch('/api/webinar-register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})}),new Promise(function(res){setTimeout(res,8000);})]);}catch(_){}
+      try{sessionStorage.setItem('gcb-ec',JSON.stringify({email:v('email'),phone:v('phone'),first:v('first'),last:v('last')}));}catch(_){}
       location.href='/cohort/thanks';
     }catch(ex){
       btn.disabled=false; btn.firstChild.textContent='Save My Seat ';
@@ -468,7 +469,7 @@
     </div>
   </div>
 </div>
-<script src="/assets/site.js?v=6c1a3dd6" defer></script>
+<script src="/assets/site.js?v=25077927" defer></script>
 
 </body>
 </html>
