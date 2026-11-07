@@ -421,6 +421,7 @@ def plan_pages():
         bk = pl.get("book")
         if bk:
             amz = LINKS[bk["link"]]
+            wb = (' <a class="btn btn-outline" href="%s" target="_blank" rel="noopener">Free Companion Workbook (PDF)</a>' % bk["workbook"]) if bk.get("workbook") else ""
             extra_html += f"""<section class="tight wwj-band">
   <div class="wrap split">
     <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{bk['cover']}.jpg" alt="{H.escape(bk['title'])} by {H.escape(bk['by'])}" loading="lazy"></a>
@@ -429,7 +430,7 @@ def plan_pages():
       <h2>{H.escape(bk['title'])}.</h2>
       <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">{H.escape(bk['by'])}</div>
       <p class="lede">{H.escape(bk['desc'])} Go deeper than the plan with the full book.</p>
-      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a></div>
+      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a>{wb}</div>
     </div>
   </div>
 </section>
@@ -560,6 +561,7 @@ def series_pages():
         bk = s.get("book")
         if bk:
             amz = LINKS[bk["link"]]
+            wb = (' <a class="btn btn-outline" href="%s" target="_blank" rel="noopener">Free Companion Workbook (PDF)</a>' % bk["workbook"]) if bk.get("workbook") else ""
             chapters = ""
             if s.get("chapters"):
                 chapters = '<ol class="plan-points">' + "".join("<li>%s</li>" % H.escape(c) for c in s["chapters"]) + "</ol>"
@@ -573,7 +575,7 @@ def series_pages():
       <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">{H.escape(bk['by'])}</div>
       <p class="lede">{H.escape(bk['desc'])}</p>
       {chapters}
-      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a></div>
+      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a>{wb}</div>
     </div>
   </div>
 </section>

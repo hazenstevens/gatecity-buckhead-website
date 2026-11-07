@@ -286,7 +286,7 @@ SERIES = [
    "link": "AMZ_LEGACY",
    "cover": "legacy",
    "by": "Hazen Stevens and contributors",
-   "desc": "How to live for impact that lasts in this life and the next."
+   "desc": "How to live for impact that lasts in this life and the next.", "workbook": "https://acrobat.adobe.com/id/urn:aaid:sc:US:0d2e5900-77df-4c0b-8a52-346a76a6fddc"
   },
   "plan": "legacy",
   "blogs": [

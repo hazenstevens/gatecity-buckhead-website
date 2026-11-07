@@ -147,7 +147,7 @@ PLANS = [
         "points": ["Living with eternal purpose", "Lessons from David and Solomon",
                    "Practical steps to invest in what lasts", "Passing faith on to the next generation"],
         "who": "For anyone asking what their life will leave behind.",
-        "book": {"title": "Legacy", "cover": "legacy", "link": "AMZ_LEGACY", "by": "Hazen Stevens and contributors", "desc": "You were made for impact that lasts beyond your lifetime: eternal purpose, stewarding what you have, and passing faith to the next generation."},
+        "book": {"title": "Legacy", "cover": "legacy", "link": "AMZ_LEGACY", "by": "Hazen Stevens and contributors", "desc": "You were made for impact that lasts beyond your lifetime: eternal purpose, stewarding what you have, and passing faith to the next generation.", "workbook": "https://acrobat.adobe.com/id/urn:aaid:sc:US:0d2e5900-77df-4c0b-8a52-346a76a6fddc"},
         "blogs": ['generational-blessing-in-action'],
         "series": {"name": 'Legacy', "video": 'BebLCr2TS2I', "part": 'Part 1: He Has Set Eternity in the Human Heart', "playlist": 'PLZe6ANQOBloucCaK3GNvv24zR06qJRL1c'},
     },
