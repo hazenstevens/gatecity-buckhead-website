@@ -174,7 +174,7 @@ def vision_video():
 # page slug -> (output path, <title>, meta description, solid header?)
 PAGES = {
     "index":             ("index.html",                    "GateCity Buckhead | Sundays at 11am in Buckhead, Atlanta", "A presence-centered church in Buckhead. We gather Sundays at 11am at Atlanta International School. Plan your first visit.", False),
-    "new-here":          ("new-here/index.html",            "Plan a Visit | GateCity Buckhead",        "Everything you need for your first Sunday at GateCity Buckhead — what to expect, parking, kids, and how to get connected.", True),
+    "new-here":          ("new-here/index.html",            "Church in Buckhead, Atlanta | Plan a Visit | GateCity Buckhead",        "Looking for a church near you in Buckhead? GateCity Buckhead is a non-denominational, Spirit-filled church. Sundays at 11am at 2890 N Fulton Dr NE, Atlanta. Kids welcome, free parking.", True),
     "our-mission":       ("our-mission.html",               "Our Mission | GateCity Buckhead",         "GateCity Buckhead helps you walk closely with Jesus today and for the rest of your life. Our vision map, 5-4-3-2-1: five behaviors, four spaces, three promises, two distinctives, one purpose.", True),
     "our-beliefs":       ("our-beliefs.html",               "Our Beliefs | GateCity Buckhead",         "What we believe: the fifteen statements of faith that shape GateCity Buckhead.", True),
     "our-team":          ("our-team.html",                  "Our Team | GateCity Buckhead",            "Meet the leadership team at GateCity Buckhead in Atlanta.", True),
