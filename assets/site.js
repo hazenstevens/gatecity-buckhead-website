@@ -179,3 +179,26 @@
     });
   });
 })();
+
+// Prayer request modal: any [data-pray-open] opens it; submits to the Netlify form "prayer-request".
+(function(){
+  var m=document.getElementById('pray-modal'); if(!m) return;
+  var form=document.getElementById('pray-form'), done=m.querySelector('.pray-done'), msg=m.querySelector('.pray-msg'), last=null;
+  function open(e){ if(e) e.preventDefault(); last=document.activeElement; m.hidden=false; document.body.classList.add('pray-open'); form.hidden=false; done.hidden=true; msg.textContent=''; setTimeout(function(){ form.querySelector('[name=first]').focus(); },30); }
+  function close(){ m.hidden=true; document.body.classList.remove('pray-open'); if(last&&last.focus) last.focus(); }
+  document.addEventListener('click',function(e){ var t=e.target.closest&&e.target.closest('[data-pray-open],a[href="#pray"]'); if(t){ open(e); return; } if(e.target.closest&&e.target.closest('[data-pray-close]')) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!m.hidden) close(); });
+  if(location.hash==='#pray') open();
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=new FormData(form);
+    if(!String(f.get('first')||'').trim()||!String(f.get('request')||'').trim()){ msg.textContent='Please add your first name and your prayer request.'; return; }
+    var em=String(f.get('email')||'').trim(); if(em&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='That email doesn\'t look quite right.'; return; }
+    var body=new URLSearchParams({'form-name':'prayer-request',first:f.get('first'),email:em,request:f.get('request'),share:f.get('share')?'yes':'no',page:location.pathname,'bot-field':f.get('bot-field')||''});
+    var btn=form.querySelector('button[type=submit]'); btn.disabled=true; msg.textContent='';
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()})
+      .then(function(r){ if(!r.ok) throw 0; form.reset(); form.hidden=true; done.hidden=false; })
+      .catch(function(){ msg.textContent='Something went wrong. Please try again, or email hazen.stevens@gatecitybuckhead.com.'; })
+      .then(function(){ btn.disabled=false; });
+  });
+})();

@@ -469,3 +469,31 @@ section h2 + .lede, section h2 + p{margin-top:18px}
 .fl-days ol li{margin-bottom:6px}
 .fl-days a{color:var(--green-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:820px){.fl-days{grid-template-columns:1fr}}
+
+/* Prayer request: floating button + modal */
+.pray-fab{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--green-dark);color:#fff;border:0;border-radius:999px;padding:12px 18px;font:700 14px/1 Inter,sans-serif;box-shadow:0 10px 30px -8px rgba(14,26,19,.5);cursor:pointer}
+.pray-fab:hover{background:var(--green)}
+.pray-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.pray-modal[hidden]{display:none}
+.pray-backdrop{position:absolute;inset:0;background:rgba(8,16,11,.6)}
+.pray-card{position:relative;background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:calc(100vh - 32px);overflow:auto;padding:28px 28px 22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.pray-x{position:absolute;top:10px;right:12px;background:none;border:0;font-size:28px;line-height:1;color:var(--ink-soft);cursor:pointer}
+.pray-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+.pray-head img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}
+.pray-card h2{font-size:22px;line-height:1.2;margin:0 0 6px}
+.pray-head p{margin:0;color:var(--ink-soft);font-size:15px}
+.pray-to{font-size:14px;color:var(--ink-soft);border-bottom:1px solid var(--paper-2);padding-bottom:10px;margin-bottom:14px}
+.pray-to span{font-weight:700;color:var(--ink);margin-right:6px}
+.pray-form label{display:block;font-size:14px;font-weight:600;margin-bottom:12px}
+.pray-form input:not([type=checkbox]),.pray-form textarea{display:block;width:100%;margin-top:6px;border:1px solid #D3D1CA;border-radius:8px;padding:10px 12px;font:16px/1.5 Inter,sans-serif;background:#fff}
+.pray-form textarea{resize:vertical}
+.pray-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pray-form .opt{font-weight:400;color:var(--ink-soft)}
+.pray-check{display:flex!important;gap:8px;align-items:center;font-weight:500!important}
+.pray-hp{position:absolute;left:-9999px}
+.pray-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.pray-msg{font-size:14px;color:#B3261E}
+.pray-note{font-size:13px;color:var(--ink-soft);margin:14px 0 0}
+.pray-done p{color:var(--ink-soft)}
+body.pray-open{overflow:hidden}
+@media (max-width:560px){.pray-row{grid-template-columns:1fr}.pray-card{padding:24px 18px 18px}.pray-fab{right:12px;bottom:12px}}

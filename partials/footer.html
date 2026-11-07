@@ -46,4 +46,41 @@
     </div>
   </div>
 </footer>
+<form name="prayer-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="first"><input name="email"><textarea name="request"></textarea><input name="share"><input name="page"><input name="bot-field">
+</form>
+<button class="pray-fab" type="button" data-pray-open aria-haspopup="dialog">Need prayer?</button>
+<div class="pray-modal" id="pray-modal" role="dialog" aria-modal="true" aria-labelledby="pray-title" hidden>
+  <div class="pray-backdrop" data-pray-close></div>
+  <div class="pray-card">
+    <button class="pray-x" type="button" data-pray-close aria-label="Close">&times;</button>
+    <div class="pray-head">
+      <img src="/assets/img/team/hazen.jpg" alt="Pastor Hazen Stevens" width="56" height="56">
+      <div>
+        <h2 id="pray-title">We would love to pray for you.</h2>
+        <p>Send your prayer request straight to Pastor Hazen. He reads every one and will pray for you personally.</p>
+      </div>
+    </div>
+    <form class="pray-form" id="pray-form" novalidate>
+      <div class="pray-to"><span>To:</span> Pastor Hazen Stevens</div>
+      <div class="pray-row">
+        <label>Your first name<input name="first" autocomplete="given-name" maxlength="80" required></label>
+        <label><span>Email <span class="opt">(optional, if you'd like a reply)</span></span><input name="email" type="email" autocomplete="email" maxlength="160"></label>
+      </div>
+      <label>How can I pray for you?<textarea name="request" rows="6" maxlength="4000" required></textarea></label>
+      <label class="pray-check"><input type="checkbox" name="share" value="yes"> It's OK to share this with our prayer team.</label>
+      <p class="pray-hp" aria-hidden="true"><label>Leave this empty<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="pray-actions">
+        <button class="btn btn-primary" type="submit">Send My Prayer Request</button>
+        <span class="pray-msg" role="status" aria-live="polite"></span>
+      </div>
+      <p class="pray-note">Your request goes only to Pastor Hazen. If you are in crisis, call or text 988 any time.</p>
+    </form>
+    <div class="pray-done" hidden>
+      <h2>Thank you. I'm praying for you.</h2>
+      <p>Your request is on its way to Pastor Hazen. You are not alone, and God hears you.</p>
+      <button class="btn btn-outline" type="button" data-pray-close>Close</button>
+    </div>
+  </div>
+</div>
 <script src="/assets/site.js?v={{SITE_JS_V}}" defer></script>
