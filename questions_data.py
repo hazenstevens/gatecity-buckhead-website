@@ -41,6 +41,72 @@ QUESTIONS = [
         "book": ("Manifest", "manifest", "AMZ_MANIFEST", "Nine chapters on the person of the Spirit, His fruit and gifts, spiritual self-defense, and the church on mission."),
     },
     {
+        "slug": "what-are-the-gifts-of-the-holy-spirit",
+        "q": "What Are the Gifts of the Holy Spirit?",
+        "nav": "Gifts of the Spirit",
+        "desc": "What are the gifts of the Holy Spirit? A simple list from 1 Corinthians 12 and Romans 12, three principles for how the gifts work, and how to grow in them.",
+        "answer": "The gifts of the Holy Spirit are ways the Spirit works through ordinary believers to build up the church and point people to Jesus. They are not formulas to master or tools in a toolbox. They flow from relationship with the Holy Spirit, who gives them as He wills (1 Corinthians 12:11).",
+        "video": "J08lDdmZsoo",
+        "video_title": "Manifest, Part 3: The Gifts of the Spirit",
+        "body": """
+<h2>The list of spiritual gifts</h2>
+<p>Paul's central passage is 1 Corinthians 12:4-11: "There are varieties of gifts, but the same Spirit." The gifts fall into three broad groups.</p>
+<ul>
+<li><p><strong>Revelatory gifts</strong> (hearing from God): prophecy, words of knowledge, words of wisdom, tongues, and interpretation of tongues.</p></li>
+<li><p><strong>Demonstration gifts</strong> (God's power made visible): gifts of healing, faith, miracles, and discerning of spirits.</p></li>
+<li><p><strong>Practical gifts</strong> (Romans 12:6-8): serving, teaching, encouraging, giving, leading, and showing mercy.</p></li>
+</ul>
+<p>Spiritual gifts are not only supernatural. The person who serves quietly or gives generously is operating in a spiritual gift just as truly as the person who prophesies or prays for the sick.</p>
+
+<h2>Three principles for how the gifts work</h2>
+<h3>1. The gifts are relational</h3>
+<p>The Holy Spirit is a person, and His power is personal. Think of the gifts less like tools in a toolbox and more like instruments in a symphony, with the Holy Spirit as the conductor. God's power is not a force you tap into. It is a Person you walk with.</p>
+<h3>2. The gifts build up the church and point to the gospel</h3>
+<p>The gifts are given "for the common good" (1 Corinthians 12:7), and God uses them to confirm the message of Jesus (Hebrews 2:3-4). They are never for our own status, profit, or platform (Acts 8:20-21).</p>
+<h3>3. The gifts operate by faith</h3>
+<p>The gifts always work in connection with faith. Reading how they show up in the Gospels and Acts builds faith for God to move through your life too.</p>
+
+<h2>How do I find my spiritual gifts?</h2>
+<p>Start with relationship, not a test. Ask the Holy Spirit to lead you, step out to serve and pray for people, and pay attention to where God moves. Paul tells us to "eagerly desire the greater gifts" (1 Corinthians 12:31), so it is right to ask.</p>
+<p>Read the full teaching: <a href="/blog/understanding-the-gifts-of-the-holy-spirit">Understanding the Gifts of the Holy Spirit</a></p>
+""",
+        "prayer": "Holy Spirit, thank You that Your gifts are for me and for the people around me. I don't want to use You; I want to walk with You. Teach me to hear Your voice, give me faith to step out, and let Your gifts flow through my life to build up Your church and show people Jesus. In Jesus' name, amen.",
+        "series": "manifest",
+        "book": ("Manifest", "manifest", "AMZ_MANIFEST", "Nine chapters on the person of the Spirit, His fruit and gifts, spiritual self-defense, and the church on mission."),
+    },
+    {
+        "slug": "how-to-pray",
+        "q": "How Do I Pray?",
+        "nav": "How do I pray?",
+        "desc": "How to pray when you don't know where to start: prayer is a conversation with God. Simple steps, Bible verses on prayer, and a free teaching series.",
+        "answer": "Prayer is a conversation with God. You don't need special words or a certain posture. Talk to Him honestly, listen for His voice, and keep the conversation going through your day. Jesus taught His followers to start with \"Our Father\" because prayer begins with relationship.",
+        "video": "zwjtTMLuqQQ",
+        "video_title": "Conversations, Part 2: Starting the Conversation",
+        "body": """
+<h2>Prayer is a conversation</h2>
+<p>God is not distant or hard to reach. The Father, Son, and Holy Spirit have been in conversation from eternity, and through Jesus we are invited into it. Prayer is less about getting the words right and more about talking with Someone who loves you.</p>
+
+<h2>How to start praying</h2>
+<ol>
+<li><p><strong>Find a quiet place.</strong> Jesus said, "Go into your room, close the door and pray to your Father, who is unseen" (Matthew 6:6).</p></li>
+<li><p><strong>Start with who God is.</strong> Thank Him and worship Him before you ask for anything (Psalm 100:4).</p></li>
+<li><p><strong>Be honest.</strong> Tell Him what you're feeling and what you need. "Cast all your anxiety on him because he cares for you" (1 Peter 5:7).</p></li>
+<li><p><strong>Use the prayer Jesus gave us.</strong> The Lord's Prayer (Matthew 6:9-13) is a simple pattern: worship, surrender, ask for daily needs, forgive, and ask for help.</p></li>
+<li><p><strong>Pray Scripture.</strong> The Psalms give you words when you don't have your own.</p></li>
+<li><p><strong>Listen.</strong> Leave a little quiet. Jesus said, "My sheep listen to my voice" (John 10:27).</p></li>
+</ol>
+
+<h2>Pray with others</h2>
+<p>Private prayer is the foundation, and united prayer multiplies it. "Where two or three gather in my name, there am I with them" (Matthew 18:20). GateCity Buckhead prays together online through the week. <a href="/digital-community#prayer">See all prayer times</a>.</p>
+
+<p>Go deeper: <a href="/blog/where-does-my-help-come-from">Where Does My Help Come From?</a> (Psalm 121) and the <a href="/series/conversations/">Conversations series</a>.</p>
+""",
+        "prayer": "Father, thank You that I can talk to You. I don't always know what to say, but I know You hear me and You care. Teach me to pray. Help me to be honest with You, to listen for Your voice, and to keep talking with You through my day. In Jesus' name, amen.",
+        "series": "conversations",
+        "book_by": "Hazen & Hannah Stevens",
+        "book": ("Conversations", "conversations", "AMZ_CONVERSATIONS", "Thirteen chapters on hearing God's voice, the many ways prayer sounds, intercession, and conversations across cultures. By Hazen and Hannah Stevens."),
+    },
+    {
         "slug": "what-is-forgiveness",
         "q": "What Is Forgiveness, and How Do I Forgive?",
         "nav": "What is forgiveness?",

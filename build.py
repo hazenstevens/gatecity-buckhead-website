@@ -663,17 +663,18 @@ def questions_pages():
         s = series.get(q.get("series"))
         bk = q.get("book")
         if s or bk:
-            title, cover, link, desc = bk
+            title, cover, link, desc = bk[:4]
+            by = q.get('book_by', 'Hazen Stevens')
             amz = LINKS[link]
             watch = f'<a class="btn btn-outline" href="/series/{s["slug"]}/">Watch the {H.escape(s["name"])} Series <span class="arrow">&rarr;</span></a>' if s else ""
             body += f"""
 <section class="tight wwj-band">
   <div class="wrap split">
-    <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{cover}.jpg" alt="{H.escape(title)} by Hazen Stevens" loading="lazy"></a>
+    <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{cover}.jpg" alt="{H.escape(title)} by {H.escape(by)}" loading="lazy"></a>
     <div>
       <div class="eyebrow">Go Deeper</div>
       <h2>{H.escape(title)}.</h2>
-      <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">Hazen Stevens</div>
+      <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">{H.escape(by)}</div>
       <p class="lede">{H.escape(desc)}</p>
       <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a>{watch}</div>
     </div>
