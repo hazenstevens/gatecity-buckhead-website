@@ -662,7 +662,7 @@ def questions_pages():
 """
         s = series.get(q.get("series"))
         bk = q.get("book")
-        if s or bk:
+        if bk:
             title, cover, link, desc = bk[:4]
             by = q.get('book_by', 'Hazen Stevens')
             amz = LINKS[link]

@@ -107,6 +107,59 @@ QUESTIONS = [
         "book": ("Conversations", "conversations", "AMZ_CONVERSATIONS", "Thirteen chapters on hearing God's voice, the many ways prayer sounds, intercession, and conversations across cultures. By Hazen and Hannah Stevens."),
     },
     {
+        "slug": "bible-verses-for-anxiety",
+        "q": "Bible Verses for Anxiety and Fear",
+        "nav": "Bible verses for anxiety",
+        "desc": "Bible verses for anxiety, worry, and fear, each with a short prayer. From 21 Days of Fearless Living by Pastor Hazen Stevens of GateCity Buckhead.",
+        "answer": "You don't have to carry anxiety alone. God is with you in the storm, and His perfect love drives out fear. These verses, each paired with a short prayer, come from 21 Days of Fearless Living. Read one slowly, pray it, and let His peace guard your heart.",
+        "video": None,
+        "body": """
+<p>When we truly know who God is, we can have peace and courage even when life is shaking. If Jesus can be at peace in the storm, we can be at peace in the storm. Here are nine passages to hold onto when fear and worry rise.</p>
+
+<h3>1. "Cast all your anxiety on him because he cares for you." (1 Peter 5:7)</h3>
+<p>We don't have to bear our worries alone. God invites us to release the weight to Him, because His care for us is deep and unwavering.</p>
+<p><em>Pray: Father, I give You what I've been carrying. Thank You that You care for me.</em></p>
+
+<h3>2. "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus." (Philippians 4:6-7)</h3>
+<p>Prayer and thanksgiving together shift our focus from our worries to the goodness of God, and His peace stands guard over our hearts and minds.</p>
+<p><em>Pray: Lord, here is what I'm worried about. And here is what I'm thankful for. Guard my heart with Your peace.</em></p>
+
+<h3>3. "Why are you so afraid? Do you still have no faith?" (Mark 4:40)</h3>
+<p>Jesus slept through the storm, and then calmed it with a word. The disciples were safe all along, because of who was in the boat with them.</p>
+<p><em>Pray: Jesus, thank You that You are in the boat with me. Whether You calm this storm or carry me through it, I am safe with You.</em></p>
+
+<h3>4. "Even though I walk through the darkest valley, I will fear no evil, for you are with me." (Psalm 23:4)</h3>
+<p>David knew the dark valleys were real. His peace came from the Shepherd walking beside him, not from easy circumstances.</p>
+<p><em>Pray: Lord, You are my Shepherd. Walk with me through this valley and lead me to still waters.</em></p>
+
+<h3>5. "The Lord is my light and my salvation, whom shall I fear?" (Psalm 27:1)</h3>
+<p>David was surrounded by enemies, yet he chose to fix his eyes on the beauty of the Lord. A life centered on God is a fearless life.</p>
+<p><em>Pray: God, You are my stronghold. Turn my eyes from what I fear to Your beauty and goodness.</em></p>
+
+<h3>6. "Whoever dwells in the shelter of the Most High will rest in the shadow of the Almighty." (Psalm 91:1)</h3>
+<p>Make God your fortress: declare that He is your refuge, listen for His voice, and remember you are His beloved child.</p>
+<p><em>Pray: Lord, You are my refuge and my fortress, my God, in whom I trust. I rest in Your shadow today.</em></p>
+
+<h3>7. "There is no fear in love. But perfect love drives out fear." (1 John 4:18)</h3>
+<p>Fear loses its grip when we grasp how much God loves us. He is a good Father, not One waiting to punish us.</p>
+<p><em>Pray: Father, show me Your love in a way I can feel. Let Your perfect love drive out every fear in me.</em></p>
+
+<h3>8. "Neither death nor life, neither angels nor demons, neither the present nor the future... will be able to separate us from the love of God that is in Christ Jesus our Lord." (Romans 8:38-39)</h3>
+<p>There is no moment in your future when you will not be fully loved by God, just as you are. Nothing can separate you from His love.</p>
+<p><em>Pray: God, I believe that nothing today or tomorrow can separate me from Your love.</em></p>
+
+<h3>9. "Take courage! It is I. Don't be afraid." (Matthew 14:27)</h3>
+<p>Peter walked on water while his eyes were on Jesus, and began to sink when he looked at the wind. When fear rises, look back to Jesus. He reaches out immediately.</p>
+<p><em>Pray: Jesus, I fix my eyes on You. Take my hand and give me courage.</em></p>
+
+<h2>When anxiety doesn't lift</h2>
+<p>Anxiety is real, and you are not weak or faithless for feeling it. Keep praying, and don't walk through it alone: reach out to a pastor, a trusted friend, or a counselor. If you are ever in crisis, call or text 988 to reach the Suicide and Crisis Lifeline. We would be honored to pray with you; join one of our <a href="/digital-community#prayer">online prayer times</a>.</p>
+""",
+        "prayer": "Father, thank You that You are with me right now. I give You my fears and my worries about tomorrow. Let Your perfect love drive out fear, and let Your peace guard my heart and mind in Christ Jesus. Give me courage to trust You in the storm. In Jesus' name, amen.",
+        "series": None,
+        "book": None,
+    },
+    {
         "slug": "what-is-forgiveness",
         "q": "What Is Forgiveness, and How Do I Forgive?",
         "nav": "What is forgiveness?",
