@@ -615,6 +615,96 @@ def series_pages():
     return pages
 
 
+def questions_pages():
+    """'Your Biggest Questions': /questions/ hub + one page per question (from questions_data.py)."""
+    import html as H, json
+    from questions_data import QUESTIONS
+    from series_data import SERIES
+    series = {s["slug"]: s for s in SERIES}
+    pages, items = {}, []
+    for q in QUESTIONS:
+        body = f"""<div class="pagehead">
+  <div class="wrap narrow">
+    <div class="eyebrow on-dark"><a href="/questions/" style="color:inherit">Your Biggest Questions</a></div>
+    <h1>{H.escape(q['q'])}</h1>
+  </div>
+</div>
+
+<section class="tight">
+  <div class="wrap narrow">
+    <div class="q-answer">
+      <div class="eyebrow">The short answer</div>
+      <p class="lede">{H.escape(q['answer'])}</p>
+    </div>
+  </div>
+</section>
+"""
+        if q.get("video"):
+            body += f"""
+<section class="tight">
+  <div class="wrap narrow">
+    <a class="msg-thumb" href="https://www.youtube.com/watch?v={q['video']}" data-yt-embed="{q['video']}" target="_blank" rel="noopener">
+      <img src="https://i.ytimg.com/vi/{q['video']}/maxresdefault.jpg" alt="{H.escape(q.get('video_title', q['q']))}" loading="lazy">
+      <span class="play" aria-hidden="true"></span>
+    </a>
+    <p style="margin-top:10px;font-size:15px;color:var(--muted, #5b6660)">{H.escape(q.get('video_title', ''))}</p>
+  </div>
+</section>
+"""
+        body += f"""
+<section class="tight">
+  <div class="wrap narrow post-body prose">
+{q['body']}
+    <h2>A prayer you can pray</h2>
+    <p><em>{H.escape(q['prayer'])}</em></p>
+  </div>
+</section>
+"""
+        s = series.get(q.get("series"))
+        bk = q.get("book")
+        if s or bk:
+            title, cover, link, desc = bk
+            amz = LINKS[link]
+            watch = f'<a class="btn btn-outline" href="/series/{s["slug"]}/">Watch the {H.escape(s["name"])} Series <span class="arrow">&rarr;</span></a>' if s else ""
+            body += f"""
+<section class="tight wwj-band">
+  <div class="wrap split">
+    <a class="book-cover plan-book" href="{amz}" target="_blank" rel="noopener"><img src="/assets/img/books/{cover}.jpg" alt="{H.escape(title)} by Hazen Stevens" loading="lazy"></a>
+    <div>
+      <div class="eyebrow">Go Deeper</div>
+      <h2>{H.escape(title)}.</h2>
+      <div class="by" style="font-weight:600;color:var(--green-ink);margin-bottom:12px">Hazen Stevens</div>
+      <p class="lede">{H.escape(desc)}</p>
+      <div class="btn-row"><a class="btn btn-primary" href="{amz}" target="_blank" rel="noopener">Get the Book on Amazon <span class="arrow">&rarr;</span></a>{watch}</div>
+    </div>
+  </div>
+</section>
+"""
+        ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q["q"], "acceptedAnswer": {"@type": "Answer", "text": q["answer"]}}]}
+        body += '\n<script type="application/ld+json">%s</script>\n' % json.dumps(ld)
+        body += "\n" + CTA_DEEPER
+        pages["q:" + q["slug"]] = ("questions/%s/index.html" % q["slug"], "%s | GateCity Buckhead" % q["q"], q["desc"], True, body)
+        items.append(f"""      <a class="card q-card" href="/questions/{q['slug']}/"><div class="card-body"><h3>{H.escape(q['q'])}</h3><p>{H.escape(q['answer'].split('. ')[0])}.</p><span class="card-link">Read the answer <span class="arrow">&rarr;</span></span></div></a>""")
+    hub = """<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Resources</div>
+    <h1>Your biggest questions.</h1>
+    <p class="lede">Honest answers to the questions people ask most about God, the Bible, and following Jesus, from the teaching at GateCity Buckhead in Atlanta.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+%s
+    </div>
+  </div>
+</section>
+""" % "\n".join(items) + CTA_DEEPER
+    pages["q:hub"] = ("questions/index.html", "Your Biggest Questions | GateCity Buckhead", "Answers to the questions people ask most about God, the Holy Spirit, forgiveness, prayer, and the Bible, from GateCity Buckhead in Atlanta.", True, hub)
+    return pages
+
+
 def main():
     head = read("partials/head.html")
     header = read("partials/header.html")
@@ -624,6 +714,7 @@ def main():
     blog_outs, blog_latest, blog_hero = render_blog(head, header, footer)
     GEN = plan_pages()
     GEN.update(series_pages())
+    GEN.update(questions_pages())
     for k, v in GEN.items():
         PAGES[k] = v[:4]
     for slug, (out, title, desc, solid) in PAGES.items():
