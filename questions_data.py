@@ -112,7 +112,8 @@ QUESTIONS = [
         "nav": "Bible verses for anxiety",
         "desc": "Bible verses for anxiety, worry, and fear, each with a short prayer. From 21 Days of Fearless Living by Pastor Hazen Stevens of GateCity Buckhead.",
         "answer": "You don't have to carry anxiety alone. God is with you in the storm, and His perfect love drives out fear. These verses, each paired with a short prayer, come from 21 Days of Fearless Living. Read one slowly, pray it, and let His peace guard your heart.",
-        "video": None,
+        "video": "zriKiLkwzgA",
+        "video_title": "Fearless Living, Week 3: Pastor Hazen Stevens (GateCity Church)",
         "body": """
 <p>When we truly know who God is, we can have peace and courage even when life is shaking. If Jesus can be at peace in the storm, we can be at peace in the storm. Here are nine passages to hold onto when fear and worry rise.</p>
 
@@ -151,6 +152,9 @@ QUESTIONS = [
 <h3>9. "Take courage! It is I. Don't be afraid." (Matthew 14:27)</h3>
 <p>Peter walked on water while his eyes were on Jesus, and began to sink when he looked at the wind. When fear rises, look back to Jesus. He reaches out immediately.</p>
 <p><em>Pray: Jesus, I fix my eyes on You. Take my hand and give me courage.</em></p>
+
+<h2>Watch the 21-day video devotional</h2>
+<p>Pastor Hazen walked through all 21 days of Fearless Living on video, a few minutes each day. <a href="https://www.youtube.com/watch?v=gIxufYdBQ0Q" target="_blank" rel="noopener">Start with Day 1</a> on the Presence Centered Life YouTube channel.</p>
 
 <h2>When anxiety doesn't lift</h2>
 <p>Anxiety is real, and you are not weak or faithless for feeling it. Keep praying, and don't walk through it alone: reach out to a pastor, a trusted friend, or a counselor. If you are ever in crisis, call or text 988 to reach the Suicide and Crisis Lifeline. We would be honored to pray with you; join one of our <a href="/digital-community#prayer">online prayer times</a>.</p>
