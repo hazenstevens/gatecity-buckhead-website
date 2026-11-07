@@ -93,3 +93,9 @@
   to = "https://www.youtube.com/@GateCityBuckhead"
   status = 302
   force = true
+
+# YouTube thumbnail staging: Studio fetches these cross-origin (Nov 7, 2026)
+[[headers]]
+  for = "/assets/img/yt/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
