@@ -1,6 +1,20 @@
 # Message series collection pages: build.py turns each into /series/<slug>/ (watch-first).
 SERIES = [
  {
+  "slug": "formed-for-a-purpose",
+  "name": "Formed for a Purpose",
+  "theme": "How God shapes you",
+  "current": True,
+  "playlist": "PLR3fw1RacPTk",
+  "lede": "Our current series. Like clay in the potter's hands, God uses pressure to form us for the purpose He has for us. Pastor Hazen Stevens walks through Paul's letters to Timothy, a young leader under pressure, and how God shapes a life that lasts.",
+  "book": None,
+  "plan": "",
+  "blogs": ["purpose-under-pressure"],
+  "parts": [
+   {"video": "p7Lgnaz62oM", "n": 1, "title": "How Pressure Forms Your Purpose"}
+  ]
+ },
+ {
   "slug": "manifest",
   "name": "Manifest",
   "theme": "The Holy Spirit",

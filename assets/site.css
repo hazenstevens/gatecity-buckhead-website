@@ -457,3 +457,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.68);padding:clamp(56px,7vw,
 .q-answer{border-left:4px solid var(--green, #1f7a4d);background:var(--paper, #f4f3ef);padding:22px 26px;border-radius:10px}
 .q-answer .lede{margin:0}
 .q-card p{margin:8px 0 14px;color:var(--muted, #5b6660)}
+
+/* Nov 7, 2026 (Halima feedback): breathing room between section headlines and the text under them */
+section h2 + .lede, section h2 + p{margin-top:18px}

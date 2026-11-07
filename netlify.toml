@@ -12,6 +12,12 @@
 [build.processing]
   skip_processing = false
 
+[[redirects]]
+  from = "/location"
+  to = "/new-here/#directions"
+  status = 301
+  force = true
+
 # Serve /our-beliefs.html at /our-beliefs, etc.
 [[redirects]]
   from = "/home/*"

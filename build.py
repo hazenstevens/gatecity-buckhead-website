@@ -106,6 +106,10 @@ IMAGES = {
     "AIS":    "/assets/img/ais.jpg",
     "PEOPLE": "/assets/img/people.jpg",        # Easter 2026, 417A6449 (Eden)
     "PRAYER": "/assets/img/worship.jpg",       # Easter 2026, 417A6831 (Eden)
+    "WELCOME": "/assets/img/welcome.jpg",      # Easter 2026, 417A6310 (Eden) - greeter at the welcome table
+    "GREETER": "/assets/img/greeter.jpg",      # Easter 2026, 417A6374 (Eden)
+    "CHECKIN": "/assets/img/kids-checkin.jpg", # Easter 2026, 417A6353 (Eden) - BuckCity Kids check-in
+    "HALLWAY": "/assets/img/hallway.jpg",      # Easter 2026, 417A6389 (Eden)
     "KIDS":   "/assets/img/kids.jpg",          # Easter 2026, 417A6307 (Eden) - parent + toddler
     "FORUM":  "/assets/img/sunday-forum.jpg",
     "TEAM":   "/assets/img/team.jpg",
@@ -597,6 +601,22 @@ def series_pages():
         desc = "Watch the %s message series from GateCity Buckhead: %d messages on %s, plus %s." % (s["name"], n, s["theme"].lower(), "the book, a free Bible plan, and blog posts" if bk else "a free Bible plan and blog posts")
         pages["series:" + s["slug"]] = ("series/%s/index.html" % s["slug"], "%s: Watch the Series | GateCity Buckhead" % s["name"], desc, True, body)
         cards.append(f"""      <a class="card" href="/series/{s['slug']}/"><div class="card-img wide"><img src="https://i.ytimg.com/vi/{p1['video']}/hqdefault.jpg" alt="{H.escape(s['name'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{n} messages &middot; {H.escape(s['theme'])}</div><h3>{H.escape(s['name'])}</h3><span class="card-link">Watch the series <span class="arrow">&rarr;</span></span></div></a>""")
+    cur = next((x for x in SERIES if x.get("current")), None)
+    feat = ""
+    if cur:
+        feat = f"""
+<section class="tight wwj-band">
+  <div class="wrap split wide-right">
+    <a class="msg-thumb" href="/series/{cur['slug']}/"><img src="/assets/img/series/{cur['slug']}.jpg" alt="{H.escape(cur['name'])}" loading="lazy" style="opacity:1"></a>
+    <div>
+      <div class="eyebrow">Current Series</div>
+      <h2>{H.escape(cur['name'])}.</h2>
+      <p class="lede">{H.escape(cur['lede'])}</p>
+      <div class="btn-row"><a class="btn btn-primary" href="/series/{cur['slug']}/">Watch the Series <span class="arrow">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+"""
     hub = """<div class="pagehead">
   <div class="wrap">
     <div class="eyebrow on-dark">Watch</div>
@@ -604,7 +624,7 @@ def series_pages():
     <p class="lede">Teaching from GateCity Buckhead in Atlanta on prayer, the Holy Spirit, perseverance, and walking with Jesus every day. Each series comes with a free Bible plan, blog posts, and often a book.</p>
   </div>
 </div>
-
+%s
 <section>
   <div class="wrap">
     <div class="cards">
@@ -612,7 +632,7 @@ def series_pages():
     </div>
   </div>
 </section>
-""" % "\n".join(cards) + CTA_DEEPER
+""" % (feat, "\n".join(cards)) + CTA_DEEPER
     pages["series:hub"] = ("series/index.html", "Message Series | GateCity Buckhead", "Watch message series from GateCity Buckhead in Atlanta: the Holy Spirit, prayer, perseverance, forgiveness, and more, with free Bible plans and books.", True, hub)
     return pages
 

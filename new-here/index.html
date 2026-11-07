@@ -21,7 +21,7 @@
 <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta name="theme-color" content="#183828">
-<link rel="stylesheet" href="/assets/site.css?v=f29cdbbf">
+<link rel="stylesheet" href="/assets/site.css?v=115688ea">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Church",
 "name":"GateCity Buckhead","url":"https://gatecitybuckhead.com/","logo":"https://gatecitybuckhead.com/assets/img/logo.png",
 "description":"A presence-centered church in Buckhead, Atlanta. Sundays at 11am at Atlanta International School.",
@@ -30,6 +30,7 @@
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18553804873"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18553804873');</script>
+<script src="https://js.churchcenter.com/modal/v1" defer></script>
 </head>
 <body class="solid-header">
 <header id="hdr">
@@ -47,7 +48,6 @@
           <a href="/our-mission">Our Mission</a>
           <a href="/our-beliefs">Our Beliefs</a>
           <a href="/our-team">Our Team</a>
-          <a href="/location">Where We Meet</a>
         </div></div>
       </div>
       <a href="/buckcity-kids">Kids &amp; Youth</a>
@@ -83,12 +83,11 @@
           <svg class="caret" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
         <div class="submenu"><div class="submenu-inner">
-          <a href="https://gatecity-buckhead.churchcenter.com/giving">Give Now</a>
           <a href="/pledge">Ways to Give</a>
           <a href="/99-for-the-1">99 for the 1</a>
         </div></div>
       </div>
-      <a class="btn btn-primary btn-sm nav-cta" href="https://gatecity-buckhead.churchcenter.com/giving">Give Now</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="https://gatecity-buckhead.churchcenter.com/giving" data-open-in-church-center-modal="true">Give Now</a>
     </nav>
     <button class="menu-btn" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilenav">
       <span></span><span></span><span></span>
@@ -101,7 +100,6 @@
       <a href="/our-mission">Our Mission</a>
           <a href="/our-beliefs">Our Beliefs</a>
       <a href="/our-team">Our Team</a>
-      <a href="/location">Where We Meet</a>
     </div>
     <a href="/buckcity-kids">Kids &amp; Youth</a>
     <div class="mn-group">
@@ -125,11 +123,10 @@
     </div>
     <div class="mn-group">
       <span>Giving</span>
-      <a href="https://gatecity-buckhead.churchcenter.com/giving">Give Now</a>
       <a href="/pledge">Ways to Give</a>
       <a href="/99-for-the-1">99 for the 1</a>
     </div>
-    <a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/giving">Give Now</a>
+    <a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/giving" data-open-in-church-center-modal="true">Give Now</a>
     <div class="mn-foot"><b>Sundays at 11:00am</b>2890 N Fulton Dr NE<br>Atlanta, GA 30305</div>
   </div>
 </header>
@@ -141,7 +138,7 @@
     <p class="lede">A non-denominational, Spirit-filled church in Buckhead, Atlanta. Sundays at 11:00am at Atlanta International School, 2890 N Fulton Dr NE. Let us know you're coming and we'll have someone watching for you.</p>
     <div class="btn-row">
       <a class="btn btn-primary" href="#plan">Tell Us You&rsquo;re Coming <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost" href="/location">Directions &amp; Parking</a>
+      <a class="btn btn-ghost" href="#directions">Directions &amp; Parking</a>
     </div>
   </div>
 </div>
@@ -158,11 +155,11 @@
         <li><b>What to wear</b><span>Whatever you're comfortable in.</span></li>
         <li><b>At the door</b><span>You'll be greeted and handed a first-time guest bag.</span></li>
         <li><b>Your kids</b><span>BuckCity Kids runs the whole service, age 3 through 5th grade. Check-in starts at 10:45am.</span></li>
-        <li><b>Your teens</b><span>Middle schoolers meet on the 2nd and 4th Sundays; high schoolers on the 2nd Sunday at 10:00am. <a href="/buckcity-kids#youth" style="color:var(--green-ink);font-weight:700;text-decoration:underline">Youth details</a>.</span></li>
+        <li><b>Your teens</b><span>Middle schoolers meet on the 2nd and 4th Sundays; high schoolers on the 2nd Sunday at 10:00am.</span></li>
       </ul>
-      <div class="btn-row"><a class="btn btn-primary" href="#plan">Tell Us You&rsquo;re Coming <span class="arrow">&rarr;</span></a></div>
+      <div class="btn-row"><a class="btn btn-outline" href="/buckcity-kids">More About Our NextGen Ministry <span class="arrow">&rarr;</span></a></div>
     </div>
-    <div class="split-photo"><img src="/assets/img/people.jpg" alt="First-time guests at GateCity Buckhead" loading="lazy"></div>
+    <div class="split-photo"><img src="/assets/img/greeter.jpg" alt="A greeter welcoming a first-time guest at GateCity Buckhead" loading="lazy"></div>
   </div>
 </section>
 
@@ -183,6 +180,25 @@
       <div class="loc-map"><iframe title="Map to GateCity Buckhead, 2890 N Fulton Dr NE, Atlanta" loading="lazy" src="https://www.google.com/maps?q=GateCity+Buckhead,+2890+N+Fulton+Dr+NE,+Atlanta,+GA+30305&output=embed"></iframe></div>
       <p style="margin-top:12px;color:var(--ink-soft)"><b>GateCity Buckhead</b><br>2890 N Fulton Dr NE, Atlanta, GA 30305<br>Sundays at 11:00am &middot; (404) 419-7476</p>
     </div>
+  </div>
+</section>
+
+<section class="tight" id="directions">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Directions &amp; Parking</div>
+      <h2>First time? We saved you a spot.</h2>
+      <ul class="rows">
+        <li><b>Address</b><span>Atlanta International School, secondary school building, 2890 N Fulton Dr NE, Atlanta, GA 30305.</span></li>
+        <li><b>First-time guests</b><span>Front-row parking directly in front of the building.</span></li>
+        <li><b>If those are full</b><span>Additional parking off Peachtree Ave NE, in the Gate A and Gate E lots.</span></li>
+        <li><b>Cost</b><span>Free.</span></li>
+        <li><b>Entrance</b><span>Secondary school building. Greeters will be at the door.</span></li>
+      </ul>
+      <div class="btn-row"><a class="btn btn-primary" href="https://maps.google.com/?q=2890+N+Fulton+Dr+NE,+Atlanta,+GA+30305">Open in Maps <span class="arrow">&rarr;</span></a></div>
+      <p style="margin-top:22px;font-size:15px;color:var(--ink-soft)">Mailing address (not where we gather): P.O. Box 490520, Lawrenceville, GA 30049. Looking for our Lawrenceville campus? <a href="https://gatecityatl.com/" style="color:var(--green-ink);font-weight:700;text-decoration:underline">gatecityatl.com</a></p>
+    </div>
+    <div class="split-photo wide"><img src="/assets/img/ais.jpg" alt="Atlanta International School, where GateCity Buckhead meets" loading="lazy"></div>
   </div>
 </section>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Church", "name": "GateCity Buckhead", "alternateName": "All Peoples Church, Inc.", "url": "https://gatecitybuckhead.com/", "telephone": "+1-404-419-7476", "image": "https://gatecitybuckhead.com/assets/img/hero.jpg", "logo": "https://gatecitybuckhead.com/assets/img/icon-512.png", "description": "A non-denominational, Spirit-filled, multi-ethnic church in Buckhead, Atlanta. Sundays at 11am, with BuckCity Kids for age 3 through 5th grade.", "address": {"@type": "PostalAddress", "streetAddress": "2890 N Fulton Dr NE", "addressLocality": "Atlanta", "addressRegion": "GA", "postalCode": "30305", "addressCountry": "US"}, "geo": {"@type": "GeoCoordinates", "latitude": 33.833876, "longitude": -84.3785181}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:15", "closes": "13:30"}], "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJOT2M3r0P9YgRZCO6U3aUlPM", "sameAs": ["https://www.instagram.com/gcbuckhead/", "https://www.facebook.com/gatecitybuckhead", "https://www.youtube.com/@GateCityBuckhead"]}</script>
@@ -286,45 +302,13 @@
       <li><b>Stay in touch</b><span>Fill out the Connect form so we can answer questions and keep you in the loop. &nbsp;<a href="https://gatecity-buckhead.churchcenter.com/people/forms/854046" style="color:var(--green-bright);font-weight:700">Get connected &rarr;</a></span></li>
       <li><b>Serve</b><span>Anybody can serve &mdash; you don't have to be a member. A leader will reach out. &nbsp;<a href="https://gatecity-buckhead.churchcenter.com/people/forms/856748" style="color:var(--green-bright);font-weight:700">I'm interested &rarr;</a></span></li>
       <li><b>Join a group</b><span>Fall Formation Nights, Wednesdays at 8:00pm, October 14 through November 18. &nbsp;<a href="https://gatecity-buckhead.churchcenter.com/people/forms/1331359" style="color:var(--green-bright);font-weight:700">I'll be there &rarr;</a></span></li>
+      <li><b>Pray with us</b><span>Virtual prayer runs mornings, afternoons and evenings during the week. &nbsp;<a href="/digital-community" style="color:var(--green-bright);font-weight:700">See the times &rarr;</a></span></li>
       <li><b>Become a member</b><span>Our team will connect with you and walk you through the pathway. &nbsp;<a href="https://gatecity-buckhead.churchcenter.com/people/forms/858540" style="color:var(--green-bright);font-weight:700">Start the process &rarr;</a></span></li>
       <li><b>Get baptized</b><span>Publicly declare your faith. We'd love to celebrate with you. &nbsp;<a href="https://gatecity-buckhead.churchcenter.com/people/forms/888611" style="color:var(--green-bright);font-weight:700">Sign up &rarr;</a></span></li>
     </ul>
   </div>
 </section>
 
-<section>
-  <div class="wrap split">
-    <div>
-      <div class="eyebrow">Plug Into Prayer</div>
-      <h2>Prayer is one of the heartbeats of this community.</h2>
-      <p class="lede">Virtual prayer runs multiple times a week &mdash; connection, worship, meditation, intercession, and space to share what you're carrying.</p>
-      <ul class="rows">
-        <li><b>Mornings</b><span>Monday&ndash;Thursday, 7:30&ndash;8:15am ET</span></li>
-        <li><b>Afternoons</b><span>Tuesday &amp; Thursday, 12:30&ndash;1:15pm ET</span></li>
-        <li><b>Evenings</b><span>Tuesday &amp; Thursday, 8:30&ndash;9:15pm ET</span></li>
-      </ul>
-      <p style="margin-top:20px;font-size:15px;color:var(--ink-soft)">Zoom password: <b>212</b></p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://us02web.zoom.us/j/83273443236?pwd=nOpbkxVsb64EkVEeYX81XsgnFiZDPH.1">Join the Prayer Zoom <span class="arrow">&rarr;</span></a>
-        <a class="btn btn-outline" href="https://gatecity-buckhead.churchcenter.com/people/forms/912170">More Info</a>
-      </div>
-    </div>
-    <div class="split-photo"><img src="/assets/img/worship.jpg" alt="Prayer at GateCity Buckhead" loading="lazy"></div>
-  </div>
-</section>
-
-<section class="dark tight">
-  <div class="wrap narrow" style="text-align:center">
-    <div class="eyebrow on-dark" style="justify-content:center">Formation Groups</div>
-    <h2>Wednesdays at 8:00pm.</h2>
-    <p class="lede" style="margin:20px auto 0">Our fall six-week series runs October 14 through November 18, 8:00&ndash;9:15pm on Zoom. Come on your own charged device, find a quiet spot, and bring a journal. No preparation or Bible knowledge needed.</p>
-    <div class="btn-row" style="justify-content:center">
-      <a class="btn btn-primary" href="https://gatecity-buckhead.churchcenter.com/people/forms/1331359">Register for Fall <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost" href="https://us02web.zoom.us/j/83897703242?pwd=nenTjKEiuIJuAlJEhZNLKg3zgoW5Gv.1">Join the Zoom</a>
-    </div>
-    <p style="margin-top:22px;font-size:15px;color:rgba(255,255,255,.55)">Zoom password: <b style="color:#fff">212</b></p>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
@@ -353,7 +337,7 @@
       <div class="f-col">
         <h4>Visit</h4>
         <a href="/new-here/">Plan Your Visit</a>
-        <a href="/location">Directions &amp; Parking</a>
+        <a href="/new-here/#directions">Directions &amp; Parking</a>
         <a href="/buckcity-kids">BuckCity Kids</a>
         <a href="/our-beliefs">Our Beliefs</a>
         <a href="/our-team">Our Team</a>
