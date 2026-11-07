@@ -153,8 +153,8 @@ QUESTIONS = [
 <p>Peter walked on water while his eyes were on Jesus, and began to sink when he looked at the wind. When fear rises, look back to Jesus. He reaches out immediately.</p>
 <p><em>Pray: Jesus, I fix my eyes on You. Take my hand and give me courage.</em></p>
 
-<h2>Watch the 21-day video devotional</h2>
-<p>Pastor Hazen walked through all 21 days of Fearless Living on video, a few minutes each day. <a href="https://www.youtube.com/watch?v=gIxufYdBQ0Q" target="_blank" rel="noopener">Start with Day 1</a> on the Presence Centered Life YouTube channel.</p>
+<h2>Free devotionals for anxiety</h2>
+<p>Walk through 21 Days of Fearless Living as three free 7-day devotionals you can download, with a short video from Pastor Hazen for every day. <a href="/fearless/">Get the Fearless devotionals</a>.</p>
 
 <h2>When anxiety doesn't lift</h2>
 <p>Anxiety is real, and you are not weak or faithless for feeling it. Keep praying, and don't walk through it alone: reach out to a pastor, a trusted friend, or a counselor. If you are ever in crisis, call or text 988 to reach the Suicide and Crisis Lifeline. We would be honored to pray with you; join one of our <a href="/digital-community#prayer">online prayer times</a>.</p>
