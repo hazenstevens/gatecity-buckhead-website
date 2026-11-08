@@ -558,6 +558,13 @@ def event_ld(slug):
         {"@context": "https://schema.org", "@graph": evs}, ensure_ascii=False).replace("</", "<\\/")
 
 
+def _et(d):
+    """A post date (YYYY-MM-DD) as 8am Eastern with the right offset, for search markup."""
+    from zoneinfo import ZoneInfo
+    return datetime.datetime.combine(datetime.date.fromisoformat(d[:10]), datetime.time(8, 0),
+                                     ZoneInfo("America/New_York")).isoformat()
+
+
 def post_ld(p):
     """BlogPosting search markup: author, dates, image, and the publisher."""
     import json
@@ -569,8 +576,8 @@ def post_ld(p):
           "headline": p["title"][:110],
           "description": p.get("description", ""),
           "image": [BASE + p["cover"]],
-          "datePublished": p["date"],
-          "dateModified": p.get("updated", p["date"]),
+          "datePublished": _et(p["date"]),
+          "dateModified": _et(p.get("updated", p["date"])),
           "author": author,
           "publisher": {"@type": "Organization", "name": "GateCity Buckhead", "url": "https://gatecitybuckhead.com/",
                         "logo": {"@type": "ImageObject", "url": "https://gatecitybuckhead.com/assets/img/logo.png"}},
