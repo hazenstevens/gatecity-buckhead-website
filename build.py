@@ -525,6 +525,7 @@ EVENTS = [
         "location": _AIS,
         "image": ["https://gatecitybuckhead.com/assets/img/christmas-eve-hero.jpg"],
         "organizer": _GCB,
+        "performer": {"@type": "PerformingGroup", "name": "GateCity Buckhead Worship"},
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
                    "url": "https://gatecitybuckhead.com/christmas-eve/", "validFrom": "2026-11-03T00:00:00-05:00"},
         "isAccessibleForFree": True}},
