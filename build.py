@@ -506,6 +506,37 @@ def plan_pages():
     return pages
 
 
+def video_ld(s):
+    """VideoObject search markup for every message on a series page (helps Google show the
+    videos, and their YouTube chapters as key moments, for searches that land on our site)."""
+    import json
+    from yt_meta import YT
+    vids = []
+    for p in s["parts"]:
+        m = YT.get(p["video"])
+        if not m:
+            print("  ! no yt_meta for %s (%s Part %s): add it to yt_meta.py" % (p["video"], s["name"], p["n"]))
+            continue
+        mins, secs = divmod(m["secs"], 60)
+        vids.append({
+            "@type": "VideoObject",
+            "name": "%s | %s, Part %d" % (p["title"], s["name"], p["n"]),
+            "description": "Part %d of the %s message series from GateCity Buckhead, a church in Buckhead, Atlanta. %s" % (p["n"], s["name"], s["lede"].replace("Our current series. ", "")),
+            "thumbnailUrl": ["https://i.ytimg.com/vi/%s/hqdefault.jpg" % p["video"]],
+            "uploadDate": m["date"],
+            "duration": "PT%dM%dS" % (mins, secs),
+            "embedUrl": "https://www.youtube.com/embed/%s" % p["video"],
+            "url": "https://www.youtube.com/watch?v=%s" % p["video"],
+            "inLanguage": "en",
+            "publisher": {"@type": "Organization", "name": "GateCity Buckhead", "url": "https://gatecitybuckhead.com/",
+                          "logo": {"@type": "ImageObject", "url": "https://gatecitybuckhead.com/assets/img/logo.png"}},
+        })
+    if not vids:
+        return ""
+    ld = {"@context": "https://schema.org", "@graph": vids}
+    return '\n<script type="application/ld+json">%s</script>\n' % json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
+
+
 def series_pages():
     import html as H
     from series_data import SERIES
@@ -606,6 +637,7 @@ def series_pages():
 </section>
 """
         body += "\n" + CTA_DEEPER
+        body += video_ld(s)
         desc = "Watch the %s message series from GateCity Buckhead: %d messages on %s, plus %s." % (s["name"], n, s["theme"].lower(), "the book, a free Bible plan, and blog posts" if bk else "a free Bible plan and blog posts")
         pages["series:" + s["slug"]] = ("series/%s/index.html" % s["slug"], "%s: Watch the Series | GateCity Buckhead" % s["name"], desc, True, body)
         cards.append(f"""      <a class="card" href="/series/{s['slug']}/"><div class="card-img wide"><img src="https://i.ytimg.com/vi/{p1['video']}/hqdefault.jpg" alt="{H.escape(s['name'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{n} messages &middot; {H.escape(s['theme'])}</div><h3>{H.escape(s['name'])}</h3><span class="card-link">Watch the series <span class="arrow">&rarr;</span></span></div></a>""")
