@@ -312,6 +312,7 @@ def render_blog(head, header, footer):
             "POST_BODY": p["body"],
             "POST_NAV": nav,
         }
+        extra["POST_BODY"] = extra["POST_BODY"] + "\n" + post_ld(p)
         doc = (
             "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n%s</head>\n<body class=\"solid-header\">\n%s\n%s\n%s\n</body>\n</html>\n"
             % (fill(head, extra), fill(header), fill(post_tpl, extra), fill(footer))
@@ -504,6 +505,77 @@ def plan_pages():
 """ % "\n".join(cards)
     pages["plan:hub"] = ("plans/index.html", "Free Bible Plans | GateCity Buckhead", "Free Bible reading plans from GateCity Buckhead in the Bible App: prayer, money, holiness, Jesus, and the whole Bible in 100 days.", True, hub)
     return pages
+
+
+# Event search markup. Each event is added to the pages listed in "pages" and drops off
+# automatically once its end time has passed (on the next build).
+_GCB = {"@type": "Organization", "name": "GateCity Buckhead", "url": "https://gatecitybuckhead.com/"}
+_AIS = {"@type": "Place", "name": "Atlanta International School (secondary school building)",
+        "address": {"@type": "PostalAddress", "streetAddress": "2890 N Fulton Dr NE", "addressLocality": "Atlanta",
+                    "addressRegion": "GA", "postalCode": "30305", "addressCountry": "US"}}
+EVENTS = [
+    {"pages": ["christmas-eve", "events"], "ld": {
+        "@type": "Event",
+        "name": "Christmas Eve Candlelight Service",
+        "description": "A family-friendly Christmas Eve candlelight service in Buckhead, Atlanta. Kids and parents worship together to classic carols and modern favorites, with a brief message, followed by Christmas cookies. Everyone is welcome.",
+        "startDate": "2026-12-24T17:00:00-05:00",
+        "endDate": "2026-12-24T18:00:00-05:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": _AIS,
+        "image": ["https://gatecitybuckhead.com/assets/img/christmas-eve-hero.jpg"],
+        "organizer": _GCB,
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+                   "url": "https://gatecitybuckhead.com/christmas-eve/", "validFrom": "2026-11-03T00:00:00-05:00"},
+        "isAccessibleForFree": True}},
+    {"pages": ["cohort", "events"], "ld": {
+        "@type": "Event",
+        "name": "Your Walk with Jesus Webinar",
+        "description": "A free, live 50-minute webinar on Zoom with Pastors Hazen and Hannah Stevens. Walk through five everyday practices for following Jesus and take your next step.",
+        "startDate": "2026-11-17T20:00:00-05:00",
+        "endDate": "2026-11-17T20:50:00-05:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {"@type": "VirtualLocation", "url": "https://gatecitybuckhead.com/cohort#masterclass"},
+        "image": ["https://gatecitybuckhead.com/assets/img/cohort-hero-friends.jpg"],
+        "organizer": _GCB,
+        "performer": [{"@type": "Person", "name": "Hazen Stevens"}, {"@type": "Person", "name": "Hannah Stevens"}],
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+                   "url": "https://gatecitybuckhead.com/cohort#masterclass", "validFrom": "2026-11-04T00:00:00-05:00"},
+        "isAccessibleForFree": True}},
+]
+
+
+def event_ld(slug):
+    import json
+    now = datetime.datetime.now(datetime.timezone.utc)
+    evs = [dict(e["ld"]) for e in EVENTS if slug in e["pages"]
+           and datetime.datetime.fromisoformat(e["ld"]["endDate"]) > now]
+    if not evs:
+        return ""
+    return '\n<script type="application/ld+json">%s</script>\n' % json.dumps(
+        {"@context": "https://schema.org", "@graph": evs}, ensure_ascii=False).replace("</", "<\\/")
+
+
+def post_ld(p):
+    """BlogPosting search markup: author, dates, image, and the publisher."""
+    import json
+    author = {"@type": "Person", "name": p["author"]}
+    if p["author"] in ("Hazen Stevens", "Hannah Stevens"):
+        author["jobTitle"] = "Pastor, GateCity Buckhead"
+        author["url"] = "https://gatecitybuckhead.com/our-team"
+    ld = {"@context": "https://schema.org", "@type": "BlogPosting",
+          "headline": p["title"][:110],
+          "description": p.get("description", ""),
+          "image": [BASE + p["cover"]],
+          "datePublished": p["date"],
+          "dateModified": p.get("updated", p["date"]),
+          "author": author,
+          "publisher": {"@type": "Organization", "name": "GateCity Buckhead", "url": "https://gatecitybuckhead.com/",
+                        "logo": {"@type": "ImageObject", "url": "https://gatecitybuckhead.com/assets/img/logo.png"}},
+          "mainEntityOfPage": "https://gatecitybuckhead.com/blog/" + p["slug"],
+          "inLanguage": "en"}
+    return '<script type="application/ld+json">%s</script>\n' % json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
 
 
 def video_ld(s):
@@ -784,6 +856,7 @@ def main():
         body = GEN[slug][4] if slug in GEN else read("pages/%s.html" % slug)
         body = body.replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"]).replace("{{BLOG_LATEST_TITLE}}", _html.escape(load_posts()[0]["title"])).replace("{{BLOG_LATEST_DESC}}", _html.escape(load_posts()[0].get("description", "")))
         body += ads_conversion(slug)
+        body += event_ld(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
                                 "ROBOTS": '<meta name="robots" content="noindex">' if slug in NOINDEX else ""})
