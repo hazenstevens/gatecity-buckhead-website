@@ -523,7 +523,7 @@ def video_ld(s):
             "name": "%s | %s, Part %d" % (p["title"], s["name"], p["n"]),
             "description": "Part %d of the %s message series from GateCity Buckhead, a church in Buckhead, Atlanta. %s" % (p["n"], s["name"], s["lede"].replace("Our current series. ", "")),
             "thumbnailUrl": ["https://i.ytimg.com/vi/%s/hqdefault.jpg" % p["video"]],
-            "uploadDate": m["date"],
+            "uploadDate": m["date"] + m.get("time", "T12:00:00-05:00"),
             "duration": "PT%dM%dS" % (mins, secs),
             "embedUrl": "https://www.youtube.com/embed/%s" % p["video"],
             "url": "https://www.youtube.com/watch?v=%s" % p["video"],
