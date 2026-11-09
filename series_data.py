@@ -11,7 +11,8 @@ SERIES = [
   "plan": "",
   "blogs": ["purpose-under-pressure"],
   "parts": [
-   {"video": "p7Lgnaz62oM", "n": 1, "title": "How Pressure Forms Your Purpose"}
+   {"video": "p7Lgnaz62oM", "n": 1, "title": "How Pressure Forms Your Purpose"},
+   {"video": "oWHUVnytb8M", "n": 2, "title": "How Prayer Forms Your Purpose"}
   ]
  },
  {
