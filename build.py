@@ -126,7 +126,7 @@ IMAGES = {
 
 # Google tag. Paste the IDs from Google Analytics (G-...) and Google Ads (AW-...).
 # Leave blank and nothing is added to the pages.
-GA4_ID = ""
+GA4_ID = "G-4MC8WLF9HS"   # Google Analytics 4 (property gatecitybuckhead.com, created Nov 9, 2026)
 ADS_ID = "AW-18553804873"   # Google Ads (Ad Grant account 775-246-8219)
 # Google Ads conversions: page slug -> conversion label. The thank-you page each
 # form lands on fires its conversion (counted once per ad click).
