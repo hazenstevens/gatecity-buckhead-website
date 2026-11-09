@@ -499,7 +499,7 @@ SERIES = [
   "playlist": "PLKSdukVm_qVM",
   "lede": "A four-part series through the Songs of Ascent, Psalms 120 to 134: the desire to go up, the snare is broken, a quieted soul, and unity that releases blessing.",
   "book": None,
-  "plan": "",
+  "plan": ["where-does-my-help-come-from", "gladness-in-god"],
   "blogs": [
    "the-desire-to-go-up",
    "where-does-my-help-come-from",
