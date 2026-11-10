@@ -856,6 +856,136 @@ def questions_pages():
     return pages
 
 
+def psalm_pages():
+    """Psalm meaning pages: /psalms/ hub + /psalms/psalm-N-meaning/ (from psalms_data.py).
+    First set: the Songs of Ascent, Psalms 120 to 134. Psalm text is the WEB (public domain)."""
+    import html as H, json, re as _re
+    from psalms_data import PSALMS, SOA_INTRO
+    from plans_data import PLANS
+    plans = {p["slug"]: p for p in PLANS}
+    web = json.load(open(os.path.join(ROOT, "psalms_web.json"), encoding="utf-8"))
+
+    def post_title(slug):
+        try:
+            m = _re.search(r"^title:\s*(.+)$", read("posts/%s.html" % slug), _re.M)
+            return m.group(1).strip() if m else slug
+        except Exception:
+            return slug
+
+    pages, items = {}, []
+    for i, p in enumerate(PSALMS):
+        n = p["n"]
+        slug = "psalm-%d-meaning" % n
+        h1 = "Psalm %d Meaning: %s" % (n, p["title"])
+        verses = "".join('<p><sup>%s</sup> %s</p>' % (v, H.escape(t)) for v, t in web[str(n)])
+        body = f"""<div class="pagehead">
+  <div class="wrap narrow">
+    <div class="eyebrow on-dark"><a href="/psalms/" style="color:inherit">Songs of Ascent &middot; Psalm {n}</a></div>
+    <h1>{H.escape(h1)}</h1>
+    <p class="lede">A Song of Ascents &middot; {H.escape(p['by'])}</p>
+  </div>
+</div>
+
+<section class="tight">
+  <div class="wrap narrow">
+    <div class="q-answer">
+      <div class="eyebrow">The short answer</div>
+      <p class="lede">{H.escape(p['answer'])}</p>
+    </div>
+  </div>
+</section>
+"""
+        if p.get("video"):
+            vid, vt = p["video"]
+            body += f"""
+<section class="tight">
+  <div class="wrap narrow">
+    <a class="msg-thumb" href="https://www.youtube.com/watch?v={vid}" data-yt-embed="{vid}" target="_blank" rel="noopener">
+      <img src="https://i.ytimg.com/vi/{vid}/maxresdefault.jpg" alt="{H.escape(vt)}" loading="lazy">
+      <span class="play" aria-hidden="true"></span>
+    </a>
+    <p style="margin-top:10px;font-size:15px;color:var(--muted, #5b6660)">{H.escape(vt)}</p>
+  </div>
+</section>
+"""
+        deeper = []
+        if p.get("blog"):
+            deeper.append(f'<a href="/blog/{p["blog"]}">Read the full reflection: {H.escape(post_title(p["blog"]))}</a>')
+        if p.get("video"):
+            deeper.append(f'<a href="/series/incense-and-oil/">Watch the Incense &amp; Oil series on the Songs of Ascent</a>')
+        for ps in p.get("plans", []):
+            if ps in plans:
+                deeper.append(f'<a href="/plans/{ps}/">Start the free {H.escape(plans[ps]["title"])} Bible plan</a>')
+        deeper.append('<a href="/songs-of-ascent/">Read all fifteen with our Songs of Ascent reading plan</a>')
+        if not p.get("video"):
+            deeper.append('<a href="/series/incense-and-oil/">Watch the Incense &amp; Oil series on the Songs of Ascent</a>')
+        prev_ = PSALMS[i - 1] if i > 0 else None
+        next_ = PSALMS[i + 1] if i + 1 < len(PSALMS) else None
+        nav = []
+        if prev_:
+            nav.append(f'<a class="btn btn-outline" href="/psalms/psalm-{prev_["n"]}-meaning/"><span class="arrow">&larr;</span> Psalm {prev_["n"]}: {H.escape(prev_["title"])}</a>')
+        if next_:
+            nav.append(f'<a class="btn btn-primary" href="/psalms/psalm-{next_["n"]}-meaning/">Psalm {next_["n"]}: {H.escape(next_["title"])} <span class="arrow">&rarr;</span></a>')
+        body += f"""
+<section class="tight">
+  <div class="wrap narrow post-body prose">
+    <h2>Psalm {n} (World English Bible)</h2>
+    <blockquote class="psalm-text">{verses}</blockquote>
+{p['body']}
+    <h2>A question to sit with</h2>
+    <p>{H.escape(p['prompt'])}</p>
+    <h2>A prayer you can pray</h2>
+    <p><em>{H.escape(p['prayer'])}</em></p>
+    <h2>Go deeper</h2>
+    <ul>{''.join('<li><p>%s</p></li>' % d for d in deeper)}</ul>
+    <p><em>Scripture quotations are from the World English Bible (public domain).</em></p>
+  </div>
+  <div class="wrap narrow"><div class="btn-row" style="margin-top:28px">{''.join(nav)}</div></div>
+</section>
+"""
+        ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": "What is the meaning of Psalm %d?" % n, "acceptedAnswer": {"@type": "Answer", "text": p["answer"]}}]}
+        body += '\n<script type="application/ld+json">%s</script>\n' % json.dumps(ld)
+        body += "\n" + CTA_DEEPER
+        desc = "Psalm %d meaning: %s" % (n, p["answer"])
+        if len(desc) > 300:
+            desc = desc[:297].rsplit(" ", 1)[0] + "..."
+        pages["ps:%d" % n] = ("psalms/%s/index.html" % slug, "%s | GateCity Buckhead" % h1, desc, True, body)
+        items.append(f"""      <a class="card q-card" href="/psalms/{slug}/"><div class="card-body"><div class="eyebrow">Psalm {n}</div><h3>{H.escape(p['title'])}</h3><p>{H.escape(p['answer'].split('. ')[0])}.</p><span class="card-link">Read the meaning <span class="arrow">&rarr;</span></span></div></a>""")
+    hub_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": "What are the Songs of Ascent?", "acceptedAnswer": {"@type": "Answer", "text": SOA_INTRO}}]}
+    hub = f"""<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Resources &middot; Psalms</div>
+    <h1>The Songs of Ascent.</h1>
+    <p class="lede">The meaning of Psalms 120 to 134, the pilgrim songs Israel sang on the climb to Jerusalem, from the Incense &amp; Oil series at GateCity Buckhead.</p>
+  </div>
+</div>
+
+<section class="tight">
+  <div class="wrap narrow">
+    <div class="q-answer">
+      <div class="eyebrow">What are the Songs of Ascent?</div>
+      <p class="lede">{H.escape(SOA_INTRO)}</p>
+    </div>
+    <div class="btn-row" style="margin-top:20px"><a class="btn btn-primary" href="/songs-of-ascent/">Start the Reading Plan <span class="arrow">&rarr;</span></a><a class="btn btn-outline" href="/series/incense-and-oil/">Watch the Series</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+%s
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{json.dumps(hub_ld)}</script>
+""" % "\n".join(items) + CTA_DEEPER
+    pages["ps:hub"] = ("psalms/index.html", "Songs of Ascent Meaning: Psalms 120 to 134 | GateCity Buckhead",
+                       "What are the Songs of Ascent? The meaning of Psalms 120 to 134, the pilgrim songs Israel sang on the way up to Jerusalem, one psalm at a time.", True, hub)
+    return pages
+
+
 def main():
     head = read("partials/head.html")
     header = read("partials/header.html")
@@ -866,6 +996,7 @@ def main():
     GEN = plan_pages()
     GEN.update(series_pages())
     GEN.update(questions_pages())
+    GEN.update(psalm_pages())
     for k, v in GEN.items():
         PAGES[k] = v[:4]
     for slug, (out, title, desc, solid) in PAGES.items():
