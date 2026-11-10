@@ -546,7 +546,7 @@ EVENTS = [
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
         "location": {"@type": "VirtualLocation", "url": "https://gatecitybuckhead.com/cohort#masterclass"},
-        "image": ["https://gatecitybuckhead.com/assets/img/cohort-hero-friends.jpg"],
+        "image": ["https://gatecitybuckhead.com/assets/img/cohort-hero-community.jpg"],
         "organizer": _GCB,
         "performer": [{"@type": "Person", "name": "Hazen Stevens"}, {"@type": "Person", "name": "Hannah Stevens"}],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
