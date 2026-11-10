@@ -135,7 +135,7 @@ PLANS = [
         "points": ["Salvation and devotion", "The power of the Holy Spirit", "Unity and generosity",
                    "Cultural impact and lasting spiritual growth"],
         "who": "For anyone who wants a faith that grows, not one that just gets by.",
-        "book": {"title": 'Seven Seeds for Flourishing', "cover": 'seven-seeds', "link": 'AMZ_SEVEN_SEEDS', "by": 'Hazen Stevens with Billy Humphrey', "desc": 'Seven seeds from the Book of Acts that nurture flourishing in every part of life.'},
+        "book": {"title": 'Seven Seeds for Flourishing', "cover": 'seven-seeds', "link": 'AMZ_SEVEN_SEEDS', "by": 'Hazen Stevens, foreword by Billy Humphrey', "desc": 'Seven seeds from the Book of Acts that nurture flourishing in every part of life.'},
         "blogs": ['what-is-the-church', 'of-one-accord-discovering-the-power-of-unity-in-your-home'],
     },
     {
