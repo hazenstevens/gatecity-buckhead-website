@@ -174,7 +174,7 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
-NOINDEX = ("404", "thanks", "visit-thanks", "webinar-thanks", "christmas-thanks")  # christmas-eve, cohort, assessment: public as of Nov 3 2026
+NOINDEX = ("404", "cfk-printables-holiday", "thanks", "visit-thanks", "webinar-thanks", "christmas-thanks")  # christmas-eve, cohort, assessment: public as of Nov 3 2026
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.
@@ -201,6 +201,8 @@ PAGES = {
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
     "pledge":            ("pledge.html",                    "Give | GateCity Buckhead",                "Give to GateCity Buckhead — one-time or recurring, and become one of the 99 partners helping us reach the one.", False),
     "99-for-the-1":      ("99-for-the-1.html",              "99 for the 1 | GateCity Buckhead",        "Jesus left the 99 to go after the one. We're believing for 99 partners — 90 individuals and 9 churches — to sustain and expand GateCity Buckhead.", False),
+    "cfk-printables":    ("cfk-printables.html", "The Best Gift: Holiday Series Kids Curriculum | Christ Formed Kids", "Eight Sunday lessons for preschool through 5th grade on gratitude and Christ coming near, with weekly coloring pages, kids journals and a parent guide. From Christ Formed Kids at GateCity Buckhead.", True),
+    "cfk-printables-holiday": ("cfk-printables-holiday.html", "Holiday Series Printables | Christ Formed Kids", "Printable lessons and coloring pages for The Best Gift Holiday Series.", True),
     "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
     "cohort":            ("cohort.html",                    "Digital Discipleship Cohort | GateCity Buckhead", "Walk with Jesus daily and grow closer to Him than ever before. An online discipleship cohort from GateCity Buckhead: community, prayer, and simple weekly rhythms. Next cohort starts January 10, 2027.", True),
     "assessment":        ("assessment/index.html",         "Your Walk with Jesus Assessment | GateCity Buckhead", "A free, private snapshot of where you are in your walk with Jesus, with personal growth recommendations.", True),

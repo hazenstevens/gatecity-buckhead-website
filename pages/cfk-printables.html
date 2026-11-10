@@ -1,0 +1,461 @@
+<!--
+==========================================================================
+ CHRIST FORMED KIDS · HOLIDAY SERIES LANDING PAGE   (gatecitybuckhead.com/cfk-printables)
+ The QR code in the Holiday Series book points here.
+ PUBLIC page: no password, can appear in search. Approved design.
+ Paste this whole block into ONE Code / Custom HTML / Embed block.
+ DO NOT redesign, restyle, re-color, re-font, or rebuild this section.
+ The ONLY edits allowed:
+   1. Replace each  src="cfk-....png"  and  href="cfk-....pdf"  with the URL the
+      file gets after uploading it to the website's media/file library.
+   2. (Landing page only) connect <form id="cfk-feedback-form"> to the site's form tool.
+ All styles are scoped under #cfk-printables so they won't touch the rest of the site.
+==========================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+/* Layout: a single centered column on white, framed by the red/green bubbles from the Holiday Series covers. */
+#cfk-printables{
+  --cfk-green:#225d3f;   /* Canva: crest + wordmark green */
+  --cfk-sage:#bad1c6;    /* Canva: grade-label / "Scan to download" boxes */
+  --cfk-yellow:#fbcf62;  /* Canva: yellow cover bubbles + cross */
+  --cfk-blue:#1e74c4;    /* Canva: yellow cover ring + bubbles */
+  --cfk-red:#d61e1e;     /* Canva: holiday cover ring + bubbles */
+  --cfk-ink:#000000;     /* Canva: headline/body black */
+  --cfk-paper:#ffffff;
+  --cfk-sage-soft:#e6eee9;
+  --cfk-muted:#3f4a44;
+  --cfk-sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --cfk-serif:"Gelasio",Georgia,"Times New Roman",serif;
+  all:initial; display:block; box-sizing:border-box;
+  background:var(--cfk-paper); color:var(--cfk-ink);
+  font-family:var(--cfk-sans); font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+#cfk-printables *,#cfk-printables *::before,#cfk-printables *::after{box-sizing:border-box;margin:0;padding:0}
+#cfk-printables [hidden]{display:none!important}
+#cfk-printables img{max-width:100%;height:auto;display:block}
+#cfk-printables a{color:inherit}
+#cfk-printables .cfk-wrap{max-width:1040px;margin:0 auto;padding-inline:20px}
+#cfk-printables section{position:relative;overflow:hidden}
+
+/* Canva bubbles: circles at 40% opacity, placed exactly as on the covers */
+#cfk-printables .cfk-layer{position:absolute;width:min(520px,78%);aspect-ratio:842/1080;pointer-events:none;z-index:0}
+#cfk-printables .cfk-layer.tr{top:0;right:0}
+#cfk-printables .cfk-layer.tl{top:0;left:0}
+#cfk-printables .cfk-layer.br{bottom:0;right:0}
+#cfk-printables .cfk-layer.bl{bottom:0;left:0}
+#cfk-printables .cfk-b{position:absolute;aspect-ratio:1;border-radius:50%;opacity:.4}
+#cfk-printables .cfk-z{position:relative;z-index:1}
+
+/* Type */
+#cfk-printables h1,#cfk-printables h2,#cfk-printables h3{font-family:var(--cfk-sans);font-weight:700;line-height:1.1;text-wrap:balance;color:var(--cfk-ink)}
+#cfk-printables h1{font-size:clamp(2.6rem,7vw,4.4rem);letter-spacing:-.01em}
+#cfk-printables h2{font-size:clamp(1.9rem,4.5vw,2.6rem)}
+#cfk-printables h3{font-size:1.2rem}
+#cfk-printables p{max-width:62ch}
+#cfk-printables .cfk-label{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cfk-green)}
+
+/* Buttons */
+#cfk-printables .cfk-btn{display:inline-flex;align-items:center;gap:.55em;font:700 1rem/1 var(--cfk-sans);text-decoration:none;padding:.95em 1.35em;border-radius:6px;border:2px solid var(--cfk-green);transition:background .15s,color .15s}
+#cfk-printables .cfk-btn.solid{background:var(--cfk-green);color:#fff}
+#cfk-printables .cfk-btn.solid:hover{background:#174630;border-color:#174630}
+#cfk-printables .cfk-btn.line{background:#fff;color:var(--cfk-green)}
+#cfk-printables .cfk-btn.line:hover{background:var(--cfk-sage-soft)}
+#cfk-printables .cfk-btn small{font-weight:400;font-size:.8em;opacity:.8}
+#cfk-printables .cfk-btn svg{width:1.05em;height:1.05em;flex:none}
+#cfk-printables a:focus-visible,#cfk-printables button:focus-visible,#cfk-printables input:focus-visible,#cfk-printables select:focus-visible,#cfk-printables textarea:focus-visible{outline:3px solid var(--cfk-blue);outline-offset:2px}
+
+/* HERO */
+#cfk-printables .cfk-hero{padding-block:56px 48px;text-align:center}
+#cfk-printables .cfk-hero .cfk-crest{width:clamp(150px,24vw,210px);margin:0 auto 22px}
+#cfk-printables .cfk-hero .cfk-sub{margin:18px auto 0;font-size:1.2rem}
+#cfk-printables .cfk-scan{margin:34px auto 0;max-width:640px;background:var(--cfk-sage);padding:26px 22px 24px;display:grid;gap:18px;justify-items:center}
+#cfk-printables .cfk-scan .cfk-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+#cfk-printables .cfk-scan p{font-size:.95rem}
+#cfk-printables .cfk-jump{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:.95rem}
+#cfk-printables .cfk-jump a{color:var(--cfk-green);font-weight:700;text-underline-offset:3px}
+
+/* ABOUT */
+#cfk-printables .cfk-about{padding-block:64px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-about .cfk-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:44px;align-items:start}
+#cfk-printables .cfk-books{position:sticky;top:24px;margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;padding:0 4px}
+#cfk-printables .cfk-kit{grid-column:1/-1;text-align:center;display:grid;gap:6px;margin-bottom:30px}
+#cfk-printables .cfk-kit h3{font-size:1.35rem}
+#cfk-printables .cfk-book{position:relative;background:#fff;border-radius:2px 5px 5px 2px;overflow:hidden;box-shadow:0 1px 2px rgba(20,40,30,.18),0 14px 28px rgba(20,40,30,.18)}
+#cfk-printables .cfk-book::after{content:"";position:absolute;inset:0 auto 0 0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.14),rgba(0,0,0,0))}
+#cfk-printables .cfk-book img{width:100%;display:block}
+#cfk-printables .cfk-book.b1{transform:rotate(-7deg) translateX(16%);z-index:1}
+#cfk-printables .cfk-book.b2{transform:rotate(-2deg) translate(5%,-5%);z-index:2}
+#cfk-printables .cfk-book.b3{transform:rotate(2deg) translate(-5%,-5%);z-index:3}
+#cfk-printables .cfk-book.b4{transform:rotate(7deg) translateX(-16%);z-index:2}
+#cfk-printables .cfk-books figcaption{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px;gap:6px;text-align:center;font-size:.72rem;line-height:1.4;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cfk-green)}
+#cfk-printables .cfk-about .cfk-copy{display:grid;gap:16px;min-width:0}
+#cfk-printables .cfk-pieces{list-style:none;display:grid;gap:10px;margin-top:4px}
+#cfk-printables .cfk-pieces li{padding-left:18px;position:relative}
+#cfk-printables .cfk-pieces li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--cfk-green)}
+#cfk-printables .cfk-launch{background:var(--cfk-sage);padding:26px 24px;display:grid;gap:12px}
+#cfk-printables .cfk-launch .cfk-when{font-size:2.4rem;font-weight:700;line-height:1;color:var(--cfk-green)}
+#cfk-printables .cfk-launch ol{list-style:none;display:grid;gap:0;border-top:1px solid rgba(34,93,63,.35)}
+#cfk-printables .cfk-launch li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(34,93,63,.35);font-size:.95rem}
+#cfk-printables .cfk-launch li b{font-weight:700}
+#cfk-printables .cfk-launch li span{color:var(--cfk-muted);white-space:nowrap}
+
+/* HOLIDAY BAND (holiday cover look) */
+#cfk-printables .cfk-holiday{padding-block:72px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-holiday .cfk-grid{display:grid;grid-template-columns:240px 1fr;gap:44px;align-items:center}
+#cfk-printables .cfk-holiday .cfk-copy{min-width:0;display:grid;gap:14px}
+#cfk-printables .cfk-holiday h2{font-family:var(--cfk-serif);font-weight:700;font-size:clamp(2.4rem,6vw,3.6rem);letter-spacing:0}
+#cfk-printables .cfk-holiday .cfk-kicker{font-family:var(--cfk-serif);font-size:1.45rem;line-height:1.2}
+#cfk-printables .cfk-holiday p{font-family:var(--cfk-serif);font-size:1.05rem}
+#cfk-printables .cfk-arcs{display:grid;gap:6px;font-family:var(--cfk-serif);font-style:italic;font-weight:700;font-size:1.05rem}
+#cfk-printables .cfk-pairs{font-family:var(--cfk-serif);font-style:italic;font-size:.98rem;color:var(--cfk-muted)}
+
+/* LESSONS */
+#cfk-printables .cfk-lessons{padding-block:72px;background:var(--cfk-sage-soft)}
+#cfk-printables .cfk-head{display:grid;gap:12px;margin-bottom:34px}
+#cfk-printables .cfk-inweek{display:flex;flex-wrap:wrap;gap:8px}
+#cfk-printables .cfk-chip{background:#fff;border:1px solid var(--cfk-sage);padding:6px 12px;font-size:.88rem}
+#cfk-printables .cfk-arc{margin-top:30px}
+#cfk-printables .cfk-ribbon{display:inline-block;background:var(--cfk-green);color:#fff;font-weight:700;font-size:1.05rem;padding:10px 34px;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 50%,100% 100%,0 100%,14px 50%);margin-bottom:14px}
+#cfk-printables .cfk-list{list-style:none;display:grid;gap:10px}
+#cfk-printables .cfk-week{background:#fff;display:grid;grid-template-columns:92px 1fr auto;gap:18px;align-items:center;padding:18px 20px}
+#cfk-printables .cfk-num{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cfk-green)}
+#cfk-printables .cfk-num b{display:block;font-size:2rem;letter-spacing:0;line-height:1}
+#cfk-printables .cfk-week .cfk-txt{min-width:0;display:grid;gap:4px}
+#cfk-printables .cfk-week .cfk-idea{font-size:.98rem}
+#cfk-printables .cfk-week .cfk-ref{font-size:.86rem;color:var(--cfk-muted)}
+#cfk-printables .cfk-week .cfk-btn{padding:.8em 1.1em;font-size:.95rem}
+#cfk-printables .cfk-all{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* COLORING */
+#cfk-printables .cfk-color{padding-block:72px}
+#cfk-printables .cfk-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#cfk-printables .cfk-card{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;background:#fff;border:1px solid var(--cfk-sage);text-decoration:none;color:inherit}
+#cfk-printables .cfk-card:hover{border-color:var(--cfk-green);box-shadow:0 0 0 1px var(--cfk-green)}
+#cfk-printables .cfk-card .cfk-ctxt{display:grid;gap:3px;min-width:0}
+#cfk-printables .cfk-card .cfk-ctitle{font-weight:700;font-size:1rem;line-height:1.3}
+#cfk-printables .cfk-card .cfk-dl{flex:none;font-size:.9rem;font-weight:700;color:var(--cfk-green);display:flex;align-items:center;gap:.4em}
+#cfk-printables .cfk-card .cfk-dl svg{width:1em;height:1em}
+
+/* FEEDBACK */
+#cfk-printables .cfk-feedback{padding-block:72px 120px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-feedback .cfk-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:44px;align-items:start}
+#cfk-printables .cfk-feedback .cfk-copy{display:grid;gap:14px;min-width:0}
+#cfk-printables form{background:var(--cfk-sage);padding:26px 24px;display:grid;gap:16px;min-width:0}
+#cfk-printables .cfk-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#cfk-printables label{display:grid;gap:6px;font-weight:700;font-size:.92rem}
+#cfk-printables label span.opt{font-weight:400;color:var(--cfk-muted)}
+#cfk-printables input,#cfk-printables select,#cfk-printables textarea{width:100%;font:400 1rem/1.4 var(--cfk-sans);color:var(--cfk-ink);background:#fff;border:1px solid rgba(34,93,63,.45);border-radius:4px;padding:.7em .8em}
+#cfk-printables textarea{min-height:150px;resize:vertical}
+#cfk-printables form .cfk-btn{justify-self:start;cursor:pointer}
+#cfk-printables .cfk-thanks{background:#fff;padding:18px;font-weight:700;color:var(--cfk-green)}
+
+/* FOOTER */
+#cfk-printables .cfk-foot{padding-block:36px 40px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-foot .cfk-z{display:grid;gap:12px;justify-items:center;text-align:center}
+#cfk-printables .cfk-foot img.cfk-word{width:220px}
+#cfk-printables .cfk-foot p{font-size:.82rem;color:var(--cfk-muted)}
+
+@media (max-width:820px){
+  #cfk-printables .cfk-books{position:static;margin-top:0;max-width:460px;width:100%;justify-self:center;order:-1}
+  #cfk-printables .cfk-about .cfk-grid,#cfk-printables .cfk-feedback .cfk-grid,#cfk-printables .cfk-holiday .cfk-grid{grid-template-columns:1fr}
+  #cfk-printables .cfk-holiday .cfk-crest{width:170px}
+  #cfk-printables .cfk-cards{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  #cfk-printables{font-size:16px}
+  #cfk-printables .cfk-week{grid-template-columns:1fr;gap:10px}
+  #cfk-printables .cfk-num b{display:inline;font-size:1rem;margin-left:.3em}
+  #cfk-printables .cfk-week .cfk-btn{justify-self:start}
+  #cfk-printables .cfk-two{grid-template-columns:1fr}
+  #cfk-printables .cfk-btn{font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){#cfk-printables *{transition:none!important}}
+#cfk-printables .cfk-row{display:flex;flex-wrap:wrap;gap:12px}
+#cfk-printables .cfk-verse{font-size:1.05rem;font-style:italic;color:var(--cfk-green)}
+#cfk-printables .cfk-verse span{font-style:normal;font-size:.85rem;font-weight:700;letter-spacing:.04em;margin-left:.4em}
+
+#cfk-printables .cfk-faq{padding-block:64px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-qs{display:grid;border-top:1px solid var(--cfk-sage);max-width:820px}
+#cfk-printables .cfk-q{border-bottom:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-q summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font-weight:700;font-size:1.05rem}
+#cfk-printables .cfk-q summary::-webkit-details-marker{display:none}
+#cfk-printables .cfk-q summary::after{content:"+";flex:none;font-size:1.4rem;line-height:1;color:var(--cfk-green)}
+#cfk-printables .cfk-q[open] summary::after{content:"–"}
+#cfk-printables .cfk-q p{padding:0 0 18px;color:var(--cfk-muted)}
+#cfk-printables .cfk-q a,#cfk-printables .cfk-foot a{color:var(--cfk-green);font-weight:700}
+
+#cfk-printables .cfk-map{padding-block:64px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-years{display:grid;gap:40px}
+#cfk-printables .cfk-year{display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:center}
+#cfk-printables .cfk-year h3{font-size:1.35rem;text-transform:uppercase;letter-spacing:.04em;color:var(--cfk-green)}
+#cfk-printables .cfk-mrow{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+#cfk-printables .cfk-m{display:grid;gap:4px;align-content:start;text-align:center;padding:16px 10px;border:1px solid var(--cfk-sage);border-top:5px solid var(--cfk-green);background:#fff;min-width:0}
+#cfk-printables .cfk-m b{font-size:1rem;line-height:1.2;text-wrap:balance;color:var(--cfk-ink)}
+#cfk-printables .cfk-m .cfk-mw{font-weight:700;font-size:.88rem;color:var(--cfk-green)}
+#cfk-printables .cfk-m .cfk-ms{font-size:.82rem;color:var(--cfk-muted)}
+#cfk-printables .cfk-m.is-now{background:var(--cfk-sage-soft);border-color:var(--cfk-green)}
+#cfk-printables .cfk-now{justify-self:center;margin-top:6px;white-space:nowrap;background:var(--cfk-green);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+
+#cfk-printables .cfk-grp{grid-column:span 2;display:grid;gap:6px;align-content:start;padding:12px 0 14px;border:1px solid var(--cfk-sage);border-top:5px solid var(--cfk-green);background:#fff}
+#cfk-printables .cfk-grp.is-now{background:var(--cfk-sage-soft);border-color:var(--cfk-green)}
+#cfk-printables .cfk-gl{text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cfk-green)}
+#cfk-printables .cfk-gin{display:grid;grid-template-columns:1fr 1fr}
+#cfk-printables .cfk-grp .cfk-m{border:0;background:transparent;padding:4px 10px}
+#cfk-printables .cfk-grp .cfk-m+.cfk-m{border-left:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-grp .cfk-now{margin-top:4px}
+@media (max-width:980px){#cfk-printables .cfk-year{grid-template-columns:1fr}#cfk-printables .cfk-mrow{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){#cfk-printables .cfk-mrow{grid-template-columns:1fr}#cfk-printables .cfk-grp{grid-column:auto}}
+
+#cfk-printables .cfk-series{padding-block:64px;border-top:1px solid var(--cfk-sage);background:var(--cfk-sage-soft)}
+#cfk-printables .cfk-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#cfk-printables .cfk-tile{background:#fff;border:1px solid var(--cfk-sage);border-top:5px solid var(--cfk-green);padding:22px;display:grid;grid-template-rows:auto 1fr;gap:16px}
+#cfk-printables .cfk-tile .cfk-tcrest{width:88px}
+#cfk-printables .cfk-tile .cfk-tbody{display:grid;gap:8px;min-width:0;grid-template-rows:auto auto 1fr auto}
+#cfk-printables .cfk-tile h3{font-size:1.4rem}
+#cfk-printables .cfk-tile p{font-size:.96rem}
+#cfk-printables .cfk-tile .cfk-row{margin-top:10px;align-self:end}
+#cfk-printables .cfk-tile .cfk-btn{padding:.75em 1em;font-size:.92rem}
+#cfk-printables .cfk-soon{display:inline-block;background:var(--cfk-sage-soft);color:var(--cfk-green);font-weight:700;font-size:.85rem;padding:.65em .9em;border:1px dashed var(--cfk-sage)}
+@media (max-width:900px){#cfk-printables .cfk-tiles{grid-template-columns:1fr}#cfk-printables .cfk-tile{grid-template-rows:none;grid-template-columns:88px 1fr;align-items:start}}
+@media (max-width:560px){#cfk-printables .cfk-tile{grid-template-columns:1fr}#cfk-printables .cfk-tile .cfk-tcrest{width:76px}}
+
+#cfk-printables .cfk-holiday .cfk-row{margin-top:8px}
+#cfk-printables .cfk-pw{font-family:var(--cfk-sans);font-size:.92rem;color:var(--cfk-muted)}
+#cfk-printables .cfk-back{display:inline-block;margin-bottom:18px;font-size:.92rem;font-weight:700;color:var(--cfk-green);text-underline-offset:3px}
+
+/* HOLIDAY LANDING additions */
+#cfk-printables .cfk-hero .cfk-label{margin-inline:auto}
+#cfk-printables .cfk-hero .cfk-kick{font-family:var(--cfk-serif);font-weight:700;font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.2;margin-top:10px}
+#cfk-printables .cfk-hero .cfk-cta{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+#cfk-printables .cfk-hero .cfk-pw{margin:14px auto 0;max-width:46ch}
+#cfk-printables .cfk-books.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+#cfk-printables .cfk-books.three figcaption{grid-template-columns:repeat(3,minmax(0,1fr))}
+#cfk-printables .cfk-books.three .b1{transform:rotate(-6deg) translateX(12%);z-index:1}
+#cfk-printables .cfk-books.three .b2{transform:translateY(-6%);z-index:3}
+#cfk-printables .cfk-books.three .b3{transform:rotate(6deg) translateX(-12%);z-index:2}
+#cfk-printables .cfk-weeks{padding-block:64px;border-top:1px solid var(--cfk-sage);background:var(--cfk-sage-soft)}
+#cfk-printables .cfk-arcs2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+#cfk-printables .cfk-arcs2 .cfk-arc{margin-top:0;min-width:0}
+#cfk-printables .cfk-arcs2 .cfk-week{grid-template-columns:70px 1fr;padding:16px 18px}
+#cfk-printables .cfk-get{margin-top:34px;background:#fff;border:1px solid var(--cfk-sage);border-top:5px solid var(--cfk-green);padding:22px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+#cfk-printables .cfk-get .cfk-gtxt{display:grid;gap:4px;min-width:0;flex:1 1 320px}
+@media (max-width:820px){#cfk-printables .cfk-arcs2{grid-template-columns:1fr}#cfk-printables .cfk-books.three{max-width:400px}}
+@media (max-width:560px){#cfk-printables .cfk-arcs2 .cfk-week{grid-template-columns:1fr}#cfk-printables .cfk-hero .cfk-cta .cfk-btn{justify-content:center}}
+#cfk-printables .cfk-next{padding-block:64px;border-top:1px solid var(--cfk-sage)}
+#cfk-printables .cfk-nbox{border:1px solid var(--cfk-sage);border-top:5px solid var(--cfk-green);padding:22px 22px 24px;display:grid;gap:16px;justify-items:start}
+#cfk-printables .cfk-ntag{background:var(--cfk-sage-soft);color:var(--cfk-green);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:.45em .8em;border:1px dashed var(--cfk-sage)}
+#cfk-printables .cfk-nlist{list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px}
+#cfk-printables .cfk-nlist li{display:flex;align-items:baseline;gap:8px}
+#cfk-printables .cfk-nlist b{font-size:1.05rem}
+#cfk-printables .cfk-nlist span{font-size:.85rem;font-weight:700;color:var(--cfk-green);white-space:nowrap}
+</style>
+
+<div id="cfk-printables">
+
+  <!-- HERO · Holiday Series -->
+  <section class="cfk-hero" aria-labelledby="cfk-title">
+    <div class="cfk-layer tr" aria-hidden="true">
+      <span class="cfk-b" style="left:75.2%;top:-10.3%;width:41.8%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:60.5%;top:-9.3%;width:22.7%;background:var(--cfk-green)"></span>
+      <span class="cfk-b" style="left:82.9%;top:11.1%;width:28.5%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:93.5%;top:4.3%;width:17.3%;background:var(--cfk-green)"></span>
+    </div>
+    <div class="cfk-layer tl" aria-hidden="true">
+      <span class="cfk-b" style="left:2.5%;top:-5.6%;width:10.6%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:11.4%;top:2.6%;width:6.9%;background:var(--cfk-green)"></span>
+      <span class="cfk-b" style="left:3.2%;top:4.8%;width:5.1%;background:var(--cfk-green)"></span>
+    </div>
+    <div class="cfk-wrap cfk-z">
+      <img class="cfk-crest" src="/assets/cfk/cfk-crest-holiday.png" width="640" height="640" alt="Christ Formed Kids 2026 crest">
+      <p class="cfk-label">Christ Formed Kids · Sunday Guides · PreK–5th grade</p>
+      <h1 id="cfk-title" style="margin-top:12px">Holiday Series</h1>
+      <p class="cfk-kick" style="margin-inline:auto">The Best Gift</p>
+      <p class="cfk-sub">Eight Sunday lessons on gratitude and Christ coming near, with a preschool coloring page every week.</p>
+      <div class="cfk-cta">
+        <a class="cfk-btn solid" href="/cfk-printables-holiday"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Open the printables</a>
+        <a class="cfk-btn line" href="https://www.amazon.com/dp/B0HLTJDTMF" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.4 11h11l2-8H6.2"/></svg>Buy on Amazon</a>
+      </div>
+      <p class="cfk-pw">Already have the book? The password is printed under the QR code on the “Your Printables” page.</p>
+      <nav class="cfk-jump" aria-label="On this page">
+        <a href="#cfk-about">What’s inside</a><a href="#cfk-weeks">The 8 weeks</a><a href="#cfk-map">Full curriculum</a><a href="#cfk-faq">FAQ</a><a href="#cfk-feedback">Leave feedback</a>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="cfk-about" id="cfk-about" aria-labelledby="cfk-about-h">
+    <div class="cfk-wrap cfk-grid">
+      <div class="cfk-copy">
+        <p class="cfk-label">What’s inside</p>
+        <h2 id="cfk-about-h">A family formation experience for the holidays</h2>
+        <p class="cfk-verse">“…until Christ is formed in you.” <span>Galatians 4:19</span></p>
+        <p>Christ Formed Kids grows out of one belief: kids are never too young to know God, hear his voice, and walk with him. The Holiday Series carries that through the season, from gratitude in November to the birth of Jesus in December.</p>
+        <p>Spiritual formation goes deepest when church and home move together. So the Holiday Series comes with three parts:</p>
+        <ul class="cfk-pieces">
+          <li><b>Sunday Guides</b> for church or the classroom: an Elementary Guide (35–45 min) and a Preschool Guide (20–23 min) built on the same Big Idea each week.</li>
+          <li><b>The Best Gift kids devotional journal</b> for 1st–2nd and 3rd–5th grade, where kids read, write out Scripture, draw, and pray during the week.</li>
+          <li><b>A parent guide</b> for a 25–30 minute family gathering around God’s Word at the end of each week.</li>
+        </ul>
+        <p>Whether you lead a kids ministry, teach a classroom or co-op, or are raising kids at home, we invite you to walk with the children in your care on a journey of knowing God. The full Christ Formed Kids curriculum launches in 2027.</p>
+      </div>
+      <figure class="cfk-books three" aria-labelledby="cfk-kit-h">
+        <div class="cfk-kit"><p class="cfk-label">Holiday Series</p><h3 id="cfk-kit-h">The Family Formation Experience</h3></div>
+        <div class="cfk-book b1"><img src="/assets/cfk/cfk-cover-holiday-sunday-guides.png" width="393" height="509" alt="Holiday Series Sunday Guides, PreK–Elementary"></div>
+        <div class="cfk-book b2"><img src="/assets/cfk/cfk-cover-holiday-journal-1-2.png" width="393" height="509" alt="The Best Gift kids devotional, 1st–2nd grade"></div>
+        <div class="cfk-book b3"><img src="/assets/cfk/cfk-cover-holiday-journal-3-5.png" width="393" height="509" alt="The Best Gift kids devotional, 3rd–5th grade"></div>
+        <figcaption><span>Sunday<br>Guides</span><span>Journal<br>1st–2nd</span><span>Journal<br>3rd–5th</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- THE 8 WEEKS -->
+  <section class="cfk-weeks" id="cfk-weeks" aria-labelledby="cfk-weeks-h">
+    <div class="cfk-wrap">
+      <div class="cfk-head">
+        <p class="cfk-label">The 8 weeks</p>
+        <h2 id="cfk-weeks-h">Two short series, one season</h2>
+        <p>Four weeks on gratitude, then four weeks on Christ coming near.</p>
+      </div>
+      <div class="cfk-arcs2">
+        <div class="cfk-arc">
+          <span class="cfk-ribbon">Gratitude</span>
+          <ol class="cfk-list">
+          <li class="cfk-week"><div class="cfk-num">Week<b>1</b></div><div class="cfk-txt"><h3>Remember</h3><p class="cfk-idea">Gratitude begins with remembering. We become ungrateful when we lose sight of what God has already done for us.</p><p class="cfk-ref">Psalm 103:2</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>2</b></div><div class="cfk-txt"><h3>Receive</h3><p class="cfk-idea">Gratitude grows when we stop seeing life as something we are owed and start receiving it as a gift.</p><p class="cfk-ref">James 1:17</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>3</b></div><div class="cfk-txt"><h3>Rejoice</h3><p class="cfk-idea">We can say thank you to God even on hard days, not just good ones.</p><p class="cfk-ref">1 Thessalonians 5:16–18</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>4</b></div><div class="cfk-txt"><h3>Respond</h3><p class="cfk-idea">Real gratitude shows up in how we live: generous, worshipful, and centered on God.</p><p class="cfk-ref">Colossians 3:15–17</p></div></li>
+          </ol>
+        </div>
+        <div class="cfk-arc">
+          <span class="cfk-ribbon">Christ Came Near</span>
+          <ol class="cfk-list">
+          <li class="cfk-week"><div class="cfk-num">Week<b>5</b></div><div class="cfk-txt"><h3>Harvest</h3><p class="cfk-idea">Jesus came for the whole world, not one kind of person.</p><p class="cfk-ref">Luke 2:10</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>6</b></div><div class="cfk-txt"><h3>Home</h3><p class="cfk-idea">God did not wait for a nicer room. He filled the humble one that was there, and he does the same with us.</p><p class="cfk-ref">Luke 2:7</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>7</b></div><div class="cfk-txt"><h3>Heart</h3><p class="cfk-idea">Jesus doesn’t want to stay nearby. He wants to be let all the way in.</p><p class="cfk-ref">Revelation 3:20</p></div></li>
+          <li class="cfk-week"><div class="cfk-num">Week<b>8</b></div><div class="cfk-txt"><h3>Hands</h3><p class="cfk-idea">Christ came near to us so that we would go near to others. Now it’s our turn to tell.</p><p class="cfk-ref">Luke 2:17</p></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="cfk-get">
+        <div class="cfk-gtxt">
+          <h3>Printables for every week</h3>
+          <p>Elementary and Preschool lesson PDFs plus all 8 coloring pages. Print as many copies as your group needs.</p>
+        </div>
+        <div class="cfk-row">
+          <a class="cfk-btn solid" href="/cfk-printables-holiday"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Open the printables</a>
+          <a class="cfk-btn line" href="https://www.amazon.com/dp/B0HLTJDTMF" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.4 11h11l2-8H6.2"/></svg>Buy on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMING 2027 · full curriculum teaser -->
+  <section class="cfk-next" id="cfk-map" aria-labelledby="cfk-map-h">
+    <div class="cfk-wrap">
+      <div class="cfk-head">
+        <p class="cfk-label">Coming in 2027</p>
+        <h2 id="cfk-map-h">The full curriculum</h2>
+        <p>The Holiday Series is your first look. Here’s what’s ahead: two years of Sunday lessons for preschool through 5th grade.</p>
+      </div>
+      <div class="cfk-nbox">
+        <span class="cfk-ntag">Coming 2027</span>
+        <ul class="cfk-nlist"><li><b>Who Is God?</b><span>12 weeks</span></li><li><b>Who Is Jesus?</b><span>12 weeks</span></li><li><b>Who Is the Holy Spirit?</b><span>12 weeks</span></li><li><b>Fruit of the Spirit</b><span>12 weeks</span></li><li><b>Identity &amp; Character</b><span>12 weeks</span></li><li><b>Holy Habits</b><span>12 weeks</span></li><li><b>Living on Mission</b><span>12 weeks</span></li><li><b>The Beatitudes</b><span>12 weeks</span></li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="cfk-faq" id="cfk-faq" aria-labelledby="cfk-faq-h">
+    <div class="cfk-wrap">
+      <div class="cfk-head">
+        <p class="cfk-label">FAQ</p>
+        <h2 id="cfk-faq-h">Common questions</h2>
+      </div>
+      <div class="cfk-qs">
+        <details class="cfk-q"><summary>How do I get the printables?</summary><p>Buy the Holiday Series Sunday Guides on Amazon. The password is printed under the QR code on the “Your Printables” page inside the book. Tap <b>Open the printables</b> and enter it. You’ll use the same password to open each PDF.</p></details>
+        <details class="cfk-q"><summary>Can I make copies?</summary><p>Yes, within your own church, school, co-op, or household. One purchase covers the group that bought it, so print as many copies as you need for your leaders, classrooms, and kids. Please don’t share the files or the password outside that group, including with friends, family, or other ministries. Each one needs its own copy of the book.</p></details>
+        <details class="cfk-q"><summary>What ages is it for?</summary><p>Preschool through 5th grade. The preschool lessons are written for kids starting around age 3. Each week has an Elementary Guide (35–45 minutes) and a Preschool Guide (20–23 minutes) built on the same Big Idea.</p></details>
+        <details class="cfk-q"><summary>Is there take-home material for every age?</summary><p>Not yet. The kids devotional journals are for 1st–2nd grade and 3rd–5th grade. There isn’t a take-home journal for preschool yet. Preschoolers get a coloring page each week as part of the Sunday lesson.</p></details>
+        <details class="cfk-q"><summary>Can homeschool co-ops and Christian schools use it?</summary><p>Yes. The Holiday Series works for churches, homeschool co-ops, Christian schools, and families at home.</p></details>
+        <details class="cfk-q"><summary>Which Bible translation do you use?</summary><p>Scripture is quoted from the English Standard Version (ESV).</p></details>
+        <details class="cfk-q"><summary>The password isn’t working. What do I do?</summary><p>Email us at <a href="mailto:christformedkids@gatecitybuckhead.com">christformedkids@gatecitybuckhead.com</a> and mention the Holiday Series. We’ll help you get in.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEEDBACK -->
+  <section class="cfk-feedback" id="cfk-feedback" aria-labelledby="cfk-fb-h">
+    <div class="cfk-layer br" aria-hidden="true">
+      <span class="cfk-b" style="left:67.5%;top:84.2%;width:33.7%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:86.1%;top:94.0%;width:22.7%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:86.6%;top:65.6%;width:28.5%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:87.4%;top:78.2%;width:19.6%;background:var(--cfk-green)"></span>
+      <span class="cfk-b" style="left:79.7%;top:82.2%;width:4.3%;background:var(--cfk-green)"></span>
+      <span class="cfk-b" style="left:81.4%;top:75.5%;width:6.8%;background:var(--cfk-green)"></span>
+    </div>
+    <div class="cfk-layer bl" aria-hidden="true">
+      <span class="cfk-b" style="left:13.2%;top:90.3%;width:23.4%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:2.1%;top:91.7%;width:12.7%;background:var(--cfk-red)"></span>
+      <span class="cfk-b" style="left:11.0%;top:89.2%;width:7.5%;background:var(--cfk-green)"></span>
+    </div>
+    <div class="cfk-wrap cfk-grid cfk-z">
+      <div class="cfk-copy">
+        <p class="cfk-label">Feedback</p>
+        <h2 id="cfk-fb-h">Tell us how it went</h2>
+        <p>Taught the Holiday Series? Your notes help shape the full Christ Formed Kids curriculum before it launches in 2027.</p>
+      </div>
+      <!-- FORM HOOKUP: keep this markup and styling. Connect it to the site's own form
+           system (e.g. the platform's form/email notification, or a form service) so
+           submissions are emailed to the kids ministry team. Keep the field names. -->
+      <form id="cfk-feedback-form" name="cfk-feedback" action="/cfk-printables?feedback=thanks#cfk-feedback" method="post" data-netlify="true" netlify-honeypot="website"><input type="hidden" name="form-name" value="cfk-feedback"><p style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="cfk-two">
+          <label for="cfk-name"><span>Your name</span><input id="cfk-name" name="name" type="text" autocomplete="name" required></label>
+          <label for="cfk-email"><span>Email <span class="opt">(optional)</span></span><input id="cfk-email" name="email" type="email" autocomplete="email"></label>
+        </div>
+        <label for="cfk-org"><span>Church/Organization &amp; City</span><input id="cfk-org" name="church_organization_city" type="text" placeholder="e.g. Grace Fellowship, Decatur GA" required></label>
+        <input type="hidden" name="series" value="Holiday Series: The Best Gift">
+        <div class="cfk-two">
+          <label for="cfk-role"><span>How are you using it?</span><select id="cfk-role" name="setting">
+              <option value="">Choose one</option>
+              <option>Church kids ministry</option>
+              <option>Homeschool co-op</option>
+              <option>Christian school</option>
+              <option>Family at home</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label for="cfk-ages"><span>Ages you teach <span class="opt">(optional)</span></span>
+            <select id="cfk-ages" name="ages">
+              <option value="">Choose one</option>
+              <option>Preschool</option>
+              <option>Elementary</option>
+              <option>Both</option>
+            </select>
+          </label>
+        </div>
+        <label for="cfk-notes"><span>What worked well, and what would you change?</span><textarea id="cfk-notes" name="what_worked_what_would_you_change" required></textarea></label>
+        <button class="cfk-btn solid" type="submit">Send feedback</button>
+        <p class="cfk-thanks" id="cfk-thanks" hidden>Thank you! Your feedback was sent to the Christ Formed Kids team.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="cfk-foot">
+    <div class="cfk-wrap cfk-z">
+      <img class="cfk-word" src="/assets/cfk/cfk-wordmark-green.png" width="468" height="50" alt="Christ Formed Kids">
+      <p>Questions? Email <a href="mailto:christformedkids@gatecitybuckhead.com">christformedkids@gatecitybuckhead.com</a></p>
+      <p>© 2026 GateCity Buckhead and Christ Formed Kids.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* After a feedback form is sent, thank the person in place of the form. */
+(function(){if(!/[?&]feedback=thanks/.test(location.search))return;var f=document.getElementById('cfk-feedback-form');if(!f)return;var p=document.createElement('p');p.setAttribute('role','status');p.style.cssText='font-size:1.15rem;line-height:1.6;padding:1.25rem 0';p.textContent='Thank you! Your feedback went straight to the Christ Formed Kids team.';f.parentNode.replaceChild(p,f);})();
+</script>
