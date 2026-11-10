@@ -152,6 +152,12 @@ def ads_conversion(slug):
             "gtag('event','conversion',{send_to:'%s/%s',value:1.0,currency:'USD'});})();</script>"
             % (ADS_ID, label))
 
+# Key events for Google Analytics (imported into Google Ads as conversions):
+# a click to a YouVersion Bible plan = bible_plan_click, a click to buy a book = book_click.
+CLICK_EVENTS = ("document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;"
+    "var h=a.href||'';var n=/bible\\.com|youversion|bible\\.app/i.test(h)?'bible_plan_click':(/amazon\\.|amzn\\.to|a\\.co\\//i.test(h)?'book_click':'');"
+    "if(n)gtag('event',n,{link_url:h,page_path:location.pathname});},true);")
+
 def gtag():
     ids = [i for i in (GA4_ID, ADS_ID) if i]
     if not ids:
@@ -159,7 +165,7 @@ def gtag():
     cfg = "".join("gtag('config','%s');" % i for i in ids)
     return ('<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>\n'
             '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-            "gtag('js',new Date());%s</script>" % (ids[0], cfg))
+            "gtag('js',new Date());%s" % (ids[0], cfg) + CLICK_EVENTS + "</script>")
 
 SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Church",
 "name":"GateCity Buckhead","url":"https://gatecitybuckhead.com/","logo":"https://gatecitybuckhead.com/assets/img/logo.png",
