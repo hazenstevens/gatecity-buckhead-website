@@ -9,3 +9,9 @@
     </div>
   </div>
 </div>
+<script>
+/* Safety net: some link trackers encode "#" as %23 or %2523 (e.g. /cohort%2523masterclass).
+   Decode and send the visitor to the real page and section. */
+(function(){try{var p=location.pathname,d=p,i=0;while(/%25|%23/i.test(d)&&i<3){d=decodeURIComponent(d);i++;}
+if(d!==p&&d.indexOf('#')>0){location.replace(d+location.search);}}catch(e){}})();
+</script>
