@@ -10,8 +10,25 @@
   </div>
 </div>
 
+<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow">The library</div>
+    <h2 style="margin-top:6px">Browse by topic.</h2>
+    <div class="shelf-grid">
+{{BLOG_SHELVES}}
+      <a class="shelf-tile" href="/psalms/"><strong>Songs of Ascent</strong><span>15 psalm guides</span></a>
+      <a class="shelf-tile" href="/questions/"><strong>Your Biggest Questions</strong><span>Short answers</span></a>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
+    <div class="blog-search">
+      <div class="eyebrow">Latest posts</div>
+      <input type="search" id="blog-q" placeholder="Search the blog: forgiveness, Psalm 23, Holy Spirit..." aria-label="Search the blog">
+      <p class="blog-q-none" hidden>No posts match that yet. Try another word, or <a href="#newsletter">ask us</a>.</p>
+    </div>
     <div class="cards blog-grid">
 {{BLOG_CARDS}}
     </div>

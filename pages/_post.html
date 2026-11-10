@@ -1,7 +1,7 @@
 <article class="post">
   <div class="post-head">
     <div class="wrap narrow">
-      <a class="post-crumb" href="/blog/">&larr; Blog</a>
+      <div class="post-crumb"><a href="/blog/">&larr; Blog</a>{{POST_SHELF}}</div>
       <h1>{{POST_TITLE}}</h1>
       <div class="post-meta">
         <span>By {{POST_AUTHOR}}</span>
@@ -29,6 +29,8 @@
     <nav class="post-nav">{{POST_NAV}}</nav>
   </div>
 </article>
+{{POST_FEEDBACK}}
+{{POST_RELATED}}
 
 <section class="deep tight">
   <div class="wrap narrow" style="text-align:center">

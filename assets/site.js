@@ -202,3 +202,61 @@
       .then(function(){ btn.disabled=false; });
   });
 })();
+
+/* Blog library: search, helpfulness rating, private question and story forms (Nov 2026) */
+(function () {
+  var q = document.getElementById('blog-q');
+  if (q) {
+    var cards = [].slice.call(document.querySelectorAll('.blog-grid .post-card'));
+    var none = document.querySelector('.blog-q-none');
+    q.addEventListener('input', function () {
+      var words = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean), shown = 0;
+      cards.forEach(function (c) {
+        var t = c.textContent.toLowerCase();
+        var hit = words.every(function (w) { return t.indexOf(w) > -1; });
+        c.style.display = hit ? '' : 'none'; if (hit) shown++;
+      });
+      if (none) none.hidden = shown > 0;
+    });
+  }
+  var SB = 'https://egccpqcdpmvkkgdunpuc.supabase.co', KEY = 'sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda';
+  function rpc(fn, body) {
+    return fetch(SB + '/rest/v1/rpc/' + fn, { method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.ok ? r.json().catch(function () { return null; }) : null; }).catch(function () { return null; });
+  }
+  var card = document.querySelector('.fb-card');
+  if (card) {
+    var page = card.getAttribute('data-fb-page'), id = null;
+    var how = card.querySelector('.fb-how'), thanks = card.querySelector('.fb-thanks');
+    [].forEach.call(card.querySelectorAll('.fb-scale button'), function (b) {
+      b.addEventListener('click', function () {
+        if (card.getAttribute('data-done')) return;
+        card.setAttribute('data-done', '1');
+        [].forEach.call(card.querySelectorAll('.fb-scale button'), function (x) { x.classList.toggle('on', x === b); x.disabled = true; });
+        how.hidden = false; thanks.hidden = false;
+        rpc('blog_feedback_rate', { p_page: page, p_rating: +b.getAttribute('data-r') }).then(function (r) { id = r; });
+      });
+    });
+    var send = card.querySelector('.fb-send');
+    send.addEventListener('click', function () {
+      var note = card.querySelector('#fb-note').value.trim();
+      if (!note) return;
+      send.disabled = true;
+      var go = function () { if (id) rpc('blog_feedback_note', { p_id: id, p_note: note }); how.hidden = true; thanks.textContent = 'Thank you for telling us more.'; };
+      id ? go() : setTimeout(go, 1500);
+    });
+  }
+  [].forEach.call(document.querySelectorAll('form.fb-form'), function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = f.querySelector('button[type=submit]'); btn.disabled = true;
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() })
+        .then(function (r) {
+          if (!r.ok) throw 0;
+          [].forEach.call(f.querySelectorAll('label,button,.fb-sub'), function (el) { el.hidden = true; el.style.display = 'none'; });
+          f.querySelector('.fb-done').hidden = false;
+        })
+        .catch(function () { btn.disabled = false; alert('Sorry, that did not send. Please try again.'); });
+    });
+  });
+})();

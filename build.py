@@ -293,8 +293,69 @@ def post_card(p, heading="h3"):
     )
 
 
+def _collections():
+    from collections_data import COLLECTIONS
+    by_post = {}
+    for c in COLLECTIONS:
+        for s in c["posts"]:
+            by_post[s] = c
+    return COLLECTIONS, by_post
+
+
+FEEDBACK_HTML = """
+<section class="tight fb-wrap" id="respond">
+  <div class="wrap narrow">
+    <div class="fb-card" data-fb-page="{page}">
+      <h3>How helpful was this?</h3>
+      <div class="fb-scale" role="group" aria-label="How helpful was this?">
+        <button type="button" data-r="1">1</button><button type="button" data-r="2">2</button><button type="button" data-r="3">3</button><button type="button" data-r="4">4</button><button type="button" data-r="5">5</button>
+      </div>
+      <div class="fb-ends"><span>Not really</span><span>Very helpful</span></div>
+      <div class="fb-how" hidden>
+        <label for="fb-note">How so? <span class="fb-opt">(optional)</span></label>
+        <textarea id="fb-note" maxlength="2000" rows="3" placeholder="What helped, or what was missing?"></textarea>
+        <button type="button" class="btn btn-primary btn-sm fb-send">Send</button>
+      </div>
+      <p class="fb-thanks" hidden>Thank you. This helps us know what to write next.</p>
+    </div>
+    <div class="fb-forms">
+      <form class="fb-form" name="blog-question" method="post" data-netlify="true" netlify-honeypot="website">
+        <input type="hidden" name="form-name" value="blog-question"><input type="hidden" name="page" value="{page}">
+        <p class="fb-hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+        <h3>Ask a question privately</h3>
+        <p class="fb-sub">Your question comes straight to our pastors. It is never posted.</p>
+        <label>First name<input name="name" required maxlength="80" autocomplete="given-name"></label>
+        <label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label>
+        <label>Your question<textarea name="question" required maxlength="3000" rows="4"></textarea></label>
+        <button class="btn btn-outline btn-sm" type="submit">Send my question</button>
+        <p class="fb-done" hidden>Thank you. We'll read it and get back to you.</p>
+      </form>
+      <form class="fb-form" name="blog-story" method="post" data-netlify="true" netlify-honeypot="website">
+        <input type="hidden" name="form-name" value="blog-story"><input type="hidden" name="page" value="{page}">
+        <p class="fb-hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+        <h3>Share your story</h3>
+        <p class="fb-sub">How has God used this in your life?</p>
+        <label>First name<input name="name" required maxlength="80" autocomplete="given-name"></label>
+        <label>Email<input name="email" type="email" required maxlength="200" autocomplete="email"></label>
+        <label>Your story<textarea name="story" required maxlength="5000" rows="4"></textarea></label>
+        <label class="fb-check"><input type="checkbox" name="ok_to_share" value="yes"> It's OK to share my story on the website with my first name.</label>
+        <button class="btn btn-outline btn-sm" type="submit">Share my story</button>
+        <p class="fb-done" hidden>Thank you for sharing. We read every story.</p>
+      </form>
+    </div>
+  </div>
+</section>
+"""
+
+
 def render_blog(head, header, footer):
+    global BY_POST, SLUGS
     posts = load_posts()
+    COLLS, BY_POST = _collections()
+    SLUGS = {p["slug"]: p for p in posts}
+    for p in posts:
+        if p["slug"] not in BY_POST:
+            print("  WARNING: post not on any shelf: " + p["slug"])
     post_tpl = read("pages/_post.html")
     index_tpl = read("pages/_blog-index.html")
     outs = []
@@ -320,6 +381,17 @@ def render_blog(head, header, footer):
             "POST_BODY": p["body"],
             "POST_NAV": nav,
         }
+        c = BY_POST.get(p["slug"])
+        extra["POST_SHELF"] = (' &middot; <a href="/blog/topics/%s/">%s</a>' % (c["slug"], _html.escape(c["name"]))) if c else ""
+        rel = ""
+        if c:
+            same = [s for s in c["posts"] if s != p["slug"] and s in SLUGS][:3]
+            if same:
+                rel = ('<section class="tight related"><div class="wrap"><div class="eyebrow">More in %s</div>'
+                       '<div class="cards">%s</div><div class="btn-row" style="margin-top:22px"><a class="btn btn-outline" href="/blog/topics/%s/">See the whole shelf <span class="arrow">&rarr;</span></a></div></div></section>'
+                       % (_html.escape(c["name"]), "".join(post_card(SLUGS[s]) for s in same), c["slug"]))
+        extra["POST_RELATED"] = rel
+        extra["POST_FEEDBACK"] = FEEDBACK_HTML.replace("{page}", path)
         extra["POST_BODY"] = extra["POST_BODY"] + "\n" + post_ld(p)
         doc = (
             "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n%s</head>\n<body class=\"solid-header\">\n%s\n%s\n%s\n</body>\n</html>\n"
@@ -333,7 +405,10 @@ def render_blog(head, header, footer):
     # index
     cards = "\n".join(post_card(p) for p in posts)
     extra = {"TITLE": "Blog | GateCity Buckhead", "DESC": "Weekly teaching and reflections from the pastors and team at GateCity Buckhead.",
-             "PATH": "/blog/", "BLOG_CARDS": cards, "BLOG_COUNT": str(len(posts))}
+             "PATH": "/blog/", "BLOG_CARDS": cards, "BLOG_COUNT": str(len(posts)),
+             "BLOG_SHELVES": "\n".join(
+                 '<a class="shelf-tile" href="/blog/topics/%s/"><strong>%s</strong><span>%d posts</span></a>'
+                 % (c["slug"], _html.escape(c["name"]), len([s for s in c["posts"] if s in SLUGS])) for c in COLLS)}
     doc = (
         "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n%s</head>\n<body class=\"solid-header\">\n%s\n%s\n%s\n</body>\n</html>\n"
         % (fill(head, extra), fill(header), fill(index_tpl, extra), fill(footer))
@@ -341,6 +416,32 @@ def render_blog(head, header, footer):
     with open(os.path.join(ROOT, "blog", "index.html"), "w", encoding="utf-8") as f:
         f.write(doc)
     outs.append(("blog/", posts[0]["date"] if posts else datetime.date.today().isoformat()))
+    # shelf pages: /blog/topics/<slug>/
+    for c in COLLS:
+        items = [SLUGS[s] for s in c["posts"] if s in SLUGS]
+        others = "".join('<a class="shelf-tile small" href="/blog/topics/%s/"><strong>%s</strong></a>' % (o["slug"], _html.escape(o["name"]))
+                         for o in COLLS if o["slug"] != c["slug"])
+        links = "".join('<li><p><a href="%s"%s>%s</a></p></li>' % (h, ' target="_blank" rel="noopener"' if h.startswith("{{AMZ") else "", _html.escape(l)) for l, h in c["links"])
+        body = (
+            '<div class="pagehead"><div class="wrap">'
+            '<div class="eyebrow on-dark"><a href="/blog/" style="color:inherit">Blog</a> &middot; Library</div>'
+            '<h1>%s.</h1><p class="lede">%s</p></div></div>\n'
+            '<section><div class="wrap"><div class="cards blog-grid">%s</div></div></section>\n'
+            '<section class="tight wwj-band"><div class="wrap narrow prose"><div class="eyebrow">Go deeper</div><ul>%s</ul></div></section>\n'
+            '<section class="tight"><div class="wrap"><div class="eyebrow">More shelves</div><div class="shelf-grid">%s</div></div></section>\n'
+            % (_html.escape(c["name"]), _html.escape(c["blurb"]), "\n".join(post_card(x) for x in items), links, others)
+        )
+        cpath = "/blog/topics/%s/" % c["slug"]
+        extra = {"TITLE": "%s | GateCity Buckhead Blog" % c["name"], "DESC": c["blurb"], "PATH": cpath}
+        doc = (
+            "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n%s</head>\n<body class=\"solid-header\">\n%s\n%s\n%s\n</body>\n</html>\n"
+            % (fill(head, extra), fill(header), fill(body, extra), fill(footer))
+        )
+        dest = os.path.join(ROOT, "blog", "topics", c["slug"], "index.html")
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, "w", encoding="utf-8") as f:
+            f.write(doc)
+        outs.append(("blog/topics/%s/index.html" % c["slug"], max(x["date"] for x in items) if items else datetime.date.today().isoformat()))
     latest = "\n".join(post_card(p) for p in posts[:3])
     hero = ""
     if posts:
