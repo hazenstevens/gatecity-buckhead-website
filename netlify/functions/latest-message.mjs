@@ -41,17 +41,25 @@ export default async () => {
   const messages = entries.filter(isMessage).sort((a, b) => (a.published < b.published ? 1 : -1));
   if (!messages.length) return json({ error: "no message found" }, 404);
   const m = messages[0];
-  const parts = m.title.split("|").map(s => s.trim());
-  const series = parts.length > 1 ? parts[0] : "";
-  const rest = parts.length > 1 ? parts.slice(1).join(" | ") : m.title;
-  const pm = rest.match(/^Part\s*(\d+)\s*:\s*(.+)$/i);
+  // Two title formats: old "Series | Part N: Title" and, since Nov 2026,
+  // "Title | Series, Part N".
+  let series = "", part = null, messageTitle = m.title;
+  const nm = m.title.match(/^(.+?)\s*\|\s*(.+?),\s*Part\s*(\d+)\s*$/i);
+  if (nm) { messageTitle = nm[1].trim(); series = nm[2].trim(); part = Number(nm[3]); }
+  else {
+    const parts = m.title.split("|").map(s => s.trim());
+    series = parts.length > 1 ? parts[0] : "";
+    const rest = parts.length > 1 ? parts.slice(1).join(" | ") : m.title;
+    const pm = rest.match(/^Part\s*(\d+)\s*:\s*(.+)$/i);
+    part = pm ? Number(pm[1]) : null; messageTitle = pm ? pm[2].trim() : rest;
+  }
   return json({
     videoId: m.id,
     url: "https://www.youtube.com/watch?v=" + m.id,
     title: m.title,
     series,
-    part: pm ? Number(pm[1]) : null,
-    messageTitle: pm ? pm[2].trim() : rest,
+    part,
+    messageTitle,
     published: m.fromPage ? null : m.published,
     thumbnail: "https://i.ytimg.com/vi/" + m.id + "/maxresdefault.jpg",
     thumbnailFallback: "https://i.ytimg.com/vi/" + m.id + "/hqdefault.jpg",
@@ -65,7 +73,7 @@ function isMessage(e) {
   if (/worship\s*&\s*message/i.test(t) || /worship\s*&amp;\s*message/i.test(t)) return false;
   if (/GateCity (Buckhead )?Worship/i.test(t)) return false;
   if (/^Ministry Time/i.test(t)) return false;
-  return /\|\s*Part\s*\d+\s*:/i.test(t);
+  return /\|\s*Part\s*\d+\s*:/i.test(t) || /\|\s*.+,\s*Part\s*\d+\s*$/i.test(t);
 }
 
 function parse(xml) {
@@ -96,7 +104,7 @@ function parsePlaylistPage(html) {
     while ((m = re.exec(html))) {
       const win = html.slice(Math.max(0, m.index - 6000), m.index + 6000);
       const titles = [...win.matchAll(/"title":\{"content":"((?:[^"\\]|\\.)*)"/g)].map(x => x[1]);
-      const t = titles.find(x => /\|\s*Part\s*\d+/i.test(x)) || titles[0];
+      const t = titles.find(x => /\|.*Part\s*\d+/i.test(x)) || titles[0];
       if (t) push(m[1], t);
     }
   }
