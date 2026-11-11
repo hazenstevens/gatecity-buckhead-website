@@ -116,6 +116,7 @@
   }).catch(function(){});
 })();
 
+window.__gcbLoad=Date.now();
 // Newsletter signup: subscribe to Mailchimp in place (JSONP) and land on /thanks,
 // so a real signup ends on our own page, where the Google Ads conversion fires.
 // On any failure (or a Mailchimp captcha) it falls back to the normal Mailchimp post.
@@ -132,6 +133,19 @@
       var btn=form.querySelector('button[type=submit]');
       if(btn)btn.disabled=true;
       msg.textContent='Signing you up...';
+      var em0=(form.querySelector('[name=EMAIL]')||{}).value||'';
+      var fn0=(form.querySelector('[name=FNAME]')||{}).value||'';
+      var hp0=(form.querySelector('input[name^="b_"]')||{}).value||'';
+      // First choice: our own /api/subscribe (Mailchimp API, no captcha page). If that
+      // is unavailable, fall through to the JSONP path below.
+      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em0,fname:fn0,hp:hp0,t:Date.now()-(window.__gcbLoad||0)})})
+        .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,j:j};});})
+        .then(function(res){
+          if(res.ok&&res.j&&res.j.ok){try{sessionStorage.setItem('gcb-ec',JSON.stringify({email:em0,first:fn0}));}catch(_){}window.location.href='/thanks';return;}
+          if(res.status===400){msg.textContent=(res.j&&res.j.error)||'Please enter a valid email address.';if(btn)btn.disabled=false;return;}
+          jsonp();
+        }).catch(jsonp);
+      function jsonp(){
       var cb='gcbNl'+Date.now();
       var params=new URLSearchParams(new FormData(form)).toString();
       var url=action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+params+'&c='+cb;
@@ -160,6 +174,7 @@
       script.onerror=fallback;
       script.src=url;
       document.body.appendChild(script);
+      }
     });
   });
 })();
