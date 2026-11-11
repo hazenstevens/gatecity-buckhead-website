@@ -30,7 +30,8 @@ export default async (req) => {
   const merge = {}; if (b.fname) merge.FNAME = String(b.fname).slice(0, 60);
   const r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: email, status_if_new: "subscribed", merge_fields: merge }) });
   if (!r.ok) { const t = await r.json().catch(() => ({})); return json({ error: t.detail || "signup failed" }, 502); }
-  await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: ["Website", "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) }).catch(() => {});
-  return json({ ok: true });
+  const t = await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: ["Website", "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) }).catch(() => null);
+  const m = await r.json().catch(() => ({}));
+  return json({ ok: true, list: MC_LIST, status: m.status || null, tags: t ? t.status : 0 });
 };
 export const config = { path: "/api/subscribe" };
