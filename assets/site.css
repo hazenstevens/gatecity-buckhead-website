@@ -500,10 +500,11 @@ body.pray-open{overflow:hidden}
 .pray-head p+p.pray-sig{margin-top:8px;font-weight:700;color:var(--ink)}
 
 /* Blog library: shelves, search, feedback (Nov 2026) */
-.post-crumb a{color:inherit}
+.post-crumb a{color:inherit;transition:color .2s}.post-crumb a:hover{color:#fff;text-decoration:underline}
 .shelf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
-.shelf-tile{display:flex;flex-direction:column;gap:4px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;transition:border-color .2s,transform .2s}
-.shelf-tile:hover{border-color:var(--green-bright);transform:translateY(-2px)}
+.shelf-tile{display:flex;flex-direction:column;gap:4px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;transition:border-color .2s,transform .2s,background .2s,box-shadow .2s}
+.shelf-tile:hover,.shelf-tile:focus-visible{border-color:var(--green);background:#EAF6EF;transform:translateY(-2px);box-shadow:0 8px 20px rgba(24,56,40,.12)}
+.shelf-tile strong{transition:color .2s}.shelf-tile:hover strong,.shelf-tile:focus-visible strong{color:var(--green-ink)}
 .shelf-tile strong{font-size:17px;line-height:1.25}
 .shelf-tile span{font-size:13px;color:var(--ink-soft)}
 .shelf-tile.small{padding:14px 16px}.shelf-tile.small strong{font-size:15px}
