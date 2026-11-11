@@ -260,3 +260,17 @@
     });
   });
 })();
+
+// Post share: phone share sheet, falling back to copying the link.
+(function(){
+  var msg='I read this and would love your thoughts: ';
+  function copy(btn,url){
+    var done=function(){var t=btn.textContent;btn.textContent='Link copied';setTimeout(function(){btn.textContent=t},2000)};
+    if(navigator.clipboard){navigator.clipboard.writeText(url).then(done,function(){prompt('Copy this link:',url)})}else{prompt('Copy this link:',url)}
+  }
+  document.querySelectorAll('.share-native').forEach(function(b){b.addEventListener('click',function(){
+    var url=b.dataset.shareUrl;
+    if(navigator.share){navigator.share({title:b.dataset.shareTitle,text:msg,url:url}).catch(function(){})}else{copy(b,url)}
+  })});
+  document.querySelectorAll('.share-copy').forEach(function(b){b.addEventListener('click',function(){copy(b,b.dataset.shareUrl)})});
+})();

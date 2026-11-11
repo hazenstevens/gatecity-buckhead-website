@@ -533,3 +533,6 @@ body.pray-open{overflow:hidden}
 .fb-check input{margin-top:4px}
 .fb-hp{position:absolute;left:-9999px}
 @media (max-width:860px){.shelf-grid{grid-template-columns:repeat(2,1fr)}.fb-forms{grid-template-columns:1fr}}
+
+.post-share button{font:inherit;font-weight:700;background:none;border:0;padding:0;color:var(--ink);cursor:pointer}
+.post-share .share-native{background:var(--green-ink);color:#fff;border-radius:999px;padding:8px 16px}

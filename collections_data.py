@@ -27,7 +27,7 @@ COLLECTIONS = [
   links=[("Read Transformed", "{{AMZ_TRANSFORMED}}"), ("Watch the Transformed series", "/series/transformed/"), ("What is forgiveness?", "/questions/what-is-forgiveness/")]),
  dict(slug="worship", name="Worship, Hunger and Revival",
   blurb="Hunger for God's presence, what worship really is, and what happens when God moves in revival.",
-  posts=["what-is-worship", "hebrew-words-in-the-bible", "greek-words-in-the-bible", "what-is-revival", "hunger-for-the-word", "hunger-and-thirst-for-righteousness", "a-dwelling-place-for-god", "kairos-moment"],
+  posts=["what-is-worship", "hebrew-words-in-the-bible", "what-does-hallelujah-mean", "what-does-hosanna-mean", "what-does-selah-mean", "what-does-amen-mean", "greek-words-in-the-bible", "what-is-revival", "hunger-for-the-word", "hunger-and-thirst-for-righteousness", "a-dwelling-place-for-god", "kairos-moment"],
   links=[("Start the Culture of Hunger plan", "/plans/culture-of-hunger/"), ("Watch the Culture of Hunger series", "/series/culture-of-hunger/"),
          ("Read Seven Seeds for Flourishing", "{{AMZ_SEVEN_SEEDS}}"), ("Start the Seven Seeds plan", "/plans/seven-seeds-for-flourishing/")]),
  dict(slug="psalms", name="The Psalms",
