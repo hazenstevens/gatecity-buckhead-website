@@ -197,3 +197,48 @@ QUESTIONS = [
         "book": ("Transformed", "transformed", "AMZ_TRANSFORMED", "How encountering Jesus leads to radical, lasting change, including the chapter Forgiveness Transforms."),
     },
 ]
+
+
+# More answers on the hub: question-style blog posts, grouped. (label, post slug)
+BLOG_QUESTIONS = [
+    ("Church and visiting", [
+        ("What is a non-denominational church?", "what-is-a-non-denominational-church"),
+        ("What should I expect at church for the first time?", "first-sunday-at-church"),
+    ]),
+    ("The gospel", [
+        ("What is the gospel?", "what-is-the-gospel"),
+        ("How do I get saved?", "how-to-be-saved"),
+        ("What does it mean to be born again?", "what-does-it-mean-to-be-born-again"),
+        ("What is grace?", "what-is-grace"),
+        ("What is sin?", "what-is-sin"),
+        ("What happens when you die?", "what-happens-when-you-die"),
+    ]),
+    ("The Holy Spirit", [
+        ("Is the Holy Spirit a person?", "is-the-holy-spirit-a-person"),
+        ("Does the Holy Spirit live in me?", "does-the-holy-spirit-live-in-me"),
+        ("How do I get filled with the Holy Spirit?", "how-to-be-filled-with-the-holy-spirit"),
+        ("What is speaking in tongues?", "what-is-speaking-in-tongues"),
+        ("What is spiritual warfare?", "spiritual-self-defense"),
+    ]),
+    ("Prayer", [
+        ("How do I hear God's voice?", "how-to-hear-gods-voice"),
+        ("What are the types of prayer?", "types-of-prayer"),
+        ("What is a prayer closet?", "prayer-closet"),
+        ("What does pray without ceasing mean?", "pray-without-ceasing"),
+        ("What is intercessory prayer?", "what-is-intercessory-prayer"),
+        ("What is corporate prayer?", "what-is-corporate-prayer"),
+        ("How do I fast biblically?", "how-to-fast-biblically"),
+    ]),
+    ("Worship and Bible words", [
+        ("What is worship?", "what-is-worship"),
+        ("What is revival?", "what-is-revival"),
+        ("What does amen mean?", "what-does-amen-mean"),
+        ("What does hallelujah mean?", "what-does-hallelujah-mean"),
+        ("What does hosanna mean?", "what-does-hosanna-mean"),
+        ("What does selah mean?", "what-does-selah-mean"),
+    ]),
+    ("Hard seasons and the future", [
+        ("What does the Bible say about depression?", "bible-verses-for-depression"),
+        ("What are the signs of the end times?", "left-behind-or-stepping-up-biblical-end-times"),
+    ]),
+]

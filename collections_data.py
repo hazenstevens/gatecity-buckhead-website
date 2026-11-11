@@ -56,7 +56,7 @@ COLLECTIONS = [
   links=[("Read Legacy", "{{AMZ_LEGACY}}"), ("Start the Family Matters plan", "/plans/family-matters/"), ("BuckCity Kids", "/buckcity-kids")]),
  dict(slug="church", name="Church and Mission",
   blurb="What the church is, sharing your faith, God's heart for the nations, and living out justice and mercy.",
-  posts=["what-is-the-church", "a-phygital-reality-of-the-church", "possessing-the-gates-gods-heart-for-the-nations",
+  posts=["first-sunday-at-church", "what-is-a-non-denominational-church", "what-is-the-church", "a-phygital-reality-of-the-church", "possessing-the-gates-gods-heart-for-the-nations",
          "the-pilgrim-faith-of-abraham-blessed-to-be-a-blesssing", "having-spiritual-conversations-three-keys-to-transformative-gospel-discussions",
          "from-dirt-to-gardens-the-faith-to-sow-seeds", "the-crescendo-of-ephesians", "responding-as-disciples-to-political-violence-micah-68-in-a-fractured-age"],
   links=[("Read Blessed to Be a Blessing", "{{AMZ_BLESSED}}"), ("Start the Blessed to Be a Blessing plan", "/plans/blessed-to-be-a-blessing/"),

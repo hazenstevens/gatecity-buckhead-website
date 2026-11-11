@@ -965,6 +965,22 @@ def questions_pages():
   </div>
 </section>
 """ % "\n".join(items) + CTA_DEEPER
+    from questions_data import BLOG_QUESTIONS
+    import os as _os
+    more = ""
+    for grp, qs in BLOG_QUESTIONS:
+        lis = "".join('<li><a href="/blog/%s">%s</a></li>' % (s, H.escape(t)) for t, s in qs if _os.path.exists(_os.path.join(ROOT, "posts", s + ".html")))
+        more += '<div><h3>%s</h3><ul class="plan-points">%s</ul></div>\n' % (H.escape(grp), lis)
+    hub = hub.replace(CTA_DEEPER, """
+<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow">More Answers</div>
+    <h2>More questions, answered.</h2>
+    <div class="q-more">
+%s    </div>
+  </div>
+</section>
+""" % more + CTA_DEEPER, 1)
     pages["q:hub"] = ("questions/index.html", "Your Biggest Questions | GateCity Buckhead", "Answers to the questions people ask most about God, the Holy Spirit, forgiveness, prayer, and the Bible, from GateCity Buckhead in Atlanta.", True, hub)
     return pages
 
