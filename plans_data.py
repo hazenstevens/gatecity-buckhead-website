@@ -4,7 +4,7 @@
 
 PLANS = [
     {
-        "slug": "whole-bible-in-100-days", "id": "78670", "days": 100,
+        "slug": "whole-bible-in-100-days", "questions": ['How can I read the whole Bible?', 'How long does it take to read through the Bible?', 'How does the Old Testament connect to the New Testament?', 'Where should I start reading the Bible?'], "id": "78670", "days": 100,
         "title": "Whole Bible in 100 Days",
         "subtitle": "Every section, every day",
         "url": "https://www.bible.com/reading-plans/78670-whole-bible-in-100-days-every-section-every-day",
@@ -29,7 +29,7 @@ PLANS = [
         "series": {"name": 'Wisdom for Wealth', "video": 'MyXJrHgIX3A', "part": 'Part 1: How to Master Money Before It Masters You', "playlist": 'PLZe6ANQOBlot2sAtr503IU-J_2aHDJMyY'},
     },
     {
-        "slug": "detox", "id": "78079", "days": 21,
+        "slug": "detox", "questions": ["How do I break free from an addiction or a habit I can't stop?", 'What does the Bible say about strongholds and spiritual bondage?', 'How do I find real freedom in Christ?', 'How do I resist temptation?', 'How do I reset my spiritual life when I feel stuck or dry?', 'What does a holy and healthy life look like?'], "id": "78079", "days": 21,
         "title": "Detox",
         "subtitle": "21 days to a holy and healthy life",
         "url": "https://www.bible.com/reading-plans/78079-detox-21-days-to-a-holy-and-healthy-life",
@@ -103,7 +103,7 @@ PLANS = [
         "book": {"title": 'Know. Own. Change.', "cover": 'know-own-change', "link": 'AMZ_KOC', "by": 'Josh Clemons & Hazen Stevens', "desc": 'A gospel-centered journey toward racial reconciliation and unity, from Moody Publishers.'},
     },
     {
-        "slug": "conversations", "id": "60199", "days": 10,
+        "slug": "conversations", "questions": ['How do I talk with God, not just at Him?', "How do I pray when I don't know what to say?", 'How can my words build others up?', 'How do I share my faith in everyday conversations?'], "id": "60199", "days": 10,
         "title": "Conversations",
         "subtitle": "Prayer and the sacred gift of our words",
         "url": "https://www.bible.com/reading-plans/60199-conversations",
@@ -127,7 +127,7 @@ PLANS = [
         "blogs": ['do-you-want-the-fire', 'the-baptism-of-water-and-fire'],
     },
     {
-        "slug": "seven-seeds-for-flourishing", "id": "60364", "days": 7,
+        "slug": "seven-seeds-for-flourishing", "questions": ['What made the early church grow?', 'What does Acts 2 teach about the church?', 'What does the power of the Holy Spirit look like today?', 'How do I grow a faith that lasts?'], "id": "60364", "days": 7,
         "title": "The Seven Seeds for Flourishing",
         "subtitle": "Growing deeper in faith from Acts 2",
         "url": "https://www.bible.com/reading-plans/60364-seven-seeds-for-flourishing",
@@ -164,7 +164,7 @@ PLANS = [
         "series": {"name": "Resurrection Sunday", "video": "z4OThJduW4E", "part": "The Blood That Still Speaks", "playlist": "PLZe6ANQOBlouBPjtmSF_9fmTZ4M6xbZf_", "single": True},
     },
     {
-        "slug": "family-matters", "id": "79883", "days": 8,
+        "slug": "family-matters", "questions": ['What does it mean to be chosen and adopted by God?', 'How can my faith shape my home and marriage?', 'What does Ephesians teach about family and relationships?', 'How do I stand strong in a hard season?'], "id": "79883", "days": 8,
         "title": "Family Matters",
         "subtitle": "Eight days in Ephesians",
         "url": "https://www.bible.com/reading-plans/79883-family-matters-eight-days-in-ephesians",
@@ -204,7 +204,7 @@ PLANS = [
         "blogs": ['the-desire-to-go-up', 'where-does-my-help-come-from', 'unity-releases-blessing'],
     },
     {
-        "slug": "the-surrendered-mind", "id": "79619", "days": 21,
+        "slug": "the-surrendered-mind", "questions": ['How do I stop overthinking and let God lead?', 'What does the Bible say about anxiety and worry?', 'How do I trade fear for trust?', 'Who does God say I am?'], "id": "79619", "days": 21,
         "title": "The Surrendered Mind",
         "subtitle": "21 days of letting go and being led",
         "url": "https://www.bible.com/reading-plans/79619-the-surrendered-mind",

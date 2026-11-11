@@ -481,6 +481,8 @@ def plan_pages():
     for pl in PLANS:
         days = ("%d days" % pl["days"]) if pl.get("days") else "Reading plan"
         pts = "".join("<li>%s</li>" % H.escape(x) for x in pl["points"])
+        qs = pl.get("questions") or []
+        qhtml = ('<section class="tight plan-questions"><div class="wrap"><div class="eyebrow">Questions this Bible plan answers</div><ul class="plan-points">%s</ul></div></section>\n\n' % "".join("<li>%s</li>" % H.escape(q) for q in qs)) if qs else ""
         body = f"""<div class="pagehead">
   <div class="wrap">
     <div class="eyebrow on-dark">Free Bible Plan &middot; {days}</div>
@@ -489,7 +491,7 @@ def plan_pages():
   </div>
 </div>
 
-<section>
+{qhtml}<section>
   <div class="wrap split wide-left">
     <a class="msg-thumb" href="{pl['url']}" target="_blank" rel="noopener">
       <img src="/assets/img/plans/yv/{pl['id']}.jpg" alt="{H.escape(pl['title'])} Bible plan cover" style="opacity:1">
