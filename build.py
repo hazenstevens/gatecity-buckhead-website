@@ -276,6 +276,14 @@ def load_posts():
     return posts
 
 
+def inpost_html(p):
+    import html as H
+    items = [x.strip() for x in (p.get("inpost") or "").split("|") if x.strip()]
+    if not items:
+        return ""
+    return '<p class="in-this-post"><strong>In this post:</strong> %s</p>\n' % " &middot; ".join(H.escape(x) for x in items)
+
+
 def nice_date(iso):
     d = datetime.date.fromisoformat(iso)
     return d.strftime("%B %-d, %Y")
@@ -378,7 +386,7 @@ def render_blog(head, header, footer):
             "POST_ISO": p["date"],
             "POST_AUTHOR": _html.escape(p["author"]),
             "POST_COVER": p["cover"],
-            "POST_BODY": p["body"],
+            "POST_BODY": inpost_html(p) + p["body"],
             "POST_NAV": nav,
         }
         c = BY_POST.get(p["slug"])
@@ -743,6 +751,8 @@ def series_pages():
         <a class="msg-thumb" href="https://www.youtube.com/watch?v={p['video']}&list={s['playlist']}" data-yt-embed="{p['video']}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/{p['video']}/hqdefault.jpg" alt="{H.escape(s['name'])} Part {p['n']}: {H.escape(p['title'])}" loading="lazy"><span class="play" aria-hidden="true"></span></a>
         <div class="card-body"><div class="card-when">Part {p['n']}</div><h3>{H.escape(p['title'])}</h3></div>
       </div>""" for p in s["parts"])
+        qs = s.get("questions") or []
+        qblock = ('\n<section class="tight plan-questions"><div class="wrap"><div class="eyebrow">Questions this series answers</div><ul class="plan-points">%s</ul></div></section>\n' % "".join("<li>%s</li>" % H.escape(q) for q in qs)) if qs else ""
         body = f"""<div class="pagehead">
   <div class="wrap">
     <div class="eyebrow on-dark">Message Series &middot; {n} Messages &middot; {H.escape(s['theme'])}</div>
@@ -750,7 +760,7 @@ def series_pages():
     <p class="lede">{H.escape(s['lede'])}</p>
   </div>
 </div>
-
+{qblock}
 <section>
   <div class="wrap split wide-left">
     <a class="msg-thumb" href="https://www.youtube.com/watch?v={p1['video']}&list={s['playlist']}" data-yt-embed="{p1['video']}" target="_blank" rel="noopener">

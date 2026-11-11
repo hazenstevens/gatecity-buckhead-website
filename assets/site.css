@@ -536,3 +536,5 @@ body.pray-open{overflow:hidden}
 
 .post-share button{font:inherit;font-weight:700;background:none;border:0;padding:0;color:var(--ink);cursor:pointer}
 .post-share .share-native{background:var(--green-ink);color:#fff;border-radius:999px;padding:8px 16px}
+
+.in-this-post{font-size:.95em;color:#5b5b5b;border-left:3px solid #C9A961;padding:6px 0 6px 14px;margin:0 0 24px}

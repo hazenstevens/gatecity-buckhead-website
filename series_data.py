@@ -2,6 +2,7 @@
 SERIES = [
  {
   "slug": "formed-for-a-purpose",
+  "questions": ['How does God use pressure to shape me?', 'What is my purpose in life as a Christian?', 'How does prayer form my purpose?'],
   "name": "Formed for a Purpose",
   "theme": "How God shapes you",
   "current": True,
@@ -17,6 +18,7 @@ SERIES = [
  },
  {
   "slug": "manifest",
+  "questions": ['Who is the Holy Spirit?', 'What are the gifts and fruit of the Spirit?', 'How do I pray with boldness?', 'What does unity in the church look like?'],
   "name": "Manifest",
   "theme": "The Holy Spirit",
   "playlist": "PLZe6ANQOBlosJM9tnNP59H_q8csnFx_HC",
@@ -83,6 +85,7 @@ SERIES = [
  },
  {
   "slug": "start-strong",
+  "questions": ['How do I start strong in my faith?', 'What does it mean to count the cost?', 'How do I finish strong?'],
   "name": "Start Strong",
   "theme": "Perseverance",
   "playlist": "PLZe6ANQOBlot3N_siH-z_VKBkwDrWVaOX",
@@ -126,6 +129,7 @@ SERIES = [
  },
  {
   "slug": "conversations",
+  "questions": ['How do I pray?', 'What is private prayer?', 'Why pray together with others?', 'How do I talk about faith with non-Christians?'],
   "name": "Conversations",
   "theme": "Prayer",
   "playlist": "PLZe6ANQOBlovhSSRNNxxELaJFEWuDNi_g",
@@ -192,6 +196,7 @@ SERIES = [
  },
  {
   "slug": "detox",
+  "questions": ['How do I break free from strongholds?', 'How do I find a spiritual reset?', 'How do I replace what is hurting me with what is good?'],
   "name": "Detox",
   "theme": "A spiritual reset",
   "playlist": "PLCPKL77uWapo",
@@ -232,6 +237,7 @@ SERIES = [
  },
  {
   "slug": "transformed",
+  "questions": ['What does it mean to be born again?', 'What is the simple gospel?', 'Are we saved by grace or by works?', 'What happens when we die?'],
   "name": "Transformed",
   "theme": "How the gospel changes you",
   "playlist": "PLZe6ANQOBlotDrimgpb8ELrshcG2gcEaL",
@@ -293,6 +299,7 @@ SERIES = [
  },
  {
   "slug": "legacy",
+  "questions": ['What does it mean that God set eternity in our hearts?', 'How do I live for eternity?', 'What will believers be rewarded for in heaven?'],
   "name": "Legacy",
   "theme": "Living for what lasts",
   "playlist": "PLZe6ANQOBloucCaK3GNvv24zR06qJRL1c",
@@ -362,6 +369,7 @@ SERIES = [
  },
  {
   "slug": "blessed-to-be-a-blessing",
+  "questions": ['What does it mean to be blessed to be a blessing?', 'What does it mean to be salt and light?', 'How do I live generously?'],
   "name": "Blessed to Be a Blessing",
   "theme": "Blessing and missions",
   "playlist": "PLZe6ANQOBlouPRiUTUEJNNRwByrIyUxrN",
@@ -403,6 +411,7 @@ SERIES = [
  },
  {
   "slug": "messiah",
+  "questions": ['What does the Bible say about the coming Messiah?', 'Why did the wise men travel to Jesus?', 'Will Jesus come again?'],
   "name": "Messiah",
   "theme": "Christmas and the coming King",
   "playlist": "PLZe6ANQOBlouvE1j50jNRp2why_oRXbQE",
@@ -434,6 +443,7 @@ SERIES = [
  },
  {
   "slug": "wisdom-for-wealth",
+  "questions": ['What does the Bible say about money?', 'How do I master money before it masters me?', 'What does the Bible say about tithing?'],
   "name": "Wisdom for Wealth",
   "theme": "Money and generosity",
   "playlist": "PLZe6ANQOBlot2sAtr503IU-J_2aHDJMyY",
@@ -464,6 +474,7 @@ SERIES = [
  },
  {
   "slug": "culture-of-hunger",
+  "questions": ['How do I grow hungry for God?', 'How do I love the Bible more?', 'What does it mean to hunger and thirst for righteousness?'],
   "name": "Culture of Hunger",
   "theme": "Hunger for God",
   "playlist": "PLZe6ANQOBloubHj2gWM9sYuhLbcB5RlTm",
@@ -494,6 +505,7 @@ SERIES = [
  },
  {
   "slug": "incense-and-oil",
+  "questions": ['What are the Songs of Ascent?', 'What do Psalms 120 to 134 mean?', 'How do I quiet my soul before God?'],
   "name": "Incense & Oil",
   "theme": "The Songs of Ascent",
   "playlist": "PLKSdukVm_qVM",
