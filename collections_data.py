@@ -15,7 +15,7 @@ COLLECTIONS = [
  dict(slug="holy-spirit", name="The Holy Spirit",
   blurb="Who the Holy Spirit is, how to be filled, His fruit and gifts, and how to walk with Him every day.",
   posts=["is-the-holy-spirit-a-person", "does-the-holy-spirit-live-in-me", "how-to-be-filled-with-the-holy-spirit", "what-is-speaking-in-tongues", "the-baptism-of-water-and-fire",
-         "do-you-want-the-fire", "walking-in-the-holy-spirit-amp-producing-lovenbsp", "understanding-the-gifts-of-the-holy-spirit",
+         "do-you-want-the-fire", "walking-in-the-holy-spirit-amp-producing-lovenbsp", "9-gifts-of-the-holy-spirit", "understanding-the-gifts-of-the-holy-spirit",
          "the-towel-before-the-title-understanding-the-five-fold-ministry", "grant-us-boldness", "spiritual-self-defense"],
   links=[("Read Manifest", "{{AMZ_MANIFEST}}"), ("Watch the Manifest series", "/series/manifest/"), ("Who is the Holy Spirit?", "/questions/who-is-the-holy-spirit/"),
          ("Start the Preparing for Outpouring plan", "/plans/preparing-for-outpouring/")]),

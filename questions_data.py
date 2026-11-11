@@ -215,6 +215,7 @@ BLOG_QUESTIONS = [
     ]),
     ("The Holy Spirit", [
         ("Is the Holy Spirit a person?", "is-the-holy-spirit-a-person"),
+        ("What are the 9 gifts of the Holy Spirit?", "9-gifts-of-the-holy-spirit"),
         ("Does the Holy Spirit live in me?", "does-the-holy-spirit-live-in-me"),
         ("How do I get filled with the Holy Spirit?", "how-to-be-filled-with-the-holy-spirit"),
         ("What is speaking in tongues?", "what-is-speaking-in-tongues"),
