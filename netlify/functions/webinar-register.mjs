@@ -32,7 +32,7 @@ async function mailchimp(v) {
   let r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: v.email, status_if_new: "subscribed", merge_fields: merge }) });
   if (!r.ok && merge.PHONE) { delete merge.PHONE; r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: v.email, status_if_new: "subscribed", merge_fields: merge }) }); }
   if (!r.ok) return `mailchimp member ${r.status}`;
-  const t = await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: [{ name: MC_TAG, status: "active" }] }) });
+  const t = await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: [MC_TAG, "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) });
   return t.ok ? "mailchimp ok" : `mailchimp tag ${t.status}`;
 }
 

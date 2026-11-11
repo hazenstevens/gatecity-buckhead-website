@@ -5,6 +5,8 @@
 // a minimum time on page before submit, and a check that the email's domain can
 // actually receive mail (MX record). No confirmation email (Hazen, Nov 11): new contacts
 // are subscribed right away. Existing contacts keep their status. Tagged "Website".
+// Every website signup gets the "GCB Weekly" and "Widest Audience" tags (Hazen, Nov 11)
+// so sends to those two reach everyone who signed up on the site.
 // Needs MAILCHIMP_API_KEY in Netlify.
 import { createHash } from "node:crypto";
 import { resolveMx } from "node:dns/promises";
@@ -28,7 +30,7 @@ export default async (req) => {
   const merge = {}; if (b.fname) merge.FNAME = String(b.fname).slice(0, 60);
   const r = await fetch(base, { method: "PUT", headers, body: JSON.stringify({ email_address: email, status_if_new: "subscribed", merge_fields: merge }) });
   if (!r.ok) { const t = await r.json().catch(() => ({})); return json({ error: t.detail || "signup failed" }, 502); }
-  await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: [{ name: "Website", status: "active" }] }) }).catch(() => {});
+  await fetch(base + "/tags", { method: "POST", headers, body: JSON.stringify({ tags: ["Website", "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) }).catch(() => {});
   return json({ ok: true });
 };
 export const config = { path: "/api/subscribe" };
