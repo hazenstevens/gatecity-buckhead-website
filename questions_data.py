@@ -227,6 +227,8 @@ BLOG_QUESTIONS = [
         ("What is a prayer closet?", "prayer-closet"),
         ("What does pray without ceasing mean?", "pray-without-ceasing"),
         ("What is intercessory prayer?", "what-is-intercessory-prayer"),
+        ("How do I pray for my son?", "how-to-pray-for-your-son"),
+        ("How do I pray for my daughter?", "how-to-pray-for-your-daughter"),
         ("What is corporate prayer?", "what-is-corporate-prayer"),
         ("How do I fast biblically?", "how-to-fast-biblically"),
     ]),

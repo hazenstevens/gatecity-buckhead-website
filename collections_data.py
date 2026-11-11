@@ -7,7 +7,7 @@
 COLLECTIONS = [
  dict(slug="prayer", name="Prayer and Hearing God",
   blurb="Learn to pray as a real, two-way conversation with God: hearing His voice, quiet time, the many ways prayer sounds, and praying for others.",
-  posts=["how-to-hear-gods-voice", "types-of-prayer", "prayer-closet", "pray-without-ceasing", "what-is-corporate-prayer", "how-to-fast-biblically", "what-is-intercessory-prayer",
+  posts=["how-to-hear-gods-voice", "types-of-prayer", "prayer-closet", "pray-without-ceasing", "what-is-corporate-prayer", "how-to-fast-biblically", "what-is-intercessory-prayer", "how-to-pray-for-your-son", "how-to-pray-for-your-daughter",
          "the-power-of-holy-conversation", "the-power-of-presence-strength-in-stillness", "drawn-into-glory-the-greatest-prayer-ever-prayed",
          "spiritual-mothers-praying-beyond-the-story-you-can-see", "blessing-prayer"],
   links=[("Read Conversations", "{{AMZ_CONVERSATIONS}}"), ("Start the Conversations Bible plan", "/plans/conversations/"),
@@ -51,7 +51,7 @@ COLLECTIONS = [
          ("Start the Detox plan", "/plans/detox/"), ("Start the Wisdom for Wealth plan", "/plans/wisdom-for-wealth/"), ("Take the Walk with Jesus Assessment", "/assessment")]),
  dict(slug="family", name="Family, Kids and Home",
   blurb="Building a home where faith is passed down: marriage, parenting, unity, and teaching kids to follow Jesus.",
-  posts=["when-god-builds-the-house-from-broken-families-to-flourishing-cities", "generational-blessing-in-action", "secure-in-the-family",
+  posts=["how-to-pray-for-your-son", "how-to-pray-for-your-daughter", "when-god-builds-the-house-from-broken-families-to-flourishing-cities", "generational-blessing-in-action", "secure-in-the-family",
          "of-one-accord-discovering-the-power-of-unity-in-your-home", "advent-with-kids", "how-to-teach-kids-gratitude"],
   links=[("Read Legacy", "{{AMZ_LEGACY}}"), ("Start the Family Matters plan", "/plans/family-matters/"), ("BuckCity Kids", "/buckcity-kids")]),
  dict(slug="church", name="Church and Mission",

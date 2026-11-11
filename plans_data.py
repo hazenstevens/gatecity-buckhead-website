@@ -175,7 +175,7 @@ PLANS = [
                    "Walking worthy and living as light at home",
                    "Standing strong through hard seasons"],
         "who": "For anyone who wants their faith to shape their home, family, and friendships.",
-        "blogs": ['secure-in-the-family', 'a-dwelling-place-for-god', 'the-crescendo-of-ephesians', 'walk-worthy', 'light-in-the-lord', 'stand'],
+        "blogs": ['secure-in-the-family', 'a-dwelling-place-for-god', 'the-crescendo-of-ephesians', 'walk-worthy', 'light-in-the-lord', 'stand', 'how-to-pray-for-your-son', 'how-to-pray-for-your-daughter'],
     },
     {
         "slug": "where-does-my-help-come-from", "id": "79901", "days": 5,
