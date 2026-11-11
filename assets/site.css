@@ -540,3 +540,4 @@ body.pray-open{overflow:hidden}
 
 .in-this-post{font-size:.95em;color:#5b5b5b;border-left:3px solid #C9A961;padding:6px 0 6px 14px;margin:0 0 24px}
 .q-more{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 40px}.q-more h3{margin:18px 0 0}
+.lm-now{color:var(--green-bright);font-weight:700;font-size:17px;margin:-4px 0 12px}

@@ -100,6 +100,7 @@
         f.appendChild(ifr); th.parentNode.replaceChild(f,th);
       });
     }
+    var nw=sec.querySelector('[data-lm-now]'); if(nw&&j.messageTitle){nw.textContent='This week: '+(j.part?'Part '+j.part+', ':'')+j.messageTitle;}
     var t=sec.querySelector('[data-lm-title]'); if(t)t.textContent=j.messageTitle||j.title;
     var e=sec.querySelector('[data-lm-eyebrow]');
     if(e){
