@@ -541,3 +541,9 @@ body.pray-open{overflow:hidden}
 .in-this-post{font-size:.95em;color:#5b5b5b;border-left:3px solid #C9A961;padding:6px 0 6px 14px;margin:0 0 24px}
 .q-more{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 40px}.q-more h3{margin:18px 0 0}
 .lm-now{color:var(--green-bright);font-weight:700;font-size:17px;margin:-4px 0 12px}
+/* Questions this series / plan answers: question cards (Nov 13, 2026) */
+section.plan-questions{padding:clamp(32px,4vw,48px) 0 0}
+.plan-questions .eyebrow{font-size:13px}
+.plan-questions .plan-points{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;line-height:1.35}
+.plan-questions .plan-points li{margin:0;background:#fff;border:1px solid rgba(14,26,19,.08);border-left:4px solid var(--green);border-radius:12px;padding:20px 22px;font-size:clamp(18px,1.55vw,21px);font-weight:600;color:var(--ink);box-shadow:0 10px 26px -18px rgba(14,26,19,.35)}
+section.plan-questions + section{padding-top:clamp(32px,4vw,48px)}
