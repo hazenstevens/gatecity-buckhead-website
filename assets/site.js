@@ -213,7 +213,7 @@ window.__gcbLoad=Date.now();
     var body=new URLSearchParams({'form-name':'prayer-request',first:f.get('first'),email:em,request:f.get('request'),share:f.get('share')?'yes':'no',page:location.pathname,'bot-field':f.get('bot-field')||''});
     var btn=form.querySelector('button[type=submit]'); btn.disabled=true; msg.textContent='';
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()})
-      .then(function(r){ if(!r.ok) throw 0; form.reset(); form.hidden=true; done.hidden=false; })
+      .then(function(r){ if(!r.ok) throw 0; form.reset(); form.hidden=true; done.hidden=false; if(window.gtag) gtag('event','prayer_request',{page_path:location.pathname}); })
       .catch(function(){ msg.textContent='Something went wrong. Please try again, or email hazen.stevens@gatecitybuckhead.com.'; })
       .then(function(){ btn.disabled=false; });
   });

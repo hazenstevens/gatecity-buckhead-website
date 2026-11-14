@@ -153,9 +153,12 @@ def ads_conversion(slug):
             % (ADS_ID, label))
 
 # Key events for Google Analytics (imported into Google Ads as conversions):
-# a click to a YouVersion Bible plan = bible_plan_click, a click to buy a book = book_click.
+# a click to a YouVersion Bible plan = bible_plan_click, a click to buy a book = book_click,
+# playing a message video = video_play, a devotional PDF = devotional_download (Nov 13, 2026).
+# The prayer form fires prayer_request on a successful submit (assets/site.js).
 CLICK_EVENTS = ("document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;"
-    "var h=a.href||'';var n=/bible\\.com|youversion|bible\\.app/i.test(h)?'bible_plan_click':(/amazon\\.|amzn\\.to|a\\.co\\//i.test(h)?'book_click':'');"
+    "var h=a.href||'';var n=/bible\\.com|youversion|bible\\.app/i.test(h)?'bible_plan_click':(/amazon\\.|amzn\\.to|a\\.co\\//i.test(h)?'book_click':"
+    "(a.hasAttribute('data-yt-embed')||/youtube\\.com\\/watch|youtu\\.be\\//i.test(h)?'video_play':(/\\.pdf(\\?|#|$)/i.test(h)?'devotional_download':'')));"
     "if(n)gtag('event',n,{link_url:h,page_path:location.pathname});},true);")
 
 def gtag():
