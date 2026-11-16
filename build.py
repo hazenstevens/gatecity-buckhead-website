@@ -138,6 +138,23 @@ ADS_CONVERSIONS = {
 }
 
 
+# Google Analytics key events fired on each thank-you page (Nov 16, 2026), so form
+# completions show in GA4 as well as in Google Ads.
+GA4_PAGE_EVENTS = {
+    "visit-thanks":     "plan_a_visit",
+    "webinar-thanks":   "webinar_registration",
+    "thanks":           "email_signup",
+    "christmas-thanks": "christmas_eve_registration",
+}
+
+
+def ga4_page_event(slug):
+    name = GA4_PAGE_EVENTS.get(slug)
+    if not (GA4_ID and name):
+        return ""
+    return ("\n<script>if(window.gtag)gtag('event','%s',{page_path:location.pathname});</script>" % name)
+
+
 def ads_conversion(slug):
     label = ADS_CONVERSIONS.get(slug)
     if not (ADS_ID and label):
@@ -1134,7 +1151,7 @@ def main():
     for slug, (out, title, desc, solid) in PAGES.items():
         body = GEN[slug][4] if slug in GEN else read("pages/%s.html" % slug)
         body = body.replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"]).replace("{{BLOG_LATEST_TITLE}}", _html.escape(load_posts()[0]["title"])).replace("{{BLOG_LATEST_DESC}}", _html.escape(load_posts()[0].get("description", "")))
-        body += ads_conversion(slug)
+        body += ads_conversion(slug) + ga4_page_event(slug)
         body += event_ld(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
