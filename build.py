@@ -135,7 +135,7 @@ ADS_CONVERSIONS = {
     "visit-thanks":   "d_47CJmMzbEdEMmwko9F",   # Plan a Visit form
     "webinar-thanks": "bQGJCO7KzbEdEMmwko9F",   # Your Walk with Jesus Webinar registration
     "thanks":         "SsYGCOeizbEdEMmwko9F",   # Email signup (GCB Weekly)
-    # "christmas-thanks": "",                   # Christmas Eve registration (create the conversion, paste its label)
+    "christmas-thanks": "MH_aCKPD4bsdEMmwko9F",   # Christmas Eve registration (Nov 19, 2026)
 }
 
 
