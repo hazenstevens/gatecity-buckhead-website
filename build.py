@@ -218,6 +218,7 @@ PAGES = {
     "our-team":          ("our-team.html",                  "Our Team | GateCity Buckhead",            "Meet the leadership team at GateCity Buckhead in Atlanta.", True),
     "buckcity-kids":     ("buckcity-kids.html",             "Kids & Youth | GateCity Buckhead",       "BuckCity Kids for age 3 through 5th grade every Sunday at 11am (check-in at 10:45am), plus middle and high school youth gatherings. Pre-register before your first visit.", True),
     "digital-community": ("digital-community.html",         "Digital Community | GateCity Buckhead",   "Virtual prayer, Sunday Forum, Formation Nights and the Discipleship Cohort — ways to belong between Sundays.", True),
+    "connect": ("connect/index.html", "Stay Connected | GateCity Buckhead", "Join GateCity Buckhead on Discord and get the GCB Weekly email.", True),
     "resources":         ("resources/index.html",           "Resources | GateCity Buckhead",           "Podcast, books, YouVersion reading plans, music and more from GateCity Buckhead.", True),
     "location":          ("location.html",                  "Where We Meet | GateCity Buckhead",       "GateCity Buckhead meets at Atlanta International School, 2890 N Fulton Dr NE. Directions and parking.", True),
     "pledge":            ("pledge.html",                    "Give | GateCity Buckhead",                "Give to GateCity Buckhead — one-time or recurring, and become one of the 99 partners helping us reach the one.", False),

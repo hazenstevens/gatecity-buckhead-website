@@ -1,0 +1,122 @@
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+#discord .dc-split{align-items:stretch}
+#discord .dm-wrap{display:flex;flex-direction:column;min-height:540px}
+#discord .dm-win{flex:1;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#313338;color:#DBDEE1;font:14px/1.4 "gg sans","Noto Sans",Inter,system-ui,sans-serif;box-shadow:0 30px 70px -28px rgba(14,26,19,.55);border:1px solid rgba(0,0,0,.25)}
+#discord .dm-row{flex:1;display:flex;min-height:0}
+#discord .dm-bar{flex:none;height:44px;display:flex;align-items:center;gap:10px;padding:0 16px;background:#1E1F22;color:#fff;font-weight:800;font-size:15px;letter-spacing:.01em;border-bottom:1px solid #111214}
+#discord .dm-barlogo{width:30px;height:auto;color:#5865F2}
+#discord .dm-bar i{width:11px;height:11px;border-radius:50%;background:#3F4147}
+#discord .dm-bar i:first-of-type{margin-left:auto}
+#discord .dm-rail{flex:none;width:72px;background:#1E1F22;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 0}
+#discord .dm-home{width:48px;height:48px;border-radius:16px;background:#5865F2;color:#fff;display:grid;place-items:center}
+#discord .dm-clyde{width:26px;height:auto;display:block}
+#discord .dm-sep{width:28px;height:2px;border-radius:1px;background:#35363C}
+#discord .dm-srv{position:relative;width:48px;height:48px;border-radius:50%;overflow:visible}
+#discord .dm-srv img{width:48px;height:48px;border-radius:50%;display:block;background:#313338}
+#discord .dm-srv::before{content:"";position:absolute;left:-12px;top:50%;width:4px;height:40px;margin-top:-20px;border-radius:0 4px 4px 0;background:#fff}
+#discord .dm-side{flex:none;width:176px;background:#2B2D31;padding:0 8px}
+#discord .dm-server{height:48px;display:flex;align-items:center;padding:0 8px;font-weight:700;color:#F2F3F5;border-bottom:1px solid #1F2023;margin:0 -8px 10px;padding-left:16px}
+#discord .dm-side ul{list-style:none;margin:0;padding:0}
+#discord .dm-side li{padding:6px 8px;border-radius:4px;color:#949BA4;font-weight:500;margin-bottom:2px}
+#discord .dm-side li span{margin-right:6px;font-size:17px;color:#80848E}
+#discord .dm-side li.on{background:#404249;color:#F2F3F5}
+#discord .dm-main{flex:1;min-width:0;display:flex;flex-direction:column}
+#discord .dm-top{height:48px;flex:none;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid #26272B;font-weight:700;color:#F2F3F5;white-space:nowrap;overflow:hidden}
+#discord .dm-hash{font-size:20px;color:#80848E;font-weight:500}
+#discord .dm-top em{font-style:normal;font-weight:400;color:#949BA4;font-size:13px;margin-left:10px;padding-left:12px;border-left:1px solid #3F4147;overflow:hidden;text-overflow:ellipsis}
+#discord .dm-feed{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:16px}
+#discord .dm-msg{display:flex;gap:12px}
+#discord .dm-av{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px}
+#discord .dm-body{min-width:0}
+#discord .dm-meta b{color:#F2F3F5;font-weight:600;margin-right:8px}
+#discord .dm-meta span{font-size:11.5px;color:#949BA4}
+#discord .dm-body p{margin:2px 0 0;color:#DBDEE1}
+#discord .dm-card{margin-top:6px;border-left:4px solid #2F9264;background:#2B2D31;border-radius:4px;padding:8px 12px;max-width:260px}
+#discord .dm-card b{display:block;color:#00A8FC;font-weight:600}
+#discord .dm-card span{font-size:12px;color:#949BA4}
+#discord .dm-react{display:flex;gap:6px;margin-top:6px}
+#discord .dm-react span{font-size:12.5px;background:#2B2D31;border:1px solid #3F4147;border-radius:8px;padding:1px 7px;color:#DBDEE1}
+#discord .dm-react span:first-child{background:rgba(88,101,242,.18);border-color:#5865F2}
+#discord .dm-input{margin:0 16px 16px;background:#383A40;border-radius:8px;padding:11px 14px;color:#6D6F78}
+#discord .dm-cap{font-size:12.5px;color:var(--ink-soft);margin-top:10px;text-align:center}
+@media (max-width:1100px){#discord .dm-side{display:none}}
+@media (max-width:900px){#discord .dm-wrap{min-height:0}#discord .dm-feed{justify-content:flex-start}}
+@media (max-width:480px){#discord .dm-rail{display:none}#discord .dm-top em{display:none}#discord .dm-feed{padding:14px 12px;gap:12px}#discord .dm-input{margin:0 12px 12px}#discord .dm-av{width:34px;height:34px}}
+#weekly .wk-card{max-width:780px;margin:0 auto;background:#10432F;border:1px solid rgba(254,250,238,.28);border-radius:18px;padding:14px;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+#weekly .wk-mast{width:100%;height:auto;display:block;border-radius:10px}
+#weekly .wk-body{text-align:center;padding:clamp(22px,4vw,40px) clamp(8px,3vw,36px) clamp(18px,3vw,30px);border-top:1px solid rgba(254,250,238,.18);margin-top:14px}
+#weekly .wk-body h2{font-size:clamp(26px,3.6vw,40px)}
+#weekly .wk-body .lede{margin:14px auto 0}
+#weekly .nl-center{margin-top:24px}
+@media (max-width:480px){#weekly .wk-card{padding:8px;border-radius:14px}#weekly .wk-mast{border-radius:8px}#weekly .wk-body{margin-top:8px}}
+#weekly .wk-label{display:flex;align-items:center;gap:14px;margin:30px 0 0;color:#FEFAEE;font:700 12px/1 Inter,system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase}
+#weekly .wk-label::before,#weekly .wk-label::after{content:"";flex:1;height:1px;background:rgba(254,250,238,.45)}
+#weekly .wk-index{display:grid;grid-template-columns:repeat(4,1fr);margin:16px 0 0;border-top:1px solid rgba(254,250,238,.22);border-bottom:1px solid rgba(254,250,238,.22)}
+#weekly .wk-index>div{padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+#weekly .wk-index>div+div{border-left:1px solid rgba(254,250,238,.3)}
+#weekly .wk-index b{font:400 26px/1 "UnifrakturCook","UnifrakturMaguntia","Old English Text MT",serif;font-weight:700;color:#E3C878;letter-spacing:.01em}
+#weekly .wk-index span{font-size:14px;line-height:1.45;color:rgba(254,250,238,.85);max-width:16ch}
+@media (max-width:640px){#weekly .wk-index{grid-template-columns:1fr 1fr}#weekly .wk-index>div+div{border-left:0}#weekly .wk-index>div:nth-child(even){border-left:1px solid rgba(254,250,238,.3)}#weekly .wk-index>div:nth-child(-n+2){border-bottom:1px solid rgba(254,250,238,.3)}#weekly .wk-index>div{padding:18px 10px}#weekly .wk-index b{font-size:24px}}
+#weekly .nl-form .btn{font-size:0;gap:0}
+#weekly .nl-form .btn::before{content:"Send me the Weekly";font-size:14.5px}
+#weekly .nl-form .btn .arrow{font-size:14.5px;margin-left:9px}
+</style>
+<div class="pagehead">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Stay Connected</div>
+    <h1>Stay close between Sundays.</h1>
+    <p class="lede">Two simple ways to stay in the loop with GateCity Buckhead: join our Discord community, and get the GCB Weekly email in your inbox each Friday.</p>
+  </div>
+</div>
+
+<section id="discord">
+  <div class="wrap split dc-split">
+    <div>
+      <div class="eyebrow">Our online community</div>
+      <h2>Join us on Discord</h2>
+      <p class="lede">Discord is where our church family talks during the week: prayer requests, announcements, the GCB Weekly, fellowship and serving channels, and links to every prayer and group gathering.</p>
+      <ul class="rows">
+        <li><b>Step 1</b><span>Tap the button below. It opens our GateCity Buckhead server.</span></li>
+        <li><b>Step 2</b><span>New to Discord? Download the free app or sign up in your browser when it asks.</span></li>
+        <li><b>Step 3</b><span>Say hello in #general. We would love to meet you.</span></li>
+      </ul>
+      <div class="btn-row"><a class="btn btn-primary" href="https://discord.gg/nmfR88BXwd">Join GateCity on Discord <span class="arrow">&rarr;</span></a></div>
+    </div>
+    <div class="dm-wrap" aria-hidden="true">
+      <div class="dm-win">
+        <div class="dm-bar"><svg class="dm-barlogo" viewBox="0 0 127.14 96.36" aria-hidden="true"><path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg><span>Discord</span><i></i><i></i><i></i></div>
+        <div class="dm-row">
+        <div class="dm-rail"><div class="dm-home"><svg class="dm-clyde" viewBox="0 0 127.14 96.36" aria-hidden="true"><path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg></div><div class="dm-sep"></div><div class="dm-srv"><img src="data:image/png;base64,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" alt="" width="48" height="48"></div></div>
+        <div class="dm-side"><div class="dm-server">GateCity Buckhead</div><ul><li class=""><span>#</span>welcome</li><li class="on"><span>#</span>general</li><li class=""><span>#</span>prayer-requests</li><li class=""><span>#</span>gcb-weekly</li><li class=""><span>#</span>serving</li><li class=""><span>#</span>fellowship</li></ul></div>
+        <div class="dm-main">
+          <div class="dm-top"><span class="dm-hash">#</span>general<em>Say hello and share what God is doing</em></div>
+          <div class="dm-feed"><div class="dm-msg"><div class="dm-av" style="background:#E67E22">M</div><div class="dm-body"><div class="dm-meta"><b>Maria</b><span>Today at 8:12 AM</span></div><p>Could you all pray for my mom this week? She has a doctor&rsquo;s appointment Thursday.</p><div class="dm-react"><span>&#128591; 12</span><span>&#10084;&#65039; 6</span></div></div></div><div class="dm-msg"><div class="dm-av" style="background:#3BA55C">J</div><div class="dm-body"><div class="dm-meta"><b>James</b><span>Today at 8:20 AM</span></div><p>Praying with you, Maria. We&rsquo;ll lift her up at prayer tonight too.</p></div></div><div class="dm-msg"><div class="dm-av" style="background:#5865F2">P</div><div class="dm-body"><div class="dm-meta"><b>Priya</b><span>Today at 10:02 AM</span></div><p>The GCB Weekly is out! Christmas Eve candlelight is Thursday, Dec 24 at 5pm.</p><div class="dm-card"><b>GCB Weekly</b><span>gatecitybuckhead.com</span></div><div class="dm-react"><span>&#127876; 9</span></div></div></div><div class="dm-msg"><div class="dm-av" style="background:#C0392B">D</div><div class="dm-body"><div class="dm-meta"><b>Daniel</b><span>Today at 6:45 PM</span></div><p>See you Sunday! Saving a few seats up front for anyone new.</p><div class="dm-react"><span>&#128075; 7</span></div></div></div><div class="dm-msg"><div class="dm-av" style="background:#8E44AD">G</div><div class="dm-body"><div class="dm-meta"><b>Grace</b><span>Today at 7:03 PM</span></div><p>Just joined. Hi everyone, so glad to be here!</p><div class="dm-react"><span>&#129303; 11</span></div></div></div></div>
+          <div class="dm-input">Message #general</div>
+        </div>
+        </div>
+      </div>
+      <p class="dm-cap">A sample of what our Discord looks like. Names and messages are examples.</p>
+    </div>
+  </div>
+</section>
+
+<section class="deep" id="weekly">
+  <div class="wrap">
+   <div class="wk-card">
+    <img class="wk-mast" src="/assets/img/gcb-weekly-masthead.jpg" alt="GCB Weekly, GateCity Buckhead, every Friday, Atlanta" width="1200" height="532" loading="lazy">
+    <div class="wk-body">
+    <h2>Get the GCB Weekly</h2>
+    <p class="lede">One email every Friday to help you stay close to Jesus and to each other.</p>
+    <div class="wk-label"><span>In every issue</span></div>
+    <div class="wk-index">
+      <div><b>Grow</b><span>Resources for your walk with Jesus</span></div>
+      <div><b>Gather</b><span>Events you&rsquo;ll want to be part of</span></div>
+      <div><b>Connect</b><span>Ways to serve and belong</span></div>
+      <div><b>Fun</b><span>Exciting surprises coming up</span></div>
+    </div>
+    <div class="nl-center">{{NL_FORM:nl-connect}}</div>
+    </div>
+   </div>
+  </div>
+</section>
