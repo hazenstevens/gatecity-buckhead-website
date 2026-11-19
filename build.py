@@ -194,7 +194,7 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
-NOINDEX = ("404", "cfk-printables-holiday", "thanks", "visit-thanks", "webinar-thanks", "christmas-thanks")  # christmas-eve, cohort, assessment: public as of Nov 3 2026
+NOINDEX = ("404", "next-step", "cfk-printables-holiday", "thanks", "visit-thanks", "webinar-thanks", "christmas-thanks")  # christmas-eve, cohort, assessment: public as of Nov 3 2026
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
 # (the part after watch?v=). Blank = the video section is hidden.
@@ -226,6 +226,7 @@ PAGES = {
     "privacy":           ("privacy.html",                   "Privacy Policy | GateCity Buckhead",      "How GateCity Buckhead handles information collected through this website and our tools.", True),
     "cohort":            ("cohort.html",                    "Digital Discipleship Cohort | GateCity Buckhead", "Walk with Jesus daily and grow closer to Him than ever before. An online discipleship cohort from GateCity Buckhead: community, prayer, and simple weekly rhythms. Next cohort starts January 10, 2027.", True),
     "assessment":        ("assessment/index.html",         "Your Walk with Jesus Assessment | GateCity Buckhead", "A free, private snapshot of where you are in your walk with Jesus, with personal growth recommendations.", True),
+    "next-step":         ("next-step/index.html",           "You Finished the Plan | GateCity Buckhead", "You finished a GateCity Buckhead Bible plan. Take the next step with the free Walk with Jesus Assessment.", True),
     "webinar-thanks":    ("cohort/thanks.html",             "You're Registered | GateCity Buckhead",  "Thanks for registering for Your Walk with Jesus Webinar.", True),
     "events":            ("events/index.html",              "Events | GateCity Buckhead", "Upcoming events at GateCity Buckhead in Buckhead, Atlanta, including our Christmas Eve candlelight service.", True),
     "fearless":          ("fearless/index.html",            "Struggling With Anxiety? Free Fearless Devotionals | GateCity Buckhead", "Struggling with anxiety? Three free 7-day Christian devotionals for anxiety and fear, 21 short video devotionals, and a message on fearless living from Pastor Hazen Stevens of GateCity Buckhead.", True),
