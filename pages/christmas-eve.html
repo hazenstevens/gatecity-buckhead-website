@@ -1,3 +1,9 @@
+<style>
+.ce-photos{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-self:center}
+.ce-photos .split-photo{aspect-ratio:1/1;border-radius:14px;border:1px solid #C6A15B;box-shadow:0 18px 40px -22px rgba(8,12,9,.45)}
+.ce-photos .ce-main{grid-column:1/-1;aspect-ratio:4/3}
+@media(max-width:900px){.ce-photos{gap:12px;max-width:640px}.ce-photos .split-photo{aspect-ratio:1/1}.ce-photos .ce-main{aspect-ratio:16/10}}
+</style>
 <div class="pagehead pagehead-img xmas-hero">
   <img class="pagehead-bg" src="/assets/img/christmas-eve-hero.jpg" alt="Three white candles glowing against warm Christmas lights" fetchpriority="high">
   <div class="wrap">
@@ -29,7 +35,11 @@
       </ul>
       <div class="btn-row"><a class="btn btn-primary" href="#save">Save Your Spot <span class="arrow">&rarr;</span></a></div>
     </div>
-    <div class="split-photo"><img src="/assets/img/christmas-eve-candlelight.jpg" alt="A hand holding a lit candle during a candlelight service" loading="lazy"></div>
+    <div class="ce-photos">
+      <div class="split-photo ce-main"><img src="/assets/img/christmas-eve-hazen.jpg" alt="Pastor Hazen Stevens beside a nativity scene at GateCity Buckhead in December" loading="lazy" style="object-position:40% 30%"></div>
+      <div class="split-photo"><img src="/assets/img/christmas-eve-candlelight.jpg" alt="A hand holding a lit candle during a candlelight service" loading="lazy"></div>
+      <div class="split-photo"><img src="/assets/img/christmas-eve-worship.jpg" alt="A worshiper with hands raised during a GateCity Buckhead service" loading="lazy" style="object-position:50% 30%"></div>
+    </div>
   </div>
 </section>
 
