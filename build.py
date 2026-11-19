@@ -308,21 +308,14 @@ def inpost_html(p):
     return '<p class="in-this-post"><strong>In this post:</strong> %s</p>\n' % " &middot; ".join(H.escape(x) for x in items)
 
 
-# Mid-post next step (Nov 19, 2026): a clear conversion inside every blog post, so ad
-# visitors who read and leave have one obvious action. A YouVersion link fires
-# bible_plan_click (a Google Ads conversion via GA4).
+# Mid-post next step (Nov 19, 2026): an email sign-up for the weekly blog inside every
+# post, so ad visitors who read and leave have one obvious action. The sign-up lands
+# on /thanks, which fires the Email signup conversion.
 def midpost_cta_html():
-    if datetime.date.today() <= datetime.date(2026, 12, 25):
-        return ('<aside class="mid-cta"><div class="eyebrow">Free Advent Devotional</div>'
-                '<h3>Beholding the Mystery and Majesty of Christmas</h3>'
-                '<p>A few quiet minutes a day with Jesus this Advent. Free in the Bible App.</p>'
-                '<div class="btn-row"><a class="btn btn-primary" href="https://www.bible.com/reading-plans/83907-beholding-the-mystery-and-majesty-of-christmas" target="_blank" rel="noopener">Start the Free Plan <span class="arrow">&rarr;</span></a>'
-                '<a class="btn btn-outline" href="/christmas-eve/">Christmas Eve at 5pm</a></div></aside>\n')
-    return ('<aside class="mid-cta"><div class="eyebrow">Free Bible Plan &middot; 5 Days</div>'
-            '<h3>Where Does My Help Come From?</h3>'
-            '<p>Five days in the Psalms for anyone who needs strength today. Free in the Bible App.</p>'
-            '<div class="btn-row"><a class="btn btn-primary" href="https://www.bible.com/reading-plans/79901-where-does-my-help-come-from" target="_blank" rel="noopener">Start the Free Plan <span class="arrow">&rarr;</span></a>'
-            '<a class="btn btn-outline" href="/new-here/">Plan a Visit</a></div></aside>\n')
+    return ('<aside class="mid-cta"><div class="eyebrow">The GateCity Buckhead Blog</div>'
+            '<h3>Get our weekly blog post right in your inbox.</h3>'
+            '<p>One new post each week from our pastors, plus what is happening at GateCity Buckhead.</p>'
+            + newsletter_form("nl-mid") + '</aside>\n')
 
 
 def with_midpost_cta(body):
