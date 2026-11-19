@@ -612,7 +612,7 @@ def plan_pages():
         desc = "%s: a free %s Bible plan from GateCity Buckhead. %s" % (pl["title"], days.lower() if pl.get("days") else "", pl["subtitle"] + ".")
         pages[key] = (("plans/%s/index.html" % pl["slug"]), "%s | Free Bible Plan | GateCity Buckhead" % pl["title"], desc.replace("  ", " "), True, body)
         cards.append(f"""      <div class="card">
-        <div class="card-img"><img src="/assets/img/plans/yv/{pl['id']}.jpg" alt="{H.escape(pl['title'])}" loading="lazy"></div>
+        <div class="card-img wide"><img src="/assets/img/plans/yv/{pl['id']}.jpg" alt="{H.escape(pl['title'])}" loading="lazy"></div>
         <div class="card-body">
           <div class="card-when">{days}</div>
           <h3>{H.escape(pl['title'])}</h3>
@@ -633,7 +633,7 @@ def plan_pages():
     <div class="cards">
 %s
       <div class="card">
-        <div class="card-img"><img src="/assets/img/plans/songs-of-ascent.jpg?v=2" alt="Read the Songs of Ascent with us" loading="lazy"></div>
+        <div class="card-img wide"><img src="/assets/img/plans/songs-of-ascent.jpg?v=2" alt="Read the Songs of Ascent with us" loading="lazy"></div>
         <div class="card-body">
           <div class="card-when">Read along on our site</div>
           <h3>The Songs of Ascent</h3>
@@ -813,7 +813,7 @@ def series_pages():
         pl = s.get("plan")
         pl = [pl] if isinstance(pl, str) and pl else (pl or [])
         if pl:
-            pcards = "\n".join(f"""      <a class="card" href="/plans/{plans[x]['slug']}/"><div class="card-img"><img src="/assets/img/plans/yv/{plans[x]['id']}.jpg" alt="{H.escape(plans[x]['title'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{plans[x]['days']} days &middot; Free</div><h3>{H.escape(plans[x]['title'])}</h3><p>{H.escape(plans[x]['subtitle'])}</p><span class="card-link">See the plan <span class="arrow">&rarr;</span></span></div></a>""" for x in pl if x in plans)
+            pcards = "\n".join(f"""      <a class="card" href="/plans/{plans[x]['slug']}/"><div class="card-img wide"><img src="/assets/img/plans/yv/{plans[x]['id']}.jpg" alt="{H.escape(plans[x]['title'])}" loading="lazy"></div><div class="card-body"><div class="card-when">{plans[x]['days']} days &middot; Free</div><h3>{H.escape(plans[x]['title'])}</h3><p>{H.escape(plans[x]['subtitle'])}</p><span class="card-link">See the plan <span class="arrow">&rarr;</span></span></div></a>""" for x in pl if x in plans)
             body += f"""
 <section class="tight">
   <div class="wrap">
