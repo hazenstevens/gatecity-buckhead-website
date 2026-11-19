@@ -156,6 +156,27 @@ def ga4_page_event(slug):
     return ("\n<script>if(window.gtag)gtag('event','%s',{page_path:location.pathname});</script>" % name)
 
 
+# Meta Pixel ("Gatecity Pixel", GateCity Buckhead business portfolio), Nov 19, 2026.
+# Only on the Christmas Eve pages for now: PageView on both, CompleteRegistration on
+# the thank-you page, so Meta can retarget visitors and count sign-ups.
+META_PIXEL_ID = "593070213231082"
+META_PIXEL_PAGES = {"christmas-eve": None, "christmas-thanks": "CompleteRegistration"}
+
+
+def meta_pixel(slug):
+    if not META_PIXEL_ID or slug not in META_PIXEL_PAGES:
+        return ""
+    ev = META_PIXEL_PAGES[slug]
+    extra = ("fbq('track','%s',{content_name:'Christmas Eve 2026'});" % ev) if ev else ""
+    return ("\n<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?"
+            "n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;"
+            "n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];"
+            "s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');"
+            "fbq('init','%s');fbq('track','PageView');%s</script>"
+            "<noscript><img height=\"1\" width=\"1\" style=\"display:none\" alt=\"\" "
+            "src=\"https://www.facebook.com/tr?id=%s&ev=PageView&noscript=1\"></noscript>" % (META_PIXEL_ID, extra, META_PIXEL_ID))
+
+
 def ads_conversion(slug):
     label = ADS_CONVERSIONS.get(slug)
     if not (ADS_ID and label):
@@ -1179,7 +1200,7 @@ def main():
     for slug, (out, title, desc, solid) in PAGES.items():
         body = GEN[slug][4] if slug in GEN else read("pages/%s.html" % slug)
         body = body.replace("{{BLOG_LATEST}}", blog_latest).replace("{{BLOG_HERO}}", blog_hero).replace("{{BLOG_LATEST_URL}}", "/blog/" + load_posts()[0]["slug"]).replace("{{BLOG_LATEST_TITLE}}", _html.escape(load_posts()[0]["title"])).replace("{{BLOG_LATEST_DESC}}", _html.escape(load_posts()[0].get("description", "")))
-        body += ads_conversion(slug) + ga4_page_event(slug)
+        body += ads_conversion(slug) + ga4_page_event(slug) + meta_pixel(slug)
         body += event_ld(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
