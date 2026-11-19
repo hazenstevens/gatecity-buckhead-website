@@ -557,3 +557,10 @@ section.wwj-invite{padding:clamp(28px,4vw,48px) 0}
 .wwj-habits li{border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px}
 .wwj-card .btn{background:#fff;color:var(--green-dark)}
 .wwj-card .wwj-note{font-size:13px;margin-top:14px;color:rgba(255,255,255,.7)}
+
+.post-body .mid-cta{margin:40px 0;padding:26px 28px;border-radius:16px;background:#f4efe6;border:1px solid rgba(16,68,49,.14)}
+.post-body .mid-cta h3{margin:6px 0 8px}
+.post-body .mid-cta p{margin-bottom:16px}
+.post-body .mid-cta a.btn{text-decoration:none}
+.post-body .mid-cta a.btn-primary{color:#fff}
+.post-body .mid-cta .btn-row{display:flex;flex-wrap:wrap;gap:10px}
