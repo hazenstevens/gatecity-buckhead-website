@@ -216,6 +216,10 @@ SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org",
 "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"11:00","closes":"12:30"},
 "parentOrganization":{"@type":"Organization","name":"All Peoples Church, Inc."}}</script>"""
 
+# per-page link-preview image (path from site root); pages not listed use LINKS["OG_IMAGE"]
+PAGE_OG = {
+    "cfk-printables": "/assets/cfk/cfk-share.jpg",  # Halima 11/21: own preview, not the main-page hero
+}
 NOINDEX = ("404", "next-step", "cfk-printables-holiday", "thanks", "visit-thanks", "webinar-thanks", "christmas-thanks")  # christmas-eve, cohort, assessment: public as of Nov 3 2026
 
 # Vision (5-4-3-2-1) video on /our-mission. Paste the YouTube video ID
@@ -1204,6 +1208,7 @@ def main():
         body += event_ld(slug)
         path = "/" + out.replace("index.html", "").replace(".html", "")
         page_head = fill(head, {"TITLE": title, "DESC": desc, "PATH": path,
+                                **({"OG_IMAGE": BASE + PAGE_OG[slug]} if slug in PAGE_OG else {}),
                                 "ROBOTS": '<meta name="robots" content="noindex">' if slug in NOINDEX else ""})
         body_class = "solid-header" if solid else ""
         doc = (
