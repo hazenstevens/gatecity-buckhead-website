@@ -2,7 +2,7 @@
 SERIES = [
  {
   "slug": "formed-for-a-purpose",
-  "questions": ['How does God use pressure to shape me?', 'What is my purpose in life as a Christian?', 'How does prayer form my purpose?'],
+  "questions": ['How does God use pressure to shape me?', 'What is my purpose in life as a Christian?', 'How does prayer form my purpose?', 'How do I become a servant leader like Jesus?'],
   "name": "Formed for a Purpose",
   "theme": "How God shapes you",
   "current": True,
@@ -10,10 +10,11 @@ SERIES = [
   "lede": "Our current series. Like clay in the potter's hands, God uses pressure to form us for the purpose He has for us. Pastor Hazen Stevens walks through Paul's letters to Timothy, a young leader under pressure, and how God shapes a life that lasts.",
   "book": None,
   "plan": "",
-  "blogs": ["purpose-under-pressure"],
+  "blogs": ["we-serve-from-sonship", "purpose-under-pressure"],
   "parts": [
    {"video": "p7Lgnaz62oM", "n": 1, "title": "How Pressure Forms Your Purpose"},
-   {"video": "oWHUVnytb8M", "n": 2, "title": "How Prayer Forms Your Purpose"}
+   {"video": "oWHUVnytb8M", "n": 2, "title": "How Prayer Forms Your Purpose"},
+   {"video": "X8Sn2WhZ0Ro", "n": 3, "title": "How to Become a Servant Leader Like Jesus"}
   ]
  },
  {

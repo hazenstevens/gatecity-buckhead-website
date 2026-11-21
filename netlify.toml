@@ -31,6 +31,13 @@
   status = 301
   force = true
 
+# Short link for the Instagram bio (Nov 21, 2026)
+[[redirects]]
+  from = "/formed"
+  to = "/series/formed-for-a-purpose/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/give"
   to = "https://gatecity-buckhead.churchcenter.com/giving"
