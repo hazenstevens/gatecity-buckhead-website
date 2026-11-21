@@ -2,7 +2,7 @@
 SERIES = [
  {
   "slug": "formed-for-a-purpose",
-  "questions": ['How does God use pressure to shape me?', 'What is my purpose in life as a Christian?', 'How does prayer form my purpose?', 'How do I become a servant leader like Jesus?'],
+  "questions": ['How does God use pressure to shape me?', 'What is my purpose in life as a Christian?', 'What does the potter and the clay mean in the Bible?', 'What is God\'s purpose for my life?', 'How does prayer form my purpose?', 'How do I become a servant leader like Jesus?'],
   "name": "Formed for a Purpose",
   "theme": "How God shapes you",
   "current": True,
