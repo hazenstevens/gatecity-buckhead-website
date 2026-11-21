@@ -15,7 +15,7 @@ PLANS = [
         "who": "For anyone who has wanted to read the whole Bible and see the big picture of God's story.",
     },
     {
-        "slug": "wisdom-for-wealth", "id": "78676", "days": 6,
+        "slug": "wisdom-for-wealth", "questions": ["What does the Bible say about money?", "What does the Bible say about tithing and generosity?", "What are biblical financial principles for earning, saving, and giving?", "How do I stop worrying about money?"], "id": "78676", "days": 6,
         "title": "Wisdom for Wealth",
         "subtitle": "Mastering money God's way",
         "url": "https://www.bible.com/reading-plans/78676-wisdom-for-wealth-mastering-money-gods-way",
@@ -178,7 +178,7 @@ PLANS = [
         "blogs": ['secure-in-the-family', 'a-dwelling-place-for-god', 'the-crescendo-of-ephesians', 'walk-worthy', 'light-in-the-lord', 'stand', 'how-to-pray-for-your-son', 'how-to-pray-for-your-daughter'],
     },
     {
-        "slug": "where-does-my-help-come-from", "id": "79901", "days": 5,
+        "slug": "where-does-my-help-come-from", "questions": ["Where does my help come from?", "What does Psalm 121 mean?", "How do I trust God in a hard season?"], "id": "79901", "days": 5,
         "title": "Where Does My Help Come From?",
         "subtitle": "Five days in Psalm 121",
         "url": "https://www.bible.com/reading-plans/79901-where-does-my-help-come-from",
