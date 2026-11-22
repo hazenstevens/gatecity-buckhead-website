@@ -125,3 +125,9 @@
   for = "/assets/img/yt/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/christmas-eve/*.ics"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+    Content-Disposition = "attachment; filename=\"gatecity-christmas-eve-2026.ics\""
