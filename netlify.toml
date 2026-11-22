@@ -31,6 +31,19 @@
   status = 301
   force = true
 
+# Spiritual Gifts Assessment short links (Nov 22, 2026)
+[[redirects]]
+  from = "/gifts"
+  to = "/spiritual-gifts-assessment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/spiritual-gifts-test"
+  to = "/spiritual-gifts-assessment/"
+  status = 301
+  force = true
+
 # Short link for the Instagram bio (Nov 21, 2026)
 [[redirects]]
   from = "/formed"
