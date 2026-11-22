@@ -7,6 +7,14 @@
 // with kids/notes to the person's profile, and records the result.
 //
 // Uses the same PCO_APP_ID / PCO_SECRET env vars as /api/n99.
+//
+// Mailchimp (Hazen, Nov 22): every visitor is also added to the GateCity Buckhead
+// audience (same list and MAILCHIMP_API_KEY as /api/subscribe), subscribed if new
+// (existing contacts keep their status), tagged "Recent Visitors" and
+// "Plan a Visit <their Sunday, YYYY-MM-DD>", plus "GCB Weekly" and "Widest Audience"
+// so the weekly email reaches them. The form says so under the button. If the key is
+// missing or Mailchimp errors, it is skipped and the Planning Center handoff is untouched.
+import { createHash } from "node:crypto";
 
 const SB = "https://egccpqcdpmvkkgdunpuc.supabase.co";
 const SB_KEY = "sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda";
@@ -14,6 +22,32 @@ const FORM = process.env.PCO_VISIT_FORM_ID || "888536";
 const F_PHONE = "6951825", F_DATE = "6951629";
 const NOTE_CATEGORY = process.env.PCO_VISIT_NOTE_CATEGORY || "248939"; // General
 const PCO = "https://api.planningcenteronline.com/people/v2";
+const MC_LIST = process.env.MAILCHIMP_LIST_ID || "cdb1521460";
+
+async function addToMailchimp(v) {
+const key = process.env.MAILCHIMP_API_KEY;
+const email = String(v.email || "").trim();
+if (!key) return "mc skipped (no key)";
+if (!email) return "mc skipped (no email)";
+try {
+const dc = key.split("-")[1] || "us3";
+const base = `https://${dc}.api.mailchimp.com/3.0/lists/${MC_LIST}/members/${createHash("md5").update(email.toLowerCase()).digest("hex")}`;
+const headers = { Authorization: "Basic " + Buffer.from("gcb:" + key).toString("base64"), "Content-Type": "application/json" };
+const merge = {};
+if (v.first_name) merge.FNAME = String(v.first_name).slice(0, 60);
+if (v.last_name) merge.LNAME = String(v.last_name).slice(0, 60);
+const r = await fetch(base, { method: "PUT", headers, signal: AbortSignal.timeout(6000),
+body: JSON.stringify({ email_address: email, status_if_new: "subscribed", merge_fields: merge }) });
+if (!r.ok) return `mc failed ${r.status}`;
+const tags = ["Recent Visitors", `Plan a Visit ${String(v.visit_date || "").slice(0, 10)}`, "GCB Weekly", "Widest Audience"];
+const t = await fetch(base + "/tags", { method: "POST", headers, signal: AbortSignal.timeout(6000),
+body: JSON.stringify({ tags: tags.map((name) => ({ name, status: "active" })) }) });
+const m = await r.json().catch(() => ({}));
+return t.ok ? `mc ${m.status || "ok"}` : `mc ${m.status || "ok"}, tags failed ${t.status}`;
+} catch (e) {
+return "mc error " + String(e && e.name || e).slice(0, 40);
+}
+}
 
 async function rpc(fn, body) {
   const r = await fetch(`${SB}/rest/v1/rpc/${fn}`, {
@@ -34,10 +68,11 @@ export default async (req) => {
 
   const v = await rpc("plan_visit_get", { p_id: id }).catch(() => null);
   if (!v) return json({ error: "not found" }, 404);
+const mcP = addToMailchimp(v).catch(() => "mc error");
 
   const appId = process.env.PCO_APP_ID, secret = process.env.PCO_SECRET;
   if (!appId || !secret) {
-    await rpc("plan_visit_mark", { p_id: id, p_status: "failed", p_detail: "PCO not configured" }).catch(() => {});
+    await rpc("plan_visit_mark", { p_id: id, p_status: "failed", p_detail: "PCO not configured; " + await mcP }).catch(() => {});
     return json({ error: "not configured" }, 503);
   }
   const auth = "Basic " + Buffer.from(appId + ":" + secret).toString("base64");
@@ -61,7 +96,7 @@ export default async (req) => {
     if (r.status !== 422 && r.status !== 400) break;
   }
   if (!sub) {
-    await rpc("plan_visit_mark", { p_id: id, p_status: "failed", p_detail: lastErr }).catch(() => {});
+    await rpc("plan_visit_mark", { p_id: id, p_status: "failed", p_detail: lastErr + "; " + await mcP }).catch(() => {});
     return json({ error: "planning center" }, 502);
   }
 
@@ -84,7 +119,7 @@ export default async (req) => {
     });
     noteOk = r.ok;
   }
-  await rpc("plan_visit_mark", { p_id: id, p_status: "sent", p_detail: `submission ${sub.data?.id} person ${personId || "?"}${noteOk ? "" : " (note failed)"}` }).catch(() => {});
+  await rpc("plan_visit_mark", { p_id: id, p_status: "sent", p_detail: `submission ${sub.data?.id} person ${personId || "?"}${noteOk ? "" : " (note failed)"}; ${await mcP}` }).catch(() => {});
   return json({ ok: true });
 };
 
