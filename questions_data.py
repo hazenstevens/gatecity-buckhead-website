@@ -30,7 +30,7 @@ QUESTIONS = [
 
 <h2>The gifts of the Holy Spirit</h2>
 <p>The Spirit gives gifts to every believer for the good of others (1 Corinthians 12:7). Paul lists wisdom, knowledge, faith, healing, miracles, prophecy, discerning of spirits, tongues, and interpretation of tongues (1 Corinthians 12:8-10), and Romans 12 adds gifts like serving, teaching, encouraging, giving, and leading.</p>
-<p>Go deeper: <a href="/blog/understanding-the-gifts-of-the-holy-spirit">Understanding the Gifts of the Holy Spirit</a></p>
+<p>Go deeper: <a href="/blog/understanding-the-gifts-of-the-holy-spirit">Understanding the Gifts of the Holy Spirit</a>, or discover yours with our free <a href="/spiritual-gifts-assessment/">Spiritual Gifts Assessment</a>.</p>
 
 <h2>What is the baptism of the Holy Spirit?</h2>
 <p>John the Baptist said Jesus would baptize "with the Holy Spirit and fire" (Matthew 3:11). At Pentecost, the believers were filled with the Spirit and empowered to be witnesses (Acts 2). That filling is still for us today, and we can keep asking to be filled again (Ephesians 5:18).</p>
@@ -68,6 +68,7 @@ QUESTIONS = [
 
 <h2>How do I find my spiritual gifts?</h2>
 <p>Start with relationship, not a test. Ask the Holy Spirit to lead you, step out to serve and pray for people, and pay attention to where God moves. Paul tells us to "eagerly desire the greater gifts" (1 Corinthians 12:31), so it is right to ask.</p>
+<p>A simple assessment can help you notice what God is already doing in you. <a href="/spiritual-gifts-assessment/"><strong>Take our free Spiritual Gifts Assessment</strong></a>: three parts from Romans 12, 1 Corinthians 12 and Ephesians 4, about 10 minutes, with your top two gifts on screen and full results by email.</p>
 <p>Read the full teaching: <a href="/blog/understanding-the-gifts-of-the-holy-spirit">Understanding the Gifts of the Holy Spirit</a></p>
 """,
         "prayer": "Holy Spirit, thank You that Your gifts are for me and for the people around me. I don't want to use You; I want to walk with You. Teach me to hear Your voice, give me faith to step out, and let Your gifts flow through my life to build up Your church and show people Jesus. In Jesus' name, amen.",
