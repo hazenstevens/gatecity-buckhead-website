@@ -1,0 +1,22 @@
+# Temporary helper (Nov 22, 2026): applies claude.patch to this branch, then removes the patch.
+# Delete this workflow file from the branch before merging.
+name: Apply claude.patch
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["claude.patch"]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch and commit
+        run: |
+          git config user.name "Hazen Stevens"
+          git config user.email "hazen.stevens@gatecityatl.com"
+          git apply --index claude.patch
+          git rm -q claude.patch
+          git commit -q -m "Ad landing page next steps, Walk with Jesus Assessment conversion, webinar Dec 29, Songs of Ascent cleanup"
+          git push
