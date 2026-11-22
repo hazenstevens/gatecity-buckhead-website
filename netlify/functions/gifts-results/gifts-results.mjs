@@ -4,9 +4,10 @@
 // Supabase (nothing the browser sends is trusted), adds or updates the person in the GateCity Buckhead
 // audience with their results in merge fields (GIFT1/GIFT2 = gift keys for the email's conditional
 // content, GIFT1N/GIFT2N = names, GSYN = how the two gifts work together, GPARTS = strongest gift in
-// each part), then applies the "spiritual-gifts" tag. Adding that tag starts the Mailchimp flow
-// "Spiritual Gifts Assessment: Full Results", which sends the results email. The tag is removed and
-// re-added so someone retaking the assessment gets a fresh email. Website, GCB Weekly and Widest
+// each part), then applies two tags: "spiritual-gifts" (stays on the contact, for segmenting) and
+// "gifts-results-send" (the trigger). Adding the trigger tag starts the Mailchimp flow
+// "Spiritual Gifts Assessment: Full Results", which sends the results email and then removes the
+// trigger tag, so someone retaking the assessment gets a fresh email. Website, GCB Weekly and Widest
 // Audience tags match every other website signup (Hazen, Nov 11). Needs MAILCHIMP_API_KEY in Netlify.
 import { createHash } from "node:crypto";
 import { GIFTS, PARTS } from "./data.mjs";
@@ -15,6 +16,7 @@ const SB = "https://egccpqcdpmvkkgdunpuc.supabase.co";
 const SB_KEY = "sb_publishable_THG77diuxLtHQ_BpN2SvVw_Z2w9XHda";
 const MC_LIST = process.env.MAILCHIMP_LIST_ID || "cdb1521460";
 const TAG = "spiritual-gifts";
+const TRIGGER = "gifts-results-send";
 const FIELDS = [
   ["GIFT1", "Gifts: top gift key"], ["GIFT2", "Gifts: second gift key"],
   ["GIFT1N", "Gifts: top gift"], ["GIFT2N", "Gifts: second gift"],
@@ -70,11 +72,10 @@ export default async (req) => {
     const r = await fetch(member, { method: "PUT", headers, body: JSON.stringify({ email_address: v.email, status_if_new: "subscribed", merge_fields: merge }) });
     const m = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(`member ${r.status} ${(m.detail || "").slice(0, 160)}`);
-    // Remove then re-add the trigger tag so a retake starts the flow again.
-    await fetch(`${member}/tags`, { method: "POST", headers, body: JSON.stringify({ tags: [{ name: TAG, status: "inactive" }] }) });
-    const t = await fetch(`${member}/tags`, { method: "POST", headers, body: JSON.stringify({ tags: [TAG, "Website", "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) });
+    // TRIGGER is removed by the flow after the email sends, so the next retake adds it fresh.
+    const t = await fetch(`${member}/tags`, { method: "POST", headers, body: JSON.stringify({ tags: [TAG, TRIGGER, "Website", "GCB Weekly", "Widest Audience"].map((name) => ({ name, status: "active" })) }) });
     if (!t.ok) throw new Error(`tags ${t.status}`);
-    await rpc("gifts_assessment_mark", { p_id: id, p_status: "sent", p_detail: `mailchimp ok, member ${m.status}, tag ${TAG}` }).catch(() => {});
+    await rpc("gifts_assessment_mark", { p_id: id, p_status: "sent", p_detail: `mailchimp ok, member ${m.status}, tags ${TAG} + ${TRIGGER}` }).catch(() => {});
     return json({ ok: true });
   } catch (e) {
     await rpc("gifts_assessment_mark", { p_id: id, p_status: "failed", p_detail: String(e.message || e) }).catch(() => {});
