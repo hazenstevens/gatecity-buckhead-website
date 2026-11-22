@@ -564,3 +564,6 @@ section.wwj-invite{padding:clamp(28px,4vw,48px) 0}
 .post-body .mid-cta a.btn{text-decoration:none}
 .post-body .mid-cta a.btn-primary{color:#fff}
 .post-body .mid-cta .btn-row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Next-step buttons wrap on phones (Nov 22, 2026) */
+.q-answer .btn,.plan-starts .btn,.post-body .next-step .btn,.post-body .gifts-cta .btn{white-space:normal;max-width:100%;line-height:1.35}
