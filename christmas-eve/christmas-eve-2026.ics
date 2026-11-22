@@ -1,0 +1,40 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GateCity Buckhead//Christmas Eve 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:STANDARD
+DTSTART:20251102T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20260308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:christmas-eve-2026@gatecitybuckhead.com
+DTSTAMP:20261122T120000Z
+DTSTART;TZID=America/New_York:20261224T170000
+DTEND;TZID=America/New_York:20261224T180000
+SUMMARY:Christmas Eve Candlelight Service | GateCity Buckhead
+LOCATION:Atlanta International School\, secondary school building\, 2890 N Fulton Dr NE\, Atlanta\, GA 30305
+DESCRIPTION:Family-friendly candlelight service\, about an hour\, with Chris
+ tmas cookies and hot drinks after. Free parking right in front of the buil
+ ding. https://gatecitybuckhead.com/christmas-eve/
+URL:https://gatecitybuckhead.com/christmas-eve/
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Christmas Eve at GateCity Buckhead at 5pm
+END:VALARM
+END:VEVENT
+END:VCALENDAR
