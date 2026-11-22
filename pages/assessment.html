@@ -226,7 +226,19 @@
         var body=new URLSearchParams({'form-name':'wwj-assessment',name:(state.who.first+' '+(state.who.last||'')).trim(),email:state.who.email,
           snapshot:'Strongest: '+nm(ids[0])+'. Focus next: '+nm(ids[ids.length-1])+'.',results:lines.join('\n'),answers:qa.join('\n')});
         return fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}).catch(function(){});
-      }).then(function(){renderResults();scrollTop();});
+      }).then(function(){renderResults();scrollTop();assessDone();});
+  }
+
+  // Finished the assessment = conversion (Nov 22, 2026). The results screen is the thanks state:
+  // GA4 key event walk_assessment_complete + Google Ads conversion, with enhanced conversion data.
+  function assessDone(){
+    try{
+      if(!window.gtag) return;
+      var em=String(state.who.email||'').trim().toLowerCase();
+      if(em) gtag('set','user_data',{email:em,address:{first_name:String(state.who.first||'').trim().toLowerCase(),last_name:String(state.who.last||'').trim().toLowerCase()}});
+      gtag('event','walk_assessment_complete',{page_path:location.pathname});
+      var st='{{ASSESS_SEND_TO}}'; if(st) gtag('event','conversion',{send_to:st,value:1.0,currency:'USD'});
+    }catch(e){}
   }
 
   function renderResults(){
@@ -246,7 +258,7 @@
         '<div class="as-bar"><i style="width:'+Math.max(8,Math.round((s.avg-1)/4*100))+'%"></i></div>'+
         '<p>'+rec.e+'</p><ul><li>'+rec.r[0]+'</li><li>'+rec.r[1]+'</li>'+extra+'</ul></div>';
     });
-    h+='<div class="as-card" style="background:var(--paper-2);border:0"><h3 style="margin:0 0 8px">Take your next step: Your Walk with Jesus Webinar</h3><p>Join Pastors Hazen and Hannah Stevens for a free, live 50-minute webinar on Tuesday, November 17, at 8pm ET on Zoom. We\'ll walk through the five practices in this snapshot and help you take your next step.</p></div><div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort#masterclass">Join the Free Webinar, Nov 17 <span class="arrow">&rarr;</span></a></div>'+
+    h+='<div class="as-card" style="background:var(--paper-2);border:0"><h3 style="margin:0 0 8px">Take your next step: Your Walk with Jesus Webinar</h3><p>Join Pastors Hazen and Hannah Stevens for a free, live 50-minute webinar on Tuesday, December 29, at 8pm ET on Zoom. We\'ll walk through the five practices in this snapshot and help you take your next step.</p></div><div class="btn-row" style="margin-top:22px"><button class="btn btn-outline" type="button" onclick="window.print()">Print or Save My Results</button><a class="btn btn-primary" href="/cohort#masterclass">Join the Free Webinar, Dec 29 <span class="arrow">&rarr;</span></a></div>'+
       '<p class="vf-fine" style="margin-top:18px">This snapshot is a conversation starter, not a grade. Want to retake it? <a href="#" id="as-reset">Start over</a>.</p>';
     app.innerHTML=h;
     document.getElementById('as-reset').onclick=function(e){e.preventDefault();state={i:-1,a:{},who:state.who};persist();render();scrollTop();};

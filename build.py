@@ -140,6 +140,11 @@ ADS_CONVERSIONS = {
 }
 
 
+# Walk with Jesus Assessment finished (Nov 22, 2026): no thank-you page, the results
+# screen is the thanks state. pages/assessment.html fires GA4 walk_assessment_complete and
+# this Google Ads conversion ("Walk with Jesus Assessment (walk_assessment_complete)").
+ASSESS_CONV_LABEL = "-fBfCNHOpL0dEMmwko9F"
+
 # Google Analytics key events fired on each thank-you page (Nov 16, 2026), so form
 # completions show in GA4 as well as in Google Ads.
 GA4_PAGE_EVENTS = {
@@ -194,11 +199,11 @@ def ads_conversion(slug):
             % (ADS_ID, label))
 
 # Key events for Google Analytics (imported into Google Ads as conversions):
-# a click to a YouVersion Bible plan = bible_plan_click, a click to buy a book = book_click,
+# a click to a YouVersion Bible plan (bible.com/reading-plans links only, Nov 22, 2026) = bible_plan_click, a click to buy a book = book_click,
 # playing a message video = video_play, a devotional PDF = devotional_download (Nov 13, 2026).
 # The prayer form fires prayer_request on a successful submit (assets/site.js).
 CLICK_EVENTS = ("document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;"
-    "var h=a.href||'';var n=/bible\\.com|youversion|bible\\.app/i.test(h)?'bible_plan_click':(/amazon\\.|amzn\\.to|a\\.co\\//i.test(h)?'book_click':"
+    "var h=a.href||'';var n=/bible\\.com\\/([a-z]{2,3}(-[a-z]{2,4})?\\/)?reading-plans\\//i.test(h)?'bible_plan_click':(/amazon\\.|amzn\\.to|a\\.co\\//i.test(h)?'book_click':"
     "(a.hasAttribute('data-yt-embed')||/youtube\\.com\\/watch|youtu\\.be\\//i.test(h)?'video_play':(/\\.pdf(\\?|#|$)/i.test(h)?'devotional_download':'')));"
     "if(n)gtag('event',n,{link_url:h,page_path:location.pathname});},true);")
 
@@ -339,13 +344,75 @@ def gifts_cta_html(compact=False):
 
 
 def with_gifts_cta(p, body):
+    # The compact gifts box now comes from next_step_html() (top of every Holy Spirit post);
+    # the full box still closes the gifts posts.
     if p["slug"] not in GIFTS_CTA_POSTS:
         return body
-    if p["slug"] in GIFTS_CTA_TOP:
-        i = body.find("</p>")
-        if i > 0:
-            body = body[:i + 4] + "\n" + gifts_cta_html(True) + body[i + 4:]
     return body + "\n" + gifts_cta_html()
+
+
+# --- Blog "Your next step" box (Nov 22, 2026) --------------------------------
+# One box right after each post's opening paragraph, so ad visitors see a matching,
+# tracked next step without scrolling. Picked in this order:
+#   Holy Spirit shelf -> Spiritual Gifts Assessment (gifts_assessment_complete)
+#   church / first-visit posts -> Plan a Visit (plan_a_visit)
+#   kids posts -> Christ Formed Kids printables (devotional_download on the PDFs)
+#   a plan that lists the post in plans_data.py "blogs" -> that plan in YouVersion (bible_plan_click)
+#   family shelf -> Family Matters plan; word studies -> Where Does My Help Come From? plan
+#   anything else -> email signup (email_signup)
+NEXT_VISIT_POSTS = ("first-sunday-at-church", "what-is-a-non-denominational-church", "what-is-the-church", "a-phygital-reality-of-the-church")
+NEXT_KIDS_POSTS = ("how-to-teach-kids-gratitude", "advent-with-kids")
+NEXT_WORD_POSTS = ("what-does-selah-mean", "what-does-hallelujah-mean", "what-does-amen-mean", "what-does-hosanna-mean",
+                   "selah-shalom-shabbat", "greek-words-in-the-bible", "hebrew-words-in-the-bible")
+NEXT_SHELF_PLAN = {"family": "family-matters", "psalms": "where-does-my-help-come-from", "hard-seasons": "the-surrendered-mind"}
+
+
+def _plan_box(pl, eyebrow="Your next step"):
+    import html as H
+    days = ("Free %d-day Bible plan" % pl["days"]) if pl.get("days") else "Free Bible plan"
+    return ('<aside class="mid-cta next-step"><div class="eyebrow">%s &middot; %s</div>'
+            '<h3>%s</h3><p>%s</p>'
+            '<div class="btn-row"><a class="btn btn-primary" href="%s" target="_blank" rel="noopener">Start the Plan in the Bible App <span class="arrow">&rarr;</span></a></div></aside>\n'
+            % (eyebrow, days, H.escape(pl["title"]), H.escape(pl["subtitle"] + ". " + pl["lede"].split(". ")[0].rstrip(".") + "."), pl["url"]))
+
+
+def next_step_html(p):
+    from plans_data import PLANS
+    slug = p["slug"]
+    shelf = (BY_POST.get(slug) or {}).get("slug")
+    byslug = {x["slug"]: x for x in PLANS}
+    if shelf == "holy-spirit" or slug in GIFTS_CTA_POSTS:
+        return gifts_cta_html(True)
+    if slug in NEXT_VISIT_POSTS:
+        return ('<aside class="mid-cta next-step"><div class="eyebrow">Your next step &middot; Sundays at 11am</div>'
+                '<h3>Come visit GateCity Buckhead this Sunday.</h3>'
+                '<p>We meet at 11am at Atlanta International School, 2890 N Fulton Dr NE in Buckhead. Tell us you are coming and we will save you a seat and meet you at the door. Kids are welcome.</p>'
+                '<div class="btn-row"><a class="btn btn-primary" href="/new-here/#plan">Plan Your Visit <span class="arrow">&rarr;</span></a></div></aside>\n')
+    if slug in NEXT_KIDS_POSTS:
+        return ('<aside class="mid-cta next-step"><div class="eyebrow">Your next step &middot; Free printables</div>'
+                '<h3>Get the free Holiday Series lessons for your kids.</h3>'
+                '<p>Eight Sunday lessons for preschool through 5th grade on gratitude and Christ coming near, with weekly coloring pages, kids journals and a parent guide from Christ Formed Kids.</p>'
+                '<div class="btn-row"><a class="btn btn-primary" href="/cfk-printables">Get the Free Printables <span class="arrow">&rarr;</span></a></div></aside>\n')
+    for pl in PLANS:
+        if slug in (pl.get("blogs") or []):
+            return _plan_box(pl)
+    if shelf in NEXT_SHELF_PLAN and NEXT_SHELF_PLAN[shelf] in byslug:
+        return _plan_box(byslug[NEXT_SHELF_PLAN[shelf]])
+    if slug in NEXT_WORD_POSTS:
+        return _plan_box(byslug["where-does-my-help-come-from"])
+    return ""   # fallback: the email signup moves up instead (see with_next_step)
+
+
+def with_next_step(p, body):
+    box = next_step_html(p)
+    i = body.find("</p>")
+    if not box:
+        # Fallback next step: the weekly blog email, moved up from mid-post.
+        box = midpost_cta_html()
+        p["_nl_top"] = True
+    if i > 0:
+        return body[:i + 4] + "\n" + box + body[i + 4:]
+    return box + body
 
 
 # page slug -> (output path, <title>, meta description, solid header?)
@@ -391,6 +458,7 @@ def fill(text, extra=None):
     vals["SCHEMA"] = SCHEMA
     vals["VISION_VIDEO"] = vision_video()
     vals["GIFTS_DATA"] = gifts_json()
+    vals["ASSESS_SEND_TO"] = ("%s/%s" % (ADS_ID, ASSESS_CONV_LABEL)) if (ADS_ID and ASSESS_CONV_LABEL) else ""
     vals.setdefault("ROBOTS", "")
     vals["DONORS_99"] = str(DONORS_99)
     vals["DONORS_99_PCT"] = str(round(min(DONORS_99, 99) / 99 * 100, 1))
@@ -458,6 +526,11 @@ def midpost_cta_html():
             '<h3>Get our weekly blog post right in your inbox.</h3>'
             '<p>One new post each week from our pastors, plus what is happening at GateCity Buckhead.</p>'
             + newsletter_form("nl-mid") + '</aside>\n')
+
+
+def _post_body(p):
+    b = with_next_step(p, with_gifts_cta(p, p["body"]))
+    return b if p.get("_nl_top") else with_midpost_cta(b)
 
 
 def with_midpost_cta(body):
@@ -576,7 +649,7 @@ def render_blog(head, header, footer):
             "POST_ISO": p["date"],
             "POST_AUTHOR": _html.escape(p["author"]),
             "POST_COVER": p["cover"],
-            "POST_BODY": inpost_html(p) + with_midpost_cta(with_gifts_cta(p, p["body"])),
+            "POST_BODY": inpost_html(p) + _post_body(p),
             "POST_NAV": nav,
         }
         c = BY_POST.get(p["slug"])
@@ -664,16 +737,26 @@ CTA_DEEPER = """<section class="dark">
   <div class="wrap narrow" style="text-align:center">
     <div class="eyebrow on-dark">Your Next Step</div>
     <h2>Do you want to go deeper in your walk with Jesus?</h2>
-    <p class="lede">Take Your Walk with Jesus Assessment, about 10 minutes, for a personal snapshot and growth steps. Or join Your Walk with Jesus Webinar, a free live hour on Zoom with Pastors Hazen and Hannah Stevens.</p>
-    <div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="/assessment/">Take the Assessment <span class="arrow">&rarr;</span></a><a class="btn btn-ghost" href="/cohort#masterclass">Join the Webinar</a></div>
+    <p class="lede">Take the free Your Walk with Jesus Assessment. In about 10 minutes you get a private snapshot of where you are today and personal next steps for growing closer to Jesus.</p>
+    <div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="/assessment/">Take the Free Assessment <span class="arrow">&rarr;</span></a></div>
   </div>
 </section>
 """
 
 
+# /plans/ hub first screen: one-tap YouVersion buttons (bible_plan_click), Nov 22, 2026.
+HUB_STARTS = [
+    ("where-does-my-help-come-from", "Where Does My Help Come From? (5 days)"),
+    ("the-surrendered-mind", "The Surrendered Mind (21 days)"),
+    ("family-matters", "Family Matters (8 days)"),
+    ("whole-bible-in-100-days", "Whole Bible in 100 Days"),
+]
+
+
 def plan_pages():
     import html as H
     from plans_data import PLANS
+    byslug = {p["slug"]: p for p in PLANS}
     pages = {}
     cards = []
     for pl in PLANS:
@@ -791,13 +874,16 @@ def plan_pages():
     <div class="eyebrow on-dark">Free Bible Plans</div>
     <h1>Read the Bible with us.</h1>
     <p class="lede">Free reading plans from GateCity Buckhead in the Bible App, from a few days on prayer and money to the whole Bible in 100 days.</p>
+    <div class="eyebrow on-dark" style="margin-top:22px">Start a plan</div>
+    <div class="btn-row plan-starts">%(STARTS)s</div>
+    <p style="color:rgba(255,255,255,.75);font-size:14px;margin-top:10px">Each opens free in the Bible App by YouVersion. <a href="#all-plans" style="color:inherit;text-decoration:underline">See all plans</a>.</p>
   </div>
 </div>
 
-<section>
+<section id="all-plans">
   <div class="wrap">
     <div class="cards">
-%s
+%(CARDS)s
       <div class="card">
         <div class="card-img wide"><img src="/assets/img/plans/songs-of-ascent.jpg?v=2" alt="Read the Songs of Ascent with us" loading="lazy"></div>
         <div class="card-body">
@@ -811,7 +897,10 @@ def plan_pages():
   </div>
 </section>
 
-""" % "\n".join(cards)
+""" % {"CARDS": "\n".join(cards), "STARTS": "".join(
+        '<a class="btn %s" href="%s" target="_blank" rel="noopener">%s%s</a>' % (
+            "btn-primary" if i == 0 else "btn-ghost", byslug[s]["url"], H.escape(lbl), ' <span class="arrow">&rarr;</span>' if i == 0 else "")
+        for i, (s, lbl) in enumerate(HUB_STARTS) if s in byslug)}
     pages["plan:hub"] = ("plans/index.html", "Free Bible Plans | GateCity Buckhead", "Free Bible reading plans from GateCity Buckhead in the Bible App: prayer, money, holiness, Jesus, and the whole Bible in 100 days.", True, hub)
     return pages
 
@@ -842,8 +931,8 @@ EVENTS = [
         "@type": "Event",
         "name": "Your Walk with Jesus Webinar",
         "description": "A free, live 50-minute webinar on Zoom with Pastors Hazen and Hannah Stevens. Walk through five everyday practices for following Jesus and take your next step.",
-        "startDate": "2026-11-17T20:00:00-05:00",
-        "endDate": "2026-11-17T20:50:00-05:00",
+        "startDate": "2026-12-29T20:00:00-05:00",
+        "endDate": "2026-12-29T20:50:00-05:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
         "location": {"@type": "VirtualLocation", "url": "https://gatecitybuckhead.com/cohort#masterclass"},
@@ -851,7 +940,7 @@ EVENTS = [
         "organizer": _GCB,
         "performer": [{"@type": "Person", "name": "Hazen Stevens"}, {"@type": "Person", "name": "Hannah Stevens"}],
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
-                   "url": "https://gatecitybuckhead.com/cohort#masterclass", "validFrom": "2026-11-04T00:00:00-05:00"},
+                   "url": "https://gatecitybuckhead.com/cohort#masterclass", "validFrom": "2026-11-22T00:00:00-05:00"},
         "isAccessibleForFree": True}},
 ]
 
@@ -1175,6 +1264,11 @@ def questions_pages():
     return pages
 
 
+# Psalms with no plan of their own in psalms_data.py get the closest existing plan (Nov 22, 2026).
+PSALM_DEFAULT_PLAN = {127: "family-matters", 128: "family-matters", 131: "the-surrendered-mind",
+                      132: "gladness-in-god", 134: "gladness-in-god"}   # everything else: where-does-my-help-come-from
+
+
 def psalm_pages():
     """Psalm meaning pages: /psalms/ hub + /psalms/psalm-N-meaning/ (from psalms_data.py).
     First set: the Songs of Ascent, Psalms 120 to 134. Psalm text is the WEB (public domain)."""
@@ -1195,6 +1289,12 @@ def psalm_pages():
     for i, p in enumerate(PSALMS):
         n = p["n"]
         slug = "psalm-%d-meaning" % n
+        _ps = (p.get("plans") or [PSALM_DEFAULT_PLAN.get(n, "where-does-my-help-come-from")])[0]
+        _pl = plans.get(_ps) or plans["where-does-my-help-come-from"]
+        _days = ("%d days, free" % _pl["days"]) if _pl.get("days") else "Free"
+        yv_btn = (f'<div class="btn-row" style="margin-top:16px"><a class="btn btn-primary" href="{_pl["url"]}" target="_blank" rel="noopener">'
+                  f'Start the Plan: {H.escape(_pl["title"])} <span class="arrow">&rarr;</span></a></div>'
+                  f'<p style="margin:8px 0 0;font-size:14px;color:var(--ink-soft)">{_days} in the Bible App by YouVersion.</p>')
         h1 = "Psalm %d Meaning: %s" % (n, p["title"])
         verses = "".join('<p><sup>%s</sup> %s</p>' % (v, H.escape(t)) for v, t in web[str(n)])
         body = f"""<div class="pagehead">
@@ -1210,6 +1310,7 @@ def psalm_pages():
     <div class="q-answer">
       <div class="eyebrow">The short answer</div>
       <p class="lede">{H.escape(p['answer'])}</p>
+      {yv_btn}
     </div>
   </div>
 </section>
